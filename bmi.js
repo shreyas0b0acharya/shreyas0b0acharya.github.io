@@ -16,4 +16,14 @@ function get_result() {
     
     let bmi = weight / (height * height);
     document.getElementById('h_1').innerHTML = bmi.toFixed(2); // Rounds BMI to 2 decimal places
+
+    if (bmi < 18.6){
+        document.getElementById('res').innerHTML = "Underweight";
+    } else if (bmi < 25) {
+        document.getElementById('res').innerHTML = "Healthy weight";
+    } else if (bmi < 30){
+        document.getElementById('res').innerHTML = "Overweight";
+    } else {
+        document.getElementById('res').innerHTML = "Obesity";
+    }
   }
