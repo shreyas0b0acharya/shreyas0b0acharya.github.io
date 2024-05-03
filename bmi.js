@@ -26,4 +26,6 @@ function get_result() {
     } else {
         document.getElementById('res').innerHTML = "Obesity";
     }
+
+    
   }
