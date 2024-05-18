@@ -1,55 +1,93 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Review Carousel</title>
   
   <link rel="stylesheet" href="review_carousel.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <table>
-    <tr>
-      <td>
-        <img src="car icon.png" alt="car icon" id="car">
-      </td>
-      <td>
-        <table>
-          <tr>
-            <td>
-              <h1>SBA Cars</h1>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div id="u_line"></div>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-  <h1>Review Carousel</h1>
-  <div id="user">
+  <!-- HEADER -->
+  <header>
     <table>
       <tr>
-        <td>  
-          <label for="name">Enter your Name:</label>
-          <input type="Text" id="name"></td>
-      </tr>
-      <tr>
         <td>
-          <label for="rev">Enter your review:</label>
-          <input type="Text" id="rev">
+          <img src="car icon.png" alt="car icon" id="car">
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td id="title">
+                <h1>SBA Cars</h1>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="u_line"></div>
+              </td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <div id="hamburger">&#9776;</div>
         </td>
       </tr>
     </table>
-  </div>
-  
-  
-  
+  </header>
+
+  <table>
+    <tr>
+      <td>
+        <div id="left">&laquo;</div>
+      </td>
+      <td>
+        <div id="show"></div>
+      </td>
+      <td>
+        <div id="right">&raquo;</div>
+      </td>
+    </tr>
+  </table>
+
+  <div id="user">
+    <h1>Reviews and Ratings</h1>
+    <h3>Rate this</h3>
+    <table>
+        <tr>
+            <td>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+            </td>
+            <td>
+
+                <table id="stars">
+                  <tr>
+                    <td><h4 style="font-size: 20px;">Rating:</h4></td>
+                    <td><div id="star1" onclick="rating_value(1)">&#9734;</div></td>
+                    <td><div id="star2" onclick="rating_value(2)">&#9734;</div></td>
+                    <td><div id="star3" onclick="rating_value(3)">&#9734;</div></td>
+                    <td><div id="star4" onclick="rating_value(4)">&#9734;</div></td>
+                    <td><div id="star5" onclick="rating_value(5)">&#9734;</div></td>
+                  </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="review">Enter your review:</label>
+                <input id="review" name="review"></input>
+            </td>
+          <td><button onclick=clear_form()>Clear</button></td>
+          <td><button onclick=save_this()>Submit</button></td>
+        </tr>
+    </table>
+</div>
+
+  <script src="review_carousel.js"></script>
 </body>
 
 </html>
