@@ -4,12 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KHO KHO SCORE BOARD</title>
+    <link rel="stylesheet" href="kho.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section>
-        <h2>About Us</h2>
-        <p>Information about our company.</p>
-    </section>
-    
+    <h1 id="title">KHO KHO ScoreBoard</h1>
+    <div class="scores">
+        <div id="t1_in">
+            <h1 class="inns_t">SCORES</h1>
+            <div>
+                <h1 class="inns_t">1st INNINGS</h1>
+                <h1 id="t1_in_1" class="inns"></h1>
+            </div>
+            <div>
+                <h1 class="inns_t">2nd INNINGS</h1>
+                <h1 id="t1_in_2" class="inns"></h1>
+            </div>   
+            <div>
+                <h1 class="inns_t">Team Color</h1>
+                <input type="color">
+            </div>
+                
+        </div>
+        <div id="s_div1">
+            <input id="t1" value="Team1">
+            <h1 id="s1">00</h1>
+        </div>
+        <div class="timing">
+            <h1 id="timer">00:00</h1>
+            <button>Start</button>
+            <button>Reset</button>
+        </div>
+        <div id="s_div2">
+            <input id="t2" value="Team2">
+            <h1 id="s2">00</h1>
+        </div>
+        <div id="t2_in">
+            <h1 class="inns_t">SCORES</h1>
+            <div>
+                <h1 class="inns_t">1st INNINGS</h1>
+                <h1 id="t1_in_1" class="inns"></h1>
+            </div>
+            <div>
+                <h1 class="inns_t">2nd INNINGS</h1>
+                <h1 id="t1_in_2" class="inns"></h1>
+            </div>    
+            <div>
+                <h1 class="inns_t">Team Color</h1>
+                <input type="color">
+            </div>
+        </div>
+    </div>
+
+    <div id="operate" style="margin-top: 20px;">
+        <div id="time_input" class="btm_div">
+            <div id="time_label">
+                <label for="inns_time">Innings Time</label>
+                <label for="break_time_1">Break time in innings</label>
+                <label for="break_time_2">Break time after 1st innings</label>
+            </div>
+            
+            <div id="time_set">
+                <input type="number" id="inns_time" value="9">
+                <input type="number" id="break_time_1" value="3">
+                <input type="number" id="break_time_2" value="10">
+            </div>
+        </div >
+
+        <div class="btm_div" id="s_btn">
+            <button>+1</button>
+            <button>-1</button>
+        </div>
+
+        <div class="btm_div" style="font-size: 15px;">
+            <table>
+                <tr> <td>O</td> <td style="border-left: 2px solid grey; border-right: 2px solid grey;">O</td> <td>O</td> </tr>
+                <tr > <td>1st Innings</td> <td style="border-left: 2px solid grey; border-right: 2px solid grey;">Break</td> <td>1st Innings</td></tr>
+
+                <tr style="border: 2px solid grey;"> <td colspan="2">Break</td> <td>O</td> </tr>
+
+                <tr> <td>O</td> <td style="border-left: 2px solid grey; border-right: 2px solid grey;">O</td> <td>O</td> </tr>
+                <tr> <td>2nd Innings</td> <td style="border-left: 2px solid grey; border-right: 2px solid grey;">Break</td> <td>2nd Innings</td></tr>
+            </table>
+        </div >
+
+        <div class="btm_div" id="s_btn">
+            <button>+1</button>
+            <button>-1</button>
+        </div>
+
+        <div class="btm_div">
+            Get stats
+        </div>
+        
+    </div>
+
 </body>
 </html>
