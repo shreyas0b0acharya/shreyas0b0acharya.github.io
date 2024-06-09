@@ -6,7 +6,7 @@ y = [10, 26, 58, 112, 194];
 X = 1.4;
 
 % Number of data points
-n = length(x);
+n = length(x);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        );
 
 % Calculating step size
 h = x(2) - x(1);
@@ -21,15 +21,15 @@ for j = 2:n
 end
 
 % Calculating the value of u
-u = (X - x(1))/h;
+r = (X - x(1))/h;
 
 % Applying Newton's forward formula
-interp_value = y(1);
-multiplier = 1;
+forward_ans = y(1);
+r_multiplier = 1;
 for i = 1:n-1
-    multiplier = multiplier * (u - i + 1)/i;
-    interp_value = interp_value + multiplier * fd_table(1,i+1);
+    r_multiplier = r_multiplier * (r - i + 1)/i;
+    forward_ans = forward_ans + r_multiplier * fd_table(1,i+1);
 end
 
 % Displaying the interpolated value
-disp(['The interpolated value of y at X = ', num2str(X), ' is: ', num2str(interp_value)]);
+disp(['The interpolated value of y at X = ', num2str(X), ' is: ', num2str(forward_ans)]);

@@ -23,7 +23,7 @@ x = a:h:b;
 y = f(x);
 
 % Apply Simpson's 1/3 rule
-area = (h/3) * (y(1) + 4*sum(y(2:2:end-1)) + 2*sum(y(3:2:end-2)) + y(end));
+area = (h/3) * (y(1) + y(end) + 4*sum(y(2:2:end-1)) + 2*sum(y(3:2:end-2)) );
 
 % Display the result
 disp(['The area under the curve is: ', num2str(area)]);

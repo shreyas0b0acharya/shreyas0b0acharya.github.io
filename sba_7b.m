@@ -21,15 +21,15 @@ for j = 2:n
 end
 
 % Calculating the value of u for backward difference
-u = (X - x(n))/h;
+r = (X - x(n))/h;
 
 % Applying Newton's backward formula
-interp_value = y(n);
-multiplier = 1;
+backward_ans = y(n);
+r_multiplier = 1;
 for i = 1:n-1
-    multiplier = multiplier * (u + i - 1)/i;
-    interp_value = interp_value + multiplier * bd_table(n,i+1);
+    r_multiplier = r_multiplier * (r + i - 1)/i;
+    backward_ans = backward_ans + r_multiplier * bd_table(n,i+1);
 end
 
 % Displaying the interpolated value
-disp(['The interpolated value of y at X = ', num2str(X), ' is: ', num2str(interp_value)]);
+disp(['The interpolated value of y at X = ', num2str(X), ' is: ', num2str(backward_ans)]);
