@@ -3,10 +3,10 @@ f = @(x, y) x * y;
 y0 = 5;
 x0 = 1;
 h = 0.1;
-x_end = 1.4;
+X = 1.4;
 
 % Initialize the solution
-x = x0:h:x_end;
+x = x0:h:X;
 y = zeros(size(x));
 y(1) = y0;
 
@@ -19,4 +19,4 @@ for i = 1:(length(x)-1)
 end
 
 % Display the results
-disp(['Y value at X = ', num2str(x_end), ' is: ', num2str(y(end))]);
+disp(['Y value at X = ', num2str(X), ' is: ', num2str(y(end))]);

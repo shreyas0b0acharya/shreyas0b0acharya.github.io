@@ -13,9 +13,8 @@ y(1) = y0; % Set the initial value of y
 % Perform the Taylor series approximation using only the first-order derivative
 for i = 1:(length(x)-1)
     % Calculate the function value at the current point
-    f0 = f(x(i), y(i)); 
     % Update the next value of y using only the first-order term
-    y(i+1) = y(i) + h*f0;
+    y(i+1) = y(i) + h* f(x(i), y(i));
 end
 
 % Display the results
