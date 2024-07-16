@@ -1,0 +1,12 @@
+def check_seq(seq, subseq):
+    index = 0
+    count = 0
+    for letter in subseq:
+        for i in range(index, len(seq)):
+            if letter == seq[i]:
+                count += 1
+                index = i + 1
+                break
+    return count == len(subseq)
+
+print(check_seq('apple', 'alp'))
