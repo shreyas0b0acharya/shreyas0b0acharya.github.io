@@ -18,3 +18,19 @@ def check_palindrome(inp):
         return pali
 
 print(check_palindrome("ig is siig"))
+
+def check_pali(inp):
+    pf = 0
+    pb = -1
+
+    word = "".join(letter.lower() for letter in inp if letter.isalpha())
+
+    while pf < len(word):
+        if word[pf] != word[pb]:
+            return False
+        pf += 1
+        pb -= 1
+
+    return True
+
+print(check_pali("a.b3b r fb f-r';bba"))
