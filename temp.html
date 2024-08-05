@@ -1,15 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Picker</title>
-</head>
+<html>
 <body>
-    <form>
-        <label for="colorPicker">Select a color:</label>
-        <input type="color" id="colorPicker" name="colorPicker">
-        <input type="submit" value="Submit">
-    </form>
+
+<h2>Local Storage Example</h2>
+
+<button onclick="saveData()">Save Data</button>
+<button onclick="loadData()">Load Data</button>
+<button onclick="deleteData()">Delete Data</button>
+
+<p id="output"></p>
+
+<script>
+function saveData() {
+  localStorage.setItem('name', 'Shreyu');
+  alert('Data saved');
+}
+
+function loadData() {
+  let name = localStorage.getItem('name');
+  document.getElementById('output').innerText = name ? `Name: ${name}` : 'No data found';
+}
+
+function deleteData() {
+  localStorage.removeItem('name');
+  alert('Data deleted');
+}
+</script>
+
 </body>
 </html>
