@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendar Icon Text</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>Iteration and Color Change</title>
+  <style>
+    .box {
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+      margin: 10px;
+      background-color: #000000;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <div class="material-icons">calendar_today</div>
-        <span>Event Date: August 5, 2024</span>
-    </div>
+  <div id="graph">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+
+  <script>
+    // Get the parent element
+    const graph_div = document.getElementById("graph");
+
+    // Get the child elements with class "box"
+    const child_div = graph_div.getElementsByClassName("box");
+
+    // Define the value of x
+    const x = 5;
+
+    // Check if there are at least x child elements
+    if (child_div.length >= x) {
+      for (let i = x - 2; i < x; i++) {
+        let j = i;
+        setInterval(() => {
+          if (child_div[j]) {
+            if (child_div[j].style.backgroundColor === "red") {
+              child_div[j].style.backgroundColor = "yellow";
+            } else {
+              child_div[j].style.backgroundColor = "red";
+            }
+          }
+        }, 1000);
+      }
+    }
+  </script>
 </body>
 </html>

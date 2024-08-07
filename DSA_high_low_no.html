@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="DSA_high_low_no.css">
 </head>
 <body>
-    <header>
-        <h1>Data Structures</h1>
-    </header>
+    <header >Highest and Lowest values</header>
+
+
+
+    <div id="graph_div">
+        <div id="main_box_div"></div>
+        <div id="main_nums_div"></div>
+        <form>
+            <input type="radio" name="order" value="Highest" onclick="change_high()" style="margin: 2%;">Highest
+            <input type="radio" name="order" value="Lowest" onclick="change_low()" style="margin: 2%;">Lowest
+            <button type="reset" onclick="reload()" style="margin: 2% ;background :linear-gradient(to bottom,black,dodgerblue); border: none;color: yellow; width: 7%;height:auto; font-size: 2rex;">Reset</button>
+            <h3 id="disp" style="margin: 2%;";">0</h1>
+
+        </form>
+    </div>
+    
+    
+
+    <script src="DSA_high_low_no.js"></script>
 </body>
 </html>
