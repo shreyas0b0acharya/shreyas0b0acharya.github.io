@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="DSA_Bubble_sort.css">
+</head>
+<body>
+    <header>Bubble Sort</header>
+
+    <main>
+        <div id="graph_id"></div>
+        <div id="op_id">
+            <button id="start_btn" onclick="start_sorting()">Start</button>
+            <button id="start_btn" onclick="blocks()">Create</button>
+            <div>
+                <label for="list_size_volume">List Size</label>
+                <input type="range" id="list_size_volume"min="0" max="100" value="20">
+                <div id="size_display"></div>
+            </div>
+            <div>
+                <label for="speed_volume">Speed</label>
+                <input type="range" id="speed_volume"min="0" max="500" value="500">
+                <div id="speed_display"></div>
+            </div>
+            
+        </div>
+        
+    </main>
+    <script src="DSA_Bubble_sort.js"></script>
+</body>
+</html>

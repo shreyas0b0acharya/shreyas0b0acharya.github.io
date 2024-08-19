@@ -1,0 +1,55 @@
+header{
+    font-size: 5ex;
+    color: white;
+    background-color: purple;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.new_div{
+    background-color: purple;
+    margin:0.1ex;
+    max-width: 5%;
+    width: 5%;
+    transition: transform 0.5s ease-in-out;
+
+    
+}
+main{
+    margin: 10%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-content: center;
+    min-height: 300px;
+    margin-top: 8%;
+}
+
+#graph_id{
+    position: relative;
+    display: flex;
+    flex-direction: row; 
+    align-items: flex-end;
+    min-height: 250px;
+    margin: 1% ;
+
+    
+}
+#op_id{
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-around;
+    margin: 1%;
+
+}
+#start_btn{
+    position: relative;
+    margin: 1%;
+    font-size: 3rex;
+    height: auto;
+    width: auto;
+}
+

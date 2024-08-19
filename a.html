@@ -1,54 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Iteration and Color Change</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark/Light Theme Toggle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <style>
-    .box {
-      width: 50px;
-      height: 50px;
-      display: inline-block;
-      margin: 10px;
-      background-color: #000000;
+    /* Default light theme styles */
+    body {
+      background-color: #f2f2f2;
+      color: #333;
+    }
+
+    /* Dark theme styles */
+    body.dark-theme {
+      background-color: #333;
+      color: #fff;
+    }
+
+    /* Toggle button styles */
+    #theme-toggle {
+      background-color: #444;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #theme-toggle:hover {
+      background-color: #555;
+    }
+
+    #theme-icon {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    #theme-text {
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <div id="graph">
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
-    <div class="box"></div>
+  <!-- The toggle button -->
+  <button id="theme-toggle" aria-label="Toggle theme">
+    <i class="fas fa-moon" id="theme-icon"></i>
+    <span id="theme-text">Dark Mode</span>
+  </button>
+
+  <!-- The theme styles will be applied to this element -->
+  <div id="app">
+    <!-- Your app content goes here -->
+    <h1>Welcome to my app!</h1>
+    <p>This is a sample paragraph.</p>
   </div>
 
   <script>
-    // Get the parent element
-    const graph_div = document.getElementById("graph");
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeText = document.getElementById('theme-text');
+    const app = document.getElementById('app');
 
-    // Get the child elements with class "box"
-    const child_div = graph_div.getElementsByClassName("box");
+    let isDarkTheme = false;
 
-    // Define the value of x
-    const x = 5;
+    themeToggle.addEventListener('click', () => {
+      isDarkTheme = !isDarkTheme;
+      toggleTheme();
+    });
 
-    // Check if there are at least x child elements
-    if (child_div.length >= x) {
-      for (let i = x - 2; i < x; i++) {
-        let j = i;
-        setInterval(() => {
-          if (child_div[j]) {
-            if (child_div[j].style.backgroundColor === "red") {
-              child_div[j].style.backgroundColor = "yellow";
-            } else {
-              child_div[j].style.backgroundColor = "red";
-            }
-          }
-        }, 1000);
+    function toggleTheme() {
+      if (isDarkTheme) {
+        app.classList.add('dark-theme');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+        themeText.textContent = 'Light Mode';
+      } else {
+        app.classList.remove('dark-theme');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+        themeText.textContent = 'Dark Mode';
       }
     }
   </script>

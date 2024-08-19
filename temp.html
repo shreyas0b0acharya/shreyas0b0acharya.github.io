@@ -1,31 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark/Light Theme Toggle</title>
+    <link rel="stylesheet" href="temp.css">
+</head>
 <body>
+    <button id="themeToggle">
+        <span id="themeIcon">🌞</span> <!-- Default to light theme icon -->
+    </button>
 
-<h2>Local Storage Example</h2>
-
-<button onclick="saveData()">Save Data</button>
-<button onclick="loadData()">Load Data</button>
-<button onclick="deleteData()">Delete Data</button>
-
-<p id="output"></p>
-
-<script>
-function saveData() {
-  localStorage.setItem('name', 'Shreyu');
-  alert('Data saved');
-}
-
-function loadData() {
-  let name = localStorage.getItem('name');
-  document.getElementById('output').innerText = name ? `Name: ${name}` : 'No data found';
-}
-
-function deleteData() {
-  localStorage.removeItem('name');
-  alert('Data deleted');
-}
-</script>
-
+    <script src="temp.js"></script>
 </body>
 </html>

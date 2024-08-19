@@ -1,0 +1,21 @@
+body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.box{
+    position: relative;
+    height: 10ex;
+    width: 10ex ;
+    background-color:black;
+    margin-top: 20ex;
+    border: 1px solid red;
+    font-size: 5ex;
+    color: aliceblue;
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+}
