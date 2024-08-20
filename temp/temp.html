@@ -1,16 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark/Light Theme Toggle</title>
-    <link rel="stylesheet" href="temp.css">
+  <style>
+    .container {
+      position: relative;
+    }
+
+    .box {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      transition: all 0.75s; /* add transition effect */
+    }
+
+    .box1 {
+      top: 0;
+      left: 0;
+    }
+
+    .box2 {
+      top: 0;
+      left: 150px;
+    }
+
+    /* add a class to exchange positions */
+    .exchange.box1 {
+      left: 150px;
+    }
+
+    .exchange.box2 {
+      left: 0;
+    }
+  </style>
 </head>
 <body>
-    <button id="themeToggle">
-        <span id="themeIcon">🌞</span> <!-- Default to light theme icon -->
-    </button>
+  <button id="exchange-btn">Exchange positions</button>
+  <div class="container">
+    <div class="box box1">Box 1</div>
+    <div class="box box2">Box 2</div>
+  </div>
 
-    <script src="temp.js"></script>
+  <script>
+    // add event listener to a button or any other element
+    document.getElementById('exchange-btn').addEventListener('click', function() {
+      document.querySelectorAll('.box').forEach(function(box) {
+        box.classList.toggle('exchange');
+      });
+    });
+  </script>
 </body>
 </html>
