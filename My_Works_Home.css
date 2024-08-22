@@ -7,8 +7,16 @@ header {
     box-shadow: 0px 0px 2vw black;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
+    
+}
+
+#icon{
+    height: 5em; 
+    width:5em;
+    padding-left: 2em;
+    margin: 1%;
 }
 
 #h1 {
@@ -45,7 +53,7 @@ body {
     font-weight: 500;
 }
 
-img,
+#images,
 .name {
     position: relative;
     width: 90%;
@@ -55,7 +63,7 @@ img,
     text-shadow: 0px .2vw .2vw black;
 }
 
-img {
+#images {
     box-shadow: 0px 2.5vw 2vw rgba(0, 0, 0, 0.5);
     border-radius: 1vw;
     border: 0.1vw solid transparent;

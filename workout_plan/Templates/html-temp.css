@@ -1,0 +1,53 @@
+main{
+    margin: 0%;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    border-bottom: 1px solid black;
+    align-items: center;
+    padding: 1%;
+    max-width: 100%;
+}
+
+.header-font{
+    font-size: 2em;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.nav-font{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    color: rgb(50, 50, 50);
+}
+
+.nav-font:hover {
+    color: red !important;
+    cursor: pointer;
+    border-bottom: 1px solid red;
+}
+
+.nav-font.active{
+    color: blue ;
+    border-bottom: 1px solid blue;
+}
+
+.nav{
+    height: 70px; 
+    background-color: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 100%;
+}
+
+

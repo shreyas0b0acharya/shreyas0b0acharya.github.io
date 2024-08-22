@@ -1,54 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <style>
-    .container {
-      position: relative;
-    }
-
-    .box {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      background-color: #f0f0f0;
-      border: 1px solid #ddd;
-      transition: all 0.75s; /* add transition effect */
-    }
-
-    .box1 {
-      top: 0;
-      left: 0;
-    }
-
-    .box2 {
-      top: 0;
-      left: 150px;
-    }
-
-    /* add a class to exchange positions */
-    .exchange.box1 {
-      left: 150px;
-    }
-
-    .exchange.box2 {
-      left: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX with Fetch</title>
+    <script>
+        function loadContent() {
+            fetch('content.txt')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('content').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+    </script>
 </head>
 <body>
-  <button id="exchange-btn">Exchange positions</button>
-  <div class="container">
-    <div class="box box1">Box 1</div>
-    <div class="box box2">Box 2</div>
-  </div>
 
-  <script>
-    // add event listener to a button or any other element
-    document.getElementById('exchange-btn').addEventListener('click', function() {
-      document.querySelectorAll('.box').forEach(function(box) {
-        box.classList.toggle('exchange');
-      });
-    });
-  </script>
+<h1>AJAX Example with Fetch</h1>
+<button onclick="loadContent()">Load Content</button>
+<div id="content">
+    <!-- Content will be loaded here -->
+</div>
+
 </body>
 </html>
