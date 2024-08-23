@@ -3,32 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AJAX with Fetch</title>
-    <script>
-        function loadContent() {
-            fetch('content.txt')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('content').innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                });
+    <title>Countdown Timer</title>
+    <style>
+        /* Simple styling for the timer */
+        #timer {
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
         }
-    </script>
+    </style>
 </head>
 <body>
 
-<h1>AJAX Example with Fetch</h1>
-<button onclick="loadContent()">Load Content</button>
-<div id="content">
-    <!-- Content will be loaded here -->
-</div>
+<div id="timer">00:00:00</div>
+
+<script>
+    // Set the timer duration in seconds
+    let duration = 10; // Example: 5 minutes
+
+    // Reference to the timer element
+    const timerElement = document.getElementById('timer');
+
+    // Function to format the time as mm:ss
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+    }
+
+    // Function to update the timer
+    function updateTimer() {
+        if (duration > 0) {
+            duration--;
+            timerElement.textContent = formatTime(duration);
+        } else {
+            clearInterval(timerInterval);
+            timerElement.textContent = "Time's up!";
+        }
+    }
+
+    // Start the timer and update every second
+    const timerInterval = setInterval(updateTimer, 500);
+
+    // Initialize the timer display
+    timerElement.textContent = formatTime(duration);
+</script>
 
 </body>
 </html>

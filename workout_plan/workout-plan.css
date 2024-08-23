@@ -5,3 +5,41 @@
     background-color: lightcoral;
 }
 
+.warm-up{
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise-gif{
+    width: 30vw;
+    height: 30vw;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid red;
+    border-radius: 50%;
+    overflow: hidden;
+
+}
+.exercise {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
+    padding: 2vw
+}
+
+.checkbox-main-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.image-and-name{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2vw;
+}
+
+
