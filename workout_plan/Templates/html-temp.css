@@ -42,8 +42,7 @@ main{
 }
 
 .nav{
-    height: 70px; 
-    background-color: #f8f9fa;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: space-around;
