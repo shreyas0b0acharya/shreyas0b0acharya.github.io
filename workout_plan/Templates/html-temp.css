@@ -1,11 +1,11 @@
-main{
+body{
     margin: 0%;
 }
 .header{
     display: flex;
     flex-direction: row;
     height: 60px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid gray;
     align-items: center;
     padding: 1%;
     max-width: 100%;
@@ -18,6 +18,9 @@ main{
     text-transform: uppercase;
     letter-spacing: 1px;
     line-height: 1.3;
+    text-shadow: 2px 2px 3px black;
+    color: white;
+    
 }
 
 .nav-font{
@@ -28,17 +31,20 @@ main{
     letter-spacing: 0.5px;
     line-height: 1.3;
     color: rgb(50, 50, 50);
+    padding: 1vw;
 }
 
 .nav-font:hover {
     color: red !important;
     cursor: pointer;
-    border-bottom: 1px solid red;
+    border-bottom: 5px solid red;
+    background-color: rgb(180, 180, 180);
 }
 
 .nav-font.active{
     color: blue ;
-    border-bottom: 1px solid blue;
+    border-bottom: 5px solid blue;
+    background-color: rgb(180, 180, 180);
 }
 
 .nav{
@@ -47,6 +53,7 @@ main{
     align-items: center;
     justify-content: space-around;
     max-width: 100%;
+    border-bottom: 1px solid gray;
 }
 
 
