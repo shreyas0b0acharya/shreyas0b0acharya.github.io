@@ -3,52 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Countdown Timer</title>
+    <title>Simple Timer</title>
     <style>
-        /* Simple styling for the timer */
-        #timer {
-            font-size: 2em;
-            font-weight: bold;
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .timer {
             text-align: center;
-            margin-top: 20px;
+        }
+        .time {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 5px;
         }
     </style>
 </head>
 <body>
+    <div class="timer">
+        <div id="time" class="time">00:00:00</div>
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+        <button id="resetBtn">Reset</button>
+    </div>
+    <script>
+        let timer;
+        let seconds = 0;
+        let running = false;
 
-<div id="timer">00:00:00</div>
+        const timeDisplay = document.getElementById('time');
+        const startBtn = document.getElementById('startBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const resetBtn = document.getElementById('resetBtn');
 
-<script>
-    // Set the timer duration in seconds
-    let duration = 10; // Example: 5 minutes
-
-    // Reference to the timer element
-    const timerElement = document.getElementById('timer');
-
-    // Function to format the time as mm:ss
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = seconds % 60;
-        return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
-    }
-
-    // Function to update the timer
-    function updateTimer() {
-        if (duration > 0) {
-            duration--;
-            timerElement.textContent = formatTime(duration);
-        } else {
-            clearInterval(timerInterval);
-            timerElement.textContent = "Time's up!";
+        function formatTime(seconds) {
+            const hrs = Math.floor(seconds / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
-    }
 
-    // Start the timer and update every second
-    const timerInterval = setInterval(updateTimer, 500);
+        function updateDisplay() {
+            timeDisplay.textContent = formatTime(seconds);
+        }
 
-    // Initialize the timer display
-    timerElement.textContent = formatTime(duration);
-</script>
+        function startTimer() {
+            if (!running) {
+                running = true;
+                timer = setInterval(() => {
+                    seconds++;
+                    updateDisplay();
+                }, 1000);
+            }
+        }
 
+        function stopTimer() {
+            running = false;
+            clearInterval(timer);
+        }
+
+        function resetTimer() {
+            stopTimer();
+            seconds = 0;
+            updateDisplay();
+        }
+
+        startBtn.addEventListener('click', startTimer);
+        stopBtn.addEventListener('click', stopTimer);
+        resetBtn.addEventListener('click', resetTimer);
+    </script>
 </body>
 </html>

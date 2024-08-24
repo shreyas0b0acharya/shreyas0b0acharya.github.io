@@ -65,7 +65,7 @@ function contentLoader() {
             labelDiv.appendChild(checkbox);
         }
 
-        
+        let timerDiv = document.createElement("div");
     }
     
 }

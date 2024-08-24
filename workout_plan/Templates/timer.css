@@ -1,0 +1,35 @@
+.timer-div{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+    align-items: center;
+    gap: 1vw;
+
+}
+
+.timer-animation-div {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.timer-animation {
+    width: 100%;
+    background-color: brown;
+}
+
+.timer-count{
+    font-size: 2vw;
+    font-family: fantasy;
+}
+
+.timer-input{
+    display: flex;
+    flex-direction: row;
+    gap:1vw;
+}
+
+
