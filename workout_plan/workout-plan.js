@@ -50,22 +50,78 @@ function contentLoader() {
 
         // create loop of checkboxes
 
-        for (let i = 1; i < 5; i++) {
+        for (let j = 1; j < 5; j++) {
             // Create a label element
             let labelDiv = document.createElement("label");
-            labelDiv.setAttribute("for", `set${i}`);
-            labelDiv.innerHTML = `Set-${i}`;
+            labelDiv.setAttribute("for", `set${j}`);
+            labelDiv.innerHTML = `Set-${j}`;
             checkboxMainDiv.appendChild(labelDiv);
         
             // Create a checkbox input element
             let checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.classList.add("checkbox");
-            checkbox.id = `set${i}`;
+            checkbox.id = `set${j}`;
             labelDiv.appendChild(checkbox);
         }
 
         let timerDiv = document.createElement("div");
+        timerDiv.classList.add("timer-div");
+        exerciseDiv.appendChild(timerDiv);
+
+        let timerAnimationDiv = document.createElement("div");
+        timerAnimationDiv.classList.add("timer-animation-div");
+        timerDiv.appendChild(timerAnimationDiv);
+
+        let timerAnimation= document.createElement("div");
+        timerAnimation.classList.add("timer-animation");
+        timerAnimation.id = `timer-animation-${i+1}`;
+        
+        timerAnimationDiv.appendChild(timerAnimation);
+
+        let timerCount = document.createElement("div");
+        timerCount.classList.add("timer-count");
+        timerCount.innerHTML = "00:00";
+        timerCount.id = `timer-${i+1}`;
+        timerDiv.appendChild(timerCount);
+
+        let timerInput =document.createElement("div");
+        timerInput.classList.add("timer-input");
+        timerDiv.appendChild(timerInput);
+
+        let audio = document.createElement("audio");
+        audio.id = `audio-${i+1}`;
+        audio.src = "audio/audio-file.mp3"; 
+        timerInput.appendChild(audio);
+
+        var timerList = ["0:30","1:00","1:30","2:00"];
+        var secondsList = ["30","60","90","120"];
+        for (let k = 0; k < 4; k++) {
+            let buttonDiv = document.createElement("button");
+            buttonDiv.innerHTML = timerList[k];
+            buttonDiv.classList.add("button");
+
+            buttonDiv.onclick = function() {
+                console.log(i+1);
+                setTimer(i+1,secondsList[k]);
+                
+            };
+            console.log(`setTimer('${secondsList[k]}')`)
+            timerInput.appendChild(buttonDiv);
+        }
+
+        let buttonDiv = document.createElement("button");
+        buttonDiv.innerHTML = "Reset";
+        buttonDiv.classList.add("button");
+        buttonDiv.onclick = () => {
+            stopTimer(i+1);
+        }
+        timerDiv.appendChild(buttonDiv);
+
+
+        
+
+
     }
     
 }

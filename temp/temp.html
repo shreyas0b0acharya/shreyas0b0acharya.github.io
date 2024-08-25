@@ -3,83 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Timer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
-        }
-        .timer {
-            text-align: center;
-        }
-        .time {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        button {
-            font-size: 1em;
-            padding: 10px 20px;
-            margin: 5px;
-        }
-    </style>
+    <title>Multiple Timers</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="timer">
-        <div id="time" class="time">00:00:00</div>
-        <button id="startBtn">Start</button>
-        <button id="stopBtn">Stop</button>
-        <button id="resetBtn">Reset</button>
-    </div>
+    <div id="timers-container"></div>
+
     <script>
-        let timer;
-        let seconds = 0;
-        let running = false;
+        // Function to create a timer div
+        function createTimerDiv(id) {
+            const timerDiv = document.createElement('div');
+            timerDiv.classList.add('timer-div');
 
-        const timeDisplay = document.getElementById('time');
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const resetBtn = document.getElementById('resetBtn');
+            // Timer display
+            const timerCount = document.createElement('div');
+            timerCount.classList.add('timer-count');
+            timerCount.id = `timer-${id}`;
+            timerCount.innerHTML = '01:00';
+            timerDiv.appendChild(timerCount);
 
-        function formatTime(seconds) {
-            const hrs = Math.floor(seconds / 3600);
-            const mins = Math.floor((seconds % 3600) / 60);
-            const secs = seconds % 60;
-            return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+            // Start button
+            const startButton = document.createElement('button');
+            startButton.innerHTML = 'Start';
+            startButton.classList.add('button');
+            startButton.onclick = function() {
+                startTimer(id, timerCount);
+            };
+            timerDiv.appendChild(startButton);
+
+            // Append to the main container
+            document.getElementById('timers-container').appendChild(timerDiv);
         }
 
-        function updateDisplay() {
-            timeDisplay.textContent = formatTime(seconds);
+        // Function to start the timer
+        function startTimer(id, timerCount) {
+            let time = 60; // 1 minute in seconds
+            const interval = setInterval(() => {
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+                timerCount.innerHTML = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+                time--;
+
+                if (time < 0) {
+                    clearInterval(interval);
+                    timerCount.innerHTML = '00:00';
+                }
+            }, 1000);
         }
 
-        function startTimer() {
-            if (!running) {
-                running = true;
-                timer = setInterval(() => {
-                    seconds++;
-                    updateDisplay();
-                }, 1000);
-            }
+        // Create 3 timers
+        for (let i = 1; i <= 3; i++) {
+            createTimerDiv(i);
         }
-
-        function stopTimer() {
-            running = false;
-            clearInterval(timer);
-        }
-
-        function resetTimer() {
-            stopTimer();
-            seconds = 0;
-            updateDisplay();
-        }
-
-        startBtn.addEventListener('click', startTimer);
-        stopBtn.addEventListener('click', stopTimer);
-        resetBtn.addEventListener('click', resetTimer);
     </script>
 </body>
 </html>
