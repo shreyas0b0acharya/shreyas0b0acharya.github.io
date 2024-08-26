@@ -1,11 +1,7 @@
 
-
-function formateTime(id,seconds,height) {
-    var timerAnimateDiv = document.getElementById(`timer-animation-${id}`);
-    var currentHeight = parseFloat(window.getComputedStyle(timerAnimateDiv).height); // Get the current height in pixels
-    timerAnimateDiv.style.height = (currentHeight + height) + 'px'; // Add the desired height and set it in pixels
-
-
+// functio to create timer div and timer animatin div
+function formateTime(id,seconds) {
+    
     let formateMinutes = parseInt(seconds/60);
     let formateSeconds = seconds % 60;
 
@@ -19,21 +15,23 @@ var running = false;
 var intervalId;
 var height =0;
 
+// function to start the timer and animation
 function setTimer(id,seconds) {
+
     var timerAnimateDiv = document.getElementById(`timer-animation-${id}`);
     console.log(`timer-animation-${id}`);
-    timerAnimateDiv.style.height =0; 
-    var height = 150/seconds;
+    timerAnimateDiv.style.height ="80px"; 
+    timerAnimateDiv.style.transition=`height ${seconds}s linear`;
+    
     running = false;
     clearInterval(intervalId);
+
     if (!running) {
         running =true;
-        intervalId =setInterval(() =>{
-            
+        intervalId =setInterval(() =>{ 
             seconds--;
-            formateTime(id,seconds,height);
+            formateTime(id,seconds);
             if(seconds<1){
-
                 let timer = document.getElementById(`timer-${id}`);
                 timer.innerHTML = "Time Up...!";
                 let audio = document.getElementById(`audio-${id}`);
@@ -41,18 +39,17 @@ function setTimer(id,seconds) {
                 audio.play();
                 running=false;
                 clearInterval(intervalId);
-                var timerAnimateDiv = document.getElementById(`timer-animation-${id}`);
-                timerAnimateDiv.style.height ='150px';
-
             }
-        },100)  
+        },1000)  
     }
 }
 
+//timer to stop the timer and the animation
 function stopTimer(id){
     running=false;
-    var timerAnimateDiv = document.getElementById(`timer-animation-${id}`);
-    timerAnimateDiv.style.height =0;
+    var timerAniDiv = document.getElementById(`timer-animation-${id}`);
+    timerAniDiv.style.height ='0px';
+    timerAniDiv.style.transition=`height 1.5s linear`;
     let timer = document.getElementById(`timer-${id}`);
     timer.innerHTML = "00:00";
     let audio = document.getElementById(`audio-${id}`);

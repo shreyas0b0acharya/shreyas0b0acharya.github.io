@@ -14,8 +14,19 @@ function loadContent(selectedData) {
     })
     .catch((e) => console.error(e));
 }
-let imageList = ["images/jump-rope.gif" ,"images/jumping-jacks.gif"];
-let nameList = ["Jump Rope" ,"Jumping Jacks"];
+let imageList = ["images/jump-rope.gif",
+    "images/jumping-jacks.gif",
+    "images/arm-circles.gif",
+    "images/shoulder-rotations.gif",
+    "images/pull-ups.gif",
+    "images/single-arm-inverted-rows.webp",
+    "images/bar-dips.gif",
+    "images/pull-ups.gif",
+    "images/front-lever-progression.gif",
+    "images/v-ups.gif"];
+
+let nameList = ["Jump Rope",
+    "Jumping Jacks"];
 
 function contentLoader() {
     let mainDiv = document.getElementById("main-content");
@@ -117,13 +128,7 @@ function contentLoader() {
             stopTimer(i+1);
         }
         timerDiv.appendChild(buttonDiv);
-
-
-        
-
-
-    }
-    
+    }  
 }
 
 // Ensure the contentLoader function is called after defining it

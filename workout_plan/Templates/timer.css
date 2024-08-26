@@ -6,8 +6,8 @@
 }
 
 .timer-animation-div {
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;

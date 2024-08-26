@@ -10,7 +10,7 @@
     width: 30vw;
     height: 30vw;
     object-fit: cover;
-    object-position: center;
+    object-position: top;
     border: 3px solid red;
     border-radius: 50%;
     overflow: hidden;
