@@ -3,58 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiple Timers</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Slider Example</title>
+    <style>
+        .slider-container {
+            overflow: hidden;
+            width: 100%; /* Or whatever width you need */
+            position: relative;
+        }
+
+        .exercise {
+            width: 100%;
+            transition: transform 0.5s ease;
+            /* Assuming you have more than one exercise element */
+            display: flex;
+        }
+
+        .exercise div {
+            min-width: 100%; /* Each child takes up full width */
+            /* Style your individual slides here */
+        }
+    </style>
 </head>
 <body>
-    <div id="timers-container"></div>
 
-    <script>
-        // Function to create a timer div
-        function createTimerDiv(id) {
-            const timerDiv = document.createElement('div');
-            timerDiv.classList.add('timer-div');
+<div id="main-content">
+    <button class="button" onclick="prev_btn()">Prev</button>
+    <button class="button" onclick="next_btn()">Next</button>
 
-            // Timer display
-            const timerCount = document.createElement('div');
-            timerCount.classList.add('timer-count');
-            timerCount.id = `timer-${id}`;
-            timerCount.innerHTML = '01:00';
-            timerDiv.appendChild(timerCount);
+    <div class="slider-container">
+        <div class="exercise">
+            <div style="background-color: lightcoral;">Slide 1</div>
+            <div style="background-color: lightblue;">Slide 2</div>
+            <div style="background-color: lightgreen;">Slide 3</div>
+        </div>
+    </div>
+</div>
 
-            // Start button
-            const startButton = document.createElement('button');
-            startButton.innerHTML = 'Start';
-            startButton.classList.add('button');
-            startButton.onclick = function() {
-                startTimer(id, timerCount);
-            };
-            timerDiv.appendChild(startButton);
+<script>
+    let currentSlide = 0; // Track the current slide
+    const slides = document.querySelectorAll('.exercise div');
+    const totalSlides = slides.length;
 
-            // Append to the main container
-            document.getElementById('timers-container').appendChild(timerDiv);
-        }
+    function updateSlider() {
+        document.querySelector('.exercise').style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
 
-        // Function to start the timer
-        function startTimer(id, timerCount) {
-            let time = 60; // 1 minute in seconds
-            const interval = setInterval(() => {
-                const minutes = Math.floor(time / 60);
-                const seconds = time % 60;
-                timerCount.innerHTML = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-                time--;
+    function next_btn() {
+        console.log("Next button clicked");
+        currentSlide = (currentSlide + 1) % totalSlides; // Loop back to first slide
+        updateSlider();
+    }
 
-                if (time < 0) {
-                    clearInterval(interval);
-                    timerCount.innerHTML = '00:00';
-                }
-            }, 1000);
-        }
+    function prev_btn() {
+        console.log("Prev button clicked");
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; // Loop back to last slide
+        updateSlider();
+    }
+</script>
 
-        // Create 3 timers
-        for (let i = 1; i <= 3; i++) {
-            createTimerDiv(i);
-        }
-    </script>
 </body>
 </html>
