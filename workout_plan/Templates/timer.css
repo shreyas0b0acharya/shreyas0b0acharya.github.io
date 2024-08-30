@@ -12,7 +12,7 @@
     flex-direction: column;
     justify-content: flex-end;
     border: 2px solid rgb(255, 0, 0);
-    border-radius: 75px;
+    border-radius: 25%;
     overflow: hidden;
 }
 
