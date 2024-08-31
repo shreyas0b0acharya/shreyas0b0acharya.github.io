@@ -1,49 +1,57 @@
 
-import { contentLoader } from "nav_html_files/exercise-creator.js";
+import { contentLoader } from "./nav_html_files/exercise-creator.mjs";
 
-let imageList = ["images/jump-rope.gif",
-    "images/jumping-jacks.gif",
-    "images/arm-circles.gif",
-    "images/shoulder-rotations.gif",
-    "images/pull-ups.gif",
-    "images/single-arm-inverted-rows.webp",
-    "images/bar-dips.gif",
-    "images/pushup.gif",
-    "images/front-lever-progression.gif",
-    "images/v-ups.gif"];
+import { imageList as day2 } from "./nav_html_files/day2.mjs";
+import { imageList as day1 } from "./nav_html_files/day1.mjs";
 
-let nameList = ["Jump Rope",
-    "Jumping Jacks"];
-
-contentLoader(imageList,nameList);
-
-var total_slides=document.getElementsByClassName("exercise").length;
-console.log(total_slides);
-var present_slide = 0;
-function next_btn() {
-    console.log("Next button clicked");
-    present_slide+=1;
-    if (present_slide > total_slides-1){
-        present_slide =0;
+window.loadContent = function (day) {
+    let mainDiv = document.getElementById("main-content");
+    mainDiv.innerHTML ='';
+    let nameList =['Hi'];
+    if (day == "day1"){
+        contentLoader(day1,nameList);
+    }else if (day == "day2"){
+        contentLoader(day2,nameList);
     }
-    
-    let exercise_div = document.getElementsByClassName("exercise");
-    for (let i = 0; i < exercise_div.length; i++) {
-        exercise_div[i].style.transform = `translateX(-${present_slide * 100}%)`;
-    }
-    
 }
 
-function prev_btn() {
+
+let present_slide = 0;
+
+window.next_btn = function () {
     console.log("Next button clicked");
-    present_slide-=1;
-    if (present_slide < 0){
-        present_slide =total_slides-1;
+
+    present_slide += 1;
+
+    const total_slides = document.querySelectorAll(".exercise");
+    console.log("Current slide:", present_slide);
+    console.log("Total slides:", total_slides.length);
+
+    if (present_slide > total_slides.length -1) {
+        present_slide = 0;
     }
-    
-    let exercise_div = document.getElementsByClassName("exercise");
-    for (let i = 0; i < exercise_div.length; i++) {
-        exercise_div[i].style.transform = `translateX(-${present_slide * 100}%)`;
+
+    const exercise_divs = document.getElementsByClassName("exercise");
+    for (let i = 0; i < exercise_divs.length; i++) {
+        exercise_divs[i].style.transform = `translateX(-${present_slide * 100}%)`;
     }
-    
-}
+};
+
+window.prev_btn = function () {
+    console.log("Previous button clicked");
+
+    present_slide -= 1;
+
+    const total_slides = document.querySelectorAll(".exercise");
+    console.log("Current slide:", present_slide);
+    console.log("Total slides:", total_slides.length);
+
+    if (present_slide < 0) {
+        present_slide = total_slides.length - 1;
+    }
+
+    const exercise_divs = document.getElementsByClassName("exercise");
+    for (let i = 0; i < exercise_divs.length; i++) {
+        exercise_divs[i].style.transform = `translateX(-${present_slide * 100}%)`;
+    }
+};

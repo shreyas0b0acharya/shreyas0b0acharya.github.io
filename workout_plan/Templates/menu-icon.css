@@ -1,0 +1,29 @@
+.line{
+    height: 4px;
+    width: 30px;
+    background-color: black;
+    border: none;
+    border-radius: 2px;
+}
+
+.menu-icon{
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-icon:hover{
+    background-color: rgb(202, 202, 202);
+    cursor: pointer;
+    border-bottom: 5px solid red;
+}
+
+.menu-container{
+    position: absolute;
+    background-color: grey;
+}
+
+.menu-font{
+    color: red;
+}

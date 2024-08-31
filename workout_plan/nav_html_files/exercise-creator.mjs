@@ -5,6 +5,7 @@ export function contentLoader(imageList,nameList) {
         // Create a new div for the exercise
         let exerciseDiv = document.createElement("div");
         exerciseDiv.id = `exercise-${i+1}`;
+        
         exerciseDiv.classList.add('exercise');
         mainDiv.appendChild(exerciseDiv);
 
@@ -15,7 +16,9 @@ export function contentLoader(imageList,nameList) {
 
         // Create an img element and set its attributes
         let imgDiv = document.createElement('img');
+        console.log(imageList[i])
         imgDiv.src = imageList[i];
+        
         imgDiv.classList.add("exercise-gif");  
         imageAndNameDiv.appendChild(imgDiv);
 
@@ -99,6 +102,10 @@ export function contentLoader(imageList,nameList) {
         }
         timerDiv.appendChild(buttonDiv);
     }  
+    let exerciseDivs = document.querySelectorAll(".exercise");
+
+console.log(`Total exercise elements: ${exerciseDivs.length}`);
+
 }
 
 // Ensure the contentLoader function is called after defining it

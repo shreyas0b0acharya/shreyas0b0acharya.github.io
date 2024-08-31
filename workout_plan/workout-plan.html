@@ -8,12 +8,29 @@
     <link rel="stylesheet" href="workout-plan.css">
     <link rel="stylesheet" href="Templates/button.css">
     <link rel="stylesheet" href="Templates/timer.css">
+    <link rel="stylesheet" href="Templates/menu-icon.css">
 </head>
 <body>
 
     <header class="header">
         <span class="header-font">Workout Plan</span>
-        <span class="nav-font">Theme</span>
+        <span>
+            
+            <div class="menu-icon" onclick="toggleMenu()">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </span>
+        <div class="menu-container">
+            <ul>
+               <li class="menu-font">Exercise List</li> 
+               <li class="menu-font">Theme</li>
+            </ul>
+        </div>
+
+        </div>
+        
     </header>
 
     <nav class="nav">
@@ -26,16 +43,18 @@
         <span class="nav-font" onclick="loadContent('day7')">Day-7</span>
     </nav>
 
+    <button class="button" id="next" onclick="next_btn()">Next</button>
+    <button class="button" id="prew" onclick="prev_btn()">Prev</button>
     <div id="main-content">
-        <button class="button" id="next" onclick="next_btn()">Next</button>
-        <button class="button" id="prew" onclick="prev_btn()">Prev</button>
+        
     </div>
     
-    <script src="workout-plan.js"></script>
+    <script type="module" src="workout-plan.js"></script>
     <script src="Templates/checkbox-adder.js"></script>
     <script src="Templates/timer.js"></script>
-    <script type="module" src="nav_html_files/exercise-creator.js"> </script>
-    <script src="nav_html_files/day2.js"> </script>
+    <script type="module" src="nav_html_files/exercise-creator.mjs"> </script>
+    <script type="module" src="nav_html_files/day1.mjs"> </script>
+    <script type="module" src="nav_html_files/day2.mjs"> </script>
 
 </body>
 </html>
