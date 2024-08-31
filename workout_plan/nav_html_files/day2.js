@@ -13,6 +13,7 @@ let nameList = ["Jump Rope",
 
 function contentLoader() {
     let mainDiv = document.getElementById("main-content");
+    mainDiv.innerHTML ="";
     for (let i = 0; i < imageList.length; i++) {
 
         // Create a new div for the exercise
