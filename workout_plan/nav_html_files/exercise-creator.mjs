@@ -1,4 +1,10 @@
 export function contentLoader(imageList,nameList) {
+
+    const buttonDiv = document.querySelectorAll(".button");
+    buttonDiv.forEach(button => {
+    button.style.display = 'flex';
+    });
+
     let mainDiv = document.getElementById("main-content");
     for (let i = 0; i < imageList.length; i++) {
 
@@ -108,4 +114,52 @@ console.log(`Total exercise elements: ${exerciseDivs.length}`);
 
 }
 
+export function exerciseListLoader(imageList,nameList) {
+
+    const buttonDiv = document.querySelectorAll(".button");
+    buttonDiv.forEach(button => {
+    button.style.display = 'none';
+    });
+
+
+
+    let mainDiv = document.getElementById("main-content");
+
+    let mainDivlist = document.createElement("div");
+    mainDivlist.id='main-content-list';
+    mainDiv.appendChild(mainDivlist);
+
+    for (let i = 0; i < imageList.length; i++) {
+
+        
+        // Create a new div for the exercise
+        let exerciseDiv = document.createElement("div");
+        exerciseDiv.id = `exercise-${i+1}`;
+        
+        exerciseDiv.classList.add('exercise-list');
+        mainDivlist.appendChild(exerciseDiv);
+
+        // Create a new div for image and name
+        let imageAndNameDiv = document.createElement("div");
+        imageAndNameDiv.classList.add("image-and-name-list");
+        exerciseDiv.appendChild(imageAndNameDiv);
+
+        // Create an img element and set its attributes
+        let imgDiv = document.createElement('img');
+        console.log(imageList[i])
+        imgDiv.src = imageList[i];
+        
+        imgDiv.classList.add("exercise-gif-list");  
+        imageAndNameDiv.appendChild(imgDiv);
+
+        // Create an name for the img
+        let imgName = document.createElement("span");
+        imgName.innerHTML = nameList[i];
+        imageAndNameDiv.appendChild(imgName);
+
+    }  
+
+}
+
 // Ensure the contentLoader function is called after defining it
+

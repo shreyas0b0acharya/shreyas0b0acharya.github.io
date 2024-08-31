@@ -11,7 +11,7 @@
     height: 30vw;
     object-fit: cover;
     object-position: top;
-    border: 3px solid red;
+    border: 3px solid gray;
     border-radius: 20%;
     overflow: hidden;
 
@@ -39,16 +39,16 @@
 .checkbox-main-div{
     display: flex;
     flex-direction: column;
-    gap: 2vw;
+    gap: 2em;
 }
 
 .image-and-name{
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 1em;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 2vw;
+    font-size: 2em;
 }
 
 .button-div{
@@ -62,9 +62,9 @@ label{
 }
 
 #next,#prew {
-    position: absolute;
+    position: fixed;
     z-index: 10;
-    top: 200px;
+    top: 300px;
 }
 
 #next{
@@ -74,3 +74,4 @@ label{
 #prew{
     left: 30px;
 }
+

@@ -1,19 +1,41 @@
 
-import { contentLoader } from "./nav_html_files/exercise-creator.mjs";
+import { contentLoader ,exerciseListLoader} from "./nav_html_files/exercise-creator.mjs";
 
 import { imageList as day2 } from "./nav_html_files/day2.mjs";
 import { imageList as day1 } from "./nav_html_files/day1.mjs";
 
-window.loadContent = function (day) {
+
+window.loadContent = function (content) {
     let mainDiv = document.getElementById("main-content");
     mainDiv.innerHTML ='';
+
+
     let nameList =['Hi'];
-    if (day == "day1"){
+    if (content == "day1"){
         contentLoader(day1,nameList);
-    }else if (day == "day2"){
+    }else if (content == "day2"){
         contentLoader(day2,nameList);
     }
+
+    if (content == "exercise_list") {
+        exerciseListLoader(day1,nameList);
+    }
+
+    
 }
+
+
+window.toggleMenu = function() {
+    const menuList = document.getElementById('menu-container');
+    if (menuList.style.display === 'block') {
+        menuList.style.display = 'none';
+        menuList.style.opacity = 0;
+    } else {
+        menuList.style.display = 'block';
+        menuList.style.opacity =1;
+    }
+}
+
 
 
 let present_slide = 0;

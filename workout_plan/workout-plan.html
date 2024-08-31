@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="Templates/button.css">
     <link rel="stylesheet" href="Templates/timer.css">
     <link rel="stylesheet" href="Templates/menu-icon.css">
+    <link rel="stylesheet" href="nav_html_files/exercise-list-creator.css">
 </head>
 <body>
 
@@ -22,10 +23,10 @@
                 <div class="line"></div>
             </div>
         </span>
-        <div class="menu-container">
+        <div id="menu-container">
             <ul>
-               <li class="menu-font">Exercise List</li> 
-               <li class="menu-font">Theme</li>
+               <li class="menu-font" onclick="loadContent('exercise_list')"> <img class="icon" src="icons/exercise-list-icon-black.png" alt="" style="width: 23px;"> Exercise-List</li> 
+               <li class="menu-font"> <img class="icon" src="icons/dark-theme-icon-black.png" alt="" style="width: 27px ;"> Theme</li>
             </ul>
         </div>
 
