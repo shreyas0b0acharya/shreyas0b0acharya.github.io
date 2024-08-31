@@ -116,10 +116,12 @@ function contentLoader() {
 }
 
 // Ensure the contentLoader function is called after defining it
-contentLoader();
+
+
 var total_slides=document.getElementsByClassName("exercise").length;
 console.log(total_slides);
 var present_slide = 0;
+
 function next_btn() {
     console.log("Next button clicked");
     present_slide+=1;
