@@ -1,9 +1,8 @@
-// animate.js
 async function play() {
     const main_div = document.getElementById("main_id");
     const child_divs = main_div.children;
 
-    const my_list = [[0, 2], [1, 2], [0, 1]];
+    const my_list = [[0, 2], [1, 2], [0, 1]]; 
 
     for (let i = 0; i < my_list.length; i++) {
         let box1 = child_divs[my_list[i][0]];
@@ -29,17 +28,18 @@ async function play() {
         ];
 
         const options = {
-            duration: 3000,
+            duration: 1000, 
             iterations: 1,
             easing: 'ease-in-out',
-            fill: 'forwards'
+            fill: 'forwards' 
         };
 
         const animation1 = box1.animate(keyframes1, options);
         const animation2 = box2.animate(keyframes2, options);
 
         await Promise.all([animation1.finished, animation2.finished]);
-        
+
+        main_div.insertBefore(box2, box1);
     }
 }
 

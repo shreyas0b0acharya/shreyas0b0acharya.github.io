@@ -1,21 +1,40 @@
-body{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.box{
-    position: relative;
-    height: 10ex;
-    width: 10ex ;
-    background-color:black;
-    margin-top: 20ex;
-    border: 1px solid red;
-    font-size: 5ex;
-    color: aliceblue;
-    text-align: center;
-    align-content: center;
+body {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff0000;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+}
+
+#play_btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }

@@ -1,23 +1,43 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = document.getElementById('themeIcon');
-    const body = document.body;
-
-    // Check for saved theme preference in localStorage
-    let currentTheme = localStorage.getItem('theme') || 'light';
-    body.classList.add(`${currentTheme}-theme`);
-    themeIcon.textContent = currentTheme === 'light' ? '🌞' : '🌜';
-
-    themeToggle.addEventListener('click', () => {
-        // Toggle between light and dark theme
-        if (body.classList.contains('light-theme')) {
-            body.classList.replace('light-theme', 'dark-theme');
-            themeIcon.textContent = '🌜'; // Moon icon for dark theme
-            localStorage.setItem('theme', 'dark');
-        } else {
-            body.classList.replace('dark-theme', 'light-theme');
-            themeIcon.textContent = '🌞'; // Sun icon for light theme
-            localStorage.setItem('theme', 'light');
-        }
-    });
-});
+const positions = [
+    [0, 2],
+    [1, 2],
+    [0, 1],
+    [1, 2],
+    [0, 2],
+    [1, 2],
+    [0, 1],
+    [1, 2],
+    [0, 2],
+    [1, 2],
+    [0, 1],
+    [1, 2],
+  ];
+  
+  // Create a mapping of box positions
+  const boxElements = [document.getElementById('box0'), document.getElementById('box1'), document.getElementById('box2')];
+  let currentPositions = [0, 1, 2]; // Initial positions of boxes
+  
+  function swapBoxes([a, b]) {
+    // Swap positions
+    [currentPositions[a], currentPositions[b]] = [currentPositions[b], currentPositions[a]];
+  
+    // Apply transformations based on new positions
+    boxElements[currentPositions[0]].style.transform = 'translateX(0)';
+    boxElements[currentPositions[1]].style.transform = 'translateX(100px)';
+    boxElements[currentPositions[2]].style.transform = 'translateX(200px)';
+  }
+  
+  function animateSwaps(index = 0) {
+    if (index >= positions.length) return; // Stop when all swaps are done
+  
+    swapBoxes(positions[index]);
+  
+    // Animate the next swap after 1 second
+    setTimeout(() => {
+      animateSwaps(index + 1);
+    }, 1000);
+  }
+  
+  // Start the animation
+  animateSwaps();
+  
