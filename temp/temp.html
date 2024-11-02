@@ -1,19 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shuffle Boxes</title>
-  <link rel="stylesheet" href="temp.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Gradient Examples</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .gradient-box {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .linear {
+            background: linear-gradient(to right, #FFABAB, #FFC3A0, #D5AAFF);
+        }
+
+        .radial {
+            background: radial-gradient(circle, #FFABAB, #FFC3A0, #D5AAFF);
+        }
+
+        .conic {
+            background: conic-gradient(#FFABAB, #FFC3A0, #D5AAFF, #85E3FF);
+        }
+
+        .repeating-linear {
+            background: repeating-linear-gradient(45deg, #FFABAB, #FFC3A0 10%, #D5AAFF 10%, #D5AAFF 20%);
+        }
+
+        .repeating-radial {
+            background: repeating-radial-gradient(circle, #FFABAB, #FFC3A0 20%, #D5AAFF 20%, #D5AAFF 40%);
+        }
+    </style>
 </head>
 <body>
-
-  <div class="container">
-    <div class="box" id="box0">0</div>
-    <div class="box" id="box1">1</div>
-    <div class="box" id="box2">2</div>
-  </div>
-
-  <script src="temp.js"></script>
+    <div class="gradient-box linear">Linear Gradient</div>
+    <div class="gradient-box radial">Radial Gradient</div>
+    <div class="gradient-box conic">Conic Gradient</div>
+    <div class="gradient-box repeating-linear">Repeating Linear</div>
+    <div class="gradient-box repeating-radial">Repeating Radial</div>
 </body>
 </html>

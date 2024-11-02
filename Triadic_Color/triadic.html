@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="triadic.css">
+</head>
+<body>
+    <div class="triadic">
+        <div id="color-wheel">
+            <input type="range" name="sValue" id="sValue" max="100" min="50">
+           <div id="out-circle">
+                <div class="in-circle">
+                    <img src="arrow.png" alt="" id="arrow">
+                </div>
+                <div id="in-triangle"></div>
+            </div> 
+            
+            <input type="range" name="lValue" id="lValue" max="100" min="50" >
+        </div>
+        
+        <div class="boxes">
+            <div class="c-box" id="box-1"></div>
+            <div class="c-box" id="box-2"></div>
+            <div class="c-box" id="box-3"></div>
+        </div>
+    </div>
+    <script src="triadic-hsl.js"></script>
+</body>
+</html>
