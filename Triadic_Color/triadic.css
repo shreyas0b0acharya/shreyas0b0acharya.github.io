@@ -50,12 +50,15 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    
 }
 
 .boxes {
-    display: flex;
-    gap: 20px;
-   
+    display: grid;
+    gap: 15px;
+    row-gap: 0px;
+    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
 }
 
 #in-triangle {
@@ -137,6 +140,8 @@ input{
     align-items: center;
     gap: 10px;
 }
+
+
 
 
 

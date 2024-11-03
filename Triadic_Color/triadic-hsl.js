@@ -17,6 +17,8 @@ function angleRangeCorrector(){
     }
     degreeAngle=(parseInt)(360-degreeAngle);
     console.log("degreeAngle:" + (degreeAngle));
+
+    return degreeAngle;
 }
 
 function boxColoring(){
@@ -31,6 +33,15 @@ function boxColoring(){
         const box3 = document.getElementById("box-3");
         box3.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, ${lValueContent}%)`;
         console.log(`Box 3 Color: hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, ${lValueContent}%)`);
+
+        colorOut1 = document.getElementById("color-values-1");
+        colorOut1.textContent = `hsl(${Math.abs(degreeAngle + 0)},  ${sValueContent}%, ${lValueContent}%)`;
+        angleRangeCorrector();
+        colorOut1 = document.getElementById("color-values-2");
+        colorOut1.textContent = `hsl(${Math.abs((degreeAngle + 120)-240)},  ${sValueContent}%, ${lValueContent}%)`;
+        angleRangeCorrector();
+        colorOut1 = document.getElementById("color-values-3");
+        colorOut1.textContent = `hsl(${Math.abs((degreeAngle + 120)-360)}, ${sValueContent}%, ${lValueContent}%)`;
 }
 
 circle.addEventListener("click", (event) => {
@@ -59,7 +70,7 @@ circle.addEventListener("click", (event) => {
 
         inTriangle.style.transform = `rotate(${degreeAngle-120}deg)`;
 
-        angleRangeCorrector()
+        angleRangeCorrector(degreeAngle);
         boxColoring(); 
 
         hueTextInput.value =degreeAngle;
@@ -107,6 +118,6 @@ hueTextInput.addEventListener('input', (event)=>{
     boxColoring();
     arrow.style.transform = `rotate(${degreeAngle-120}deg)`;
     inTriangle.style.transform = `rotate(${degreeAngle-120}deg)`;
-    angleRangeCorrector()
+    angleRangeCorrector(degreeAngle);
     boxColoring(); 
 });
