@@ -1,9 +1,39 @@
 const circle = document.getElementById("out-circle");
+const arrow = document.getElementById("arrow");
+const inTriangle = document.getElementById("in-triangle");
 
 let degreeAngle = 0;
-let sValueContent =0;
+let sValueContent =100;
+let lValueContent =50;
 
-circle.addEventListener("mousemove", (event) => {
+const hueTextInput = document.getElementById("hueValue");
+hueTextInput.value = degreeAngle;
+
+function angleRangeCorrector(){
+    if(degreeAngle<0){
+        degreeAngle = Math.abs(degreeAngle)+0;
+    }else{
+        degreeAngle = (180-degreeAngle)+180;
+    }
+    degreeAngle=(parseInt)(360-degreeAngle);
+    console.log("degreeAngle:" + (degreeAngle));
+}
+
+function boxColoring(){
+        const box1 = document.getElementById("box-1");
+        box1.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 0)},  ${sValueContent}%, ${lValueContent}%)`;
+        console.log(`Box 1 Color: hsl(${Math.abs(degreeAngle + 0)},  ${sValueContent}%, ${lValueContent}%))`);
+        
+        const box2 = document.getElementById("box-2");
+        box2.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 120)},  ${sValueContent}%, ${lValueContent}%)`;
+        console.log(`Box 2 Color: hsl(${Math.abs(degreeAngle + 120)},  ${sValueContent}%, ${lValueContent}%`);
+        
+        const box3 = document.getElementById("box-3");
+        box3.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, ${lValueContent}%)`;
+        console.log(`Box 3 Color: hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, ${lValueContent}%)`);
+}
+
+circle.addEventListener("click", (event) => {
     const x = event.clientX;
     const y = event.clientY;
     console.log("X:" + x + "\tY:" + y);
@@ -24,58 +54,59 @@ circle.addEventListener("mousemove", (event) => {
         degreeAngle = ((radianAngle * 180) / Math.PI)+90;
         console.log("degreeAngle:" + (degreeAngle));
 
-        const arrow = document.getElementById("arrow");
+        
         arrow.style.transform = `rotate(${degreeAngle-120}deg)`;
 
-        const inTriangle = document.getElementById("in-triangle");
         inTriangle.style.transform = `rotate(${degreeAngle-120}deg)`;
 
-        if(degreeAngle<0){
-            degreeAngle = Math.abs(degreeAngle)+0;
-        }else{
-            degreeAngle = (180-degreeAngle)+180;
-        }
-        degreeAngle=(parseInt)(360-degreeAngle);
-        console.log("degreeAngle:" + (degreeAngle));
+        angleRangeCorrector()
+        boxColoring(); 
 
-        
-        const box1 = document.getElementById("box-1");
-        box1.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 0)},  ${sValueContent}%, 50%)`;
-        console.log(`Box 1 Color: hsl(${Math.abs(degreeAngle + 0)},  ${sValueContent}%, 50%)`);
-        
-        const box2 = document.getElementById("box-2");
-        box2.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 120)},  ${sValueContent}%, 50%)`;
-        console.log(`Box 2 Color: hsl(${Math.abs(degreeAngle + 120)},  ${sValueContent}%, 50%)`);
-        
-        const box3 = document.getElementById("box-3");
-        box3.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, 50%)`;
-        console.log(`Box 3 Color: hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, 50%)`);
-        
-        
+        hueTextInput.value =degreeAngle;
     }
-
-
-
-
 });
 
 
+//saturation
+const sTextInput = document.getElementById("sdisplay");
+sTextInput.value = sValueContent;
+const sSliderInput = document.getElementById("sValue");
 
-const sInput = document.getElementById("sValue");
-sInput.addEventListener('click', (event)=>{
+sSliderInput.addEventListener('click', (event)=>{
+    sValueContent = sSliderInput.value;
+    sTextInput.value = sSliderInput.value;
+    boxColoring();
+});
 
-        sValueContent = sValue.value;
-        console.log("sValueContent"+sValueContent);
+sTextInput.addEventListener('input', (event)=>{
+    sValueContent =  sTextInput.value;
+    sSliderInput.value = sTextInput.value;
+    boxColoring();
+});
 
-        const box1 = document.getElementById("box-1");
-        box1.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 0)},  ${sValueContent}%, 50%)`;
-        console.log(`Box 1 Color: hsl(${Math.abs(degreeAngle + 0)},  ${sValueContent}%, 50%)`);
-        
-        const box2 = document.getElementById("box-2");
-        box2.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 120)},  ${sValueContent}%, 50%)`;
-        console.log(`Box 2 Color: hsl(${Math.abs(degreeAngle + 120)},  ${sValueContent}%, 50%)`);
-        
-        const box3 = document.getElementById("box-3");
-        box3.style.backgroundColor = `hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, 50%)`;
-        console.log(`Box 3 Color: hsl(${Math.abs(degreeAngle + 240)}, ${sValueContent}%, 50%)`);
+// lightness
+const lTextInput = document.getElementById("ldisplay");
+lTextInput.value = lValueContent;
+const lSliderInput = document.getElementById("lValue");
+
+lSliderInput.addEventListener('click', (event)=>{
+    lValueContent = lSliderInput.value;
+    lTextInput.value = lSliderInput.value;
+    boxColoring();
+});
+
+lTextInput.addEventListener('input', (event)=>{
+    lValueContent =  lTextInput.value;
+    lSliderInput.value = lTextInput.value;
+    boxColoring();
+
+});
+
+hueTextInput.addEventListener('input', (event)=>{
+    degreeAngle =  hueTextInput.value;
+    boxColoring();
+    arrow.style.transform = `rotate(${degreeAngle-120}deg)`;
+    inTriangle.style.transform = `rotate(${degreeAngle-120}deg)`;
+    angleRangeCorrector()
+    boxColoring(); 
 });

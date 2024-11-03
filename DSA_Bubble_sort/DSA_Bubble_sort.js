@@ -25,22 +25,22 @@ function start_sorting(){
             var present_div = parseInt(boxes[j].style.height, 10);
             var next_div = parseInt(boxes[j + 1].style.height, 10);
             if (present_div > next_div) {
-                let height1 = parseInt(boxes[j].style.height, 10) + "px";
-                let height2 = parseInt(boxes[j + 1].style.height, 10) + "px";
-                boxes[j].style.backgroundColor = "black"; 
-                boxes[j + 1].style.backgroundColor = "black"; 
-                await new Promise(resolve => setTimeout(resolve, speed_value));
-                boxes[j].style.height = height2;
-                boxes[j + 1].style.height = height1;
-                await new Promise(resolve => setTimeout(resolve, speed_value));
-                boxes[j].style.backgroundColor = "purple"; 
-                boxes[j + 1].style.backgroundColor = "purple"; 
-                }else{
-                boxes[j].style.backgroundColor = "black"
-                boxes[j + 1].style.backgroundColor = "black"; 
-                await new Promise(resolve => setTimeout(resolve, speed_value));
-                boxes[j].style.backgroundColor = "purple"; 
-                boxes[j + 1].style.backgroundColor = "purple"; 
+              let height1 = parseInt(boxes[j].style.height, 10) + "px";
+              let height2 = parseInt(boxes[j + 1].style.height, 10) + "px";
+              boxes[j].style.backgroundColor = "black"; 
+              boxes[j + 1].style.backgroundColor = "black"; 
+              await new Promise(resolve => setTimeout(resolve, speed_value));
+              boxes[j].style.height = height2;
+              boxes[j + 1].style.height = height1;
+              await new Promise(resolve => setTimeout(resolve, speed_value));
+              boxes[j].style.backgroundColor = "purple"; 
+              boxes[j + 1].style.backgroundColor = "purple"; 
+              }else{
+              boxes[j].style.backgroundColor = "black"
+              boxes[j + 1].style.backgroundColor = "black"; 
+              await new Promise(resolve => setTimeout(resolve, speed_value));
+              boxes[j].style.backgroundColor = "purple"; 
+              boxes[j + 1].style.backgroundColor = "purple"; 
             }
           }
         }

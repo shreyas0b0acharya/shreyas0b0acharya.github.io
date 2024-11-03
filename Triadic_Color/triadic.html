@@ -8,22 +8,49 @@
 </head>
 <body>
     <div class="triadic">
+
         <div id="color-wheel">
-            <input type="range" name="sValue" id="sValue" max="100" min="50">
-           <div id="out-circle">
+            <div class="slider">
+                <div>
+                     <label for="sValue">Saturation</label>
+                     <input id="sdisplay" type="text" style="width: 30px; ">
+                </div>
+               
+                <input type="range" name="sValue" id="sValue" max="100" min="0" value="100">
+                
+            </div>
+            
+            <div id="out-circle">
                 <div class="in-circle">
                     <img src="arrow.png" alt="" id="arrow">
                 </div>
                 <div id="in-triangle"></div>
+                
             </div> 
             
-            <input type="range" name="lValue" id="lValue" max="100" min="50" >
+            <div class="slider" >
+                <div>
+                    <label for="lValue">Lightness</label>
+                    <input  id="ldisplay" type="text" style="width: 30px;">
+                   
+                </div>
+                <input type="range" name="lValue" id="lValue" max="100" min="0" value='50'>
+            </div>
+            
+            
+
+        </div>
+        <div id="hue_div">
+            <label for="hueValue">Hue</label>
+            <input type="text" name="hueValue" id="hueValue">
         </div>
         
         <div class="boxes">
+           
             <div class="c-box" id="box-1"></div>
             <div class="c-box" id="box-2"></div>
             <div class="c-box" id="box-3"></div>
+           
         </div>
     </div>
     <script src="triadic-hsl.js"></script>

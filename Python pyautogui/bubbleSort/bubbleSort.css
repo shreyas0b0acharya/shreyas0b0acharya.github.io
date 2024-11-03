@@ -6,15 +6,15 @@ header{
     height: auto;
     text-align: center;
 }
+
 .new_div{
     background-color: purple;
-    margin:0.1ex;
+    margin: 0.1ex;
     max-width: 5%;
     width: 5%;
     transition: transform 0.5s ease-in-out;
-
-    
 }
+
 main{
     margin: 10%;
     border: 1px solid black;
@@ -29,13 +29,12 @@ main{
 #graph_id{
     position: relative;
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
     align-items: flex-end;
     min-height: 250px;
-    margin: 1% ;
-
-    
+    margin: 1%;
 }
+
 #op_id{
     position: relative;
     width: 100%;
@@ -43,8 +42,8 @@ main{
     display: flex;
     justify-content: space-around;
     margin: 1%;
-
 }
+
 #start_btn{
     position: relative;
     margin: 1%;
@@ -56,4 +55,3 @@ main{
 #speed_volume{
     transform: rotate(180deg);
 }
-

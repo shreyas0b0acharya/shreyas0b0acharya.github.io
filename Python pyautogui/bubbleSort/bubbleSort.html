@@ -1,11 +1,4 @@
-import pyautogui
-import time
-
-# Define the delay between each character (in seconds)
-typing_speed = 0.04  # Adjust this for faster or slower typing
-
-# HTML code to be typed
-html_code = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -41,13 +34,4 @@ html_code = """<!DOCTYPE html>
     <script src="bubbleSort.js"></script>
 </body>
 </html>
-"""
 
-# Wait for 3 seconds to give you time to focus the cursor where you want to type
-print("Position your cursor in the text field. Typing will start in 3 seconds...")
-time.sleep(5)  # Corrected to 3 seconds
-
-# Simulate typing the HTML code
-for char in html_code:
-    pyautogui.write(char)  # Type the character
-    time.sleep(typing_speed)  # Delay between characters
