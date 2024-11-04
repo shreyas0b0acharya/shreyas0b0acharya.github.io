@@ -3,7 +3,8 @@ body {
     justify-content: center;
 }
 
-#out-circle, .in-circle {
+#out-circle,
+.in-circle {
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -13,25 +14,23 @@ body {
 #out-circle {
     width: 300px;
     height: 300px;
-    min-width:300px;
     background: conic-gradient(
-        rgb(255,0,0),
-        rgb(255,255,0),
-        rgb(0,255,0),
-        rgb(0,255,255),
-        rgb(0,0,255),
-        rgb(255,0,255),
-        rgb(255,0,0)
-        );
-        
+        rgb(255, 0, 0),
+        rgb(255, 255, 0),
+        rgb(0, 255, 0),
+        rgb(0, 255, 255),
+        rgb(0, 0, 255),
+        rgb(255, 0, 255),
+        rgb(255, 0, 0)
+    );
     box-shadow: 1px 1px 1px;
 }
 
 .in-circle {
     width: 225px;
     height: 225px;
-    position: relative;
     background-color: #fff;
+    position: relative;
 }
 
 .c-box {
@@ -50,20 +49,19 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    
 }
 
 .boxes {
     display: grid;
-    gap: 15px;
-    row-gap: 0px;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    row-gap: 0;
     place-items: center;
 }
 
 #in-triangle {
     position: absolute;
-    background:conic-gradient(
+    background: conic-gradient(
         black,
         white,
         black,
@@ -75,80 +73,63 @@ body {
         black,
         white,
         black
-        );
+    );
     border-radius: 50%;
     height: 75px;
     width: 75px;
     filter: drop-shadow(1px 1px 1px);
 }
 
-img{
+img {
     width: 255px;
 }
 
-
-
-#color-wheel{
+#color-wheel {
     display: flex;
     flex-direction: row;
-    align-items: end;
-    
+    align-items: flex-end;
 }
 
-#sValue,#lValue{
-    -webkit-appearance: none; /* Chrome, Safari, newer versions of iOS */
-    -moz-appearance: none;    /* Firefox */
+#sValue,
+#lValue {
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
     appearance: none;
-
-    transform:rotate(-90deg);
+    transform: rotate(-90deg);
     height: 10px;
-    border-radius:5px;
-    box-shadow:1px 1px 1px black;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px black;
 }
 
-#sValue{
-    background:linear-gradient(to left, red , gray);
-
+#sValue {
+    background: linear-gradient(to left, red, gray);
 }
 
-#lValue{
-    background:linear-gradient(to right,black,white);
-    
+#lValue {
+    background: linear-gradient(to right, black, white);
 }
 
-.slider{
+.slider {
     display: flex;
-    gap: 70px;
     flex-direction: column;
     align-items: center;
+    gap: 70px;
 }
 
-.slider div{
+.slider div {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
 
-input{
+input {
     text-align: center;
 }
 
-#hue_div{
+#hue_div {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
