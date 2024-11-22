@@ -1,0 +1,100 @@
+html, body {
+    height: 100%; /* Full height for background scaling */
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars */
+    
+}
+body{
+    background-color: rgba(0, 0, 0, 1);
+}
+
+
+#Background {
+    position: fixed; /* Covers the whole screen */
+    top: 0;
+    left: 0;
+    height: 100%; /* Full-screen background */
+    width: 100%;
+    filter: blur(20px);
+    z-index: -1; /* Ensures the image scales without distortion */
+}
+
+main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10vh
+    
+}
+
+#imageDiv {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60vh;
+    width: 100%;
+}
+
+
+
+#mainImage {
+    position: relative;
+    z-index: -1;
+    width: 70%;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    border-radius: 5px;   
+}
+
+
+#header {
+    position: absolute;
+    display: flex; /* Switch to flexbox layout */
+    justify-content: space-between; 
+    align-items: center;
+    width: 70%; /* Define header width */
+    z-index: 2; /* Ensure it layers over #mainImage */
+    height: 60px;
+    
+}
+
+#header img{
+    height: 20px;
+    margin-left: 10px;
+}
+
+#header input {
+    padding: 10px;
+    width: 40%;
+    height: auto;
+    margin-left:5px;
+    border: none;
+    font-size: calc(1vw + 10px);
+    color: rgba(255, 255, 255, 0.7);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 30px;   
+}
+
+#header input:focus{
+    border: none;
+    outline: none;
+
+}
+
+#header div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+#detailsDiv {
+    position: relative;
+    border: 2px solid black;
+    margin-top: 20px; /* Space below #image */
+    padding: 10px;
+    text-align: center;
+}

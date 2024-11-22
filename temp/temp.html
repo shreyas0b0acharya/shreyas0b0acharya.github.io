@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Blur Effect</title>
+    <style>
+        /* Container for the whole page */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background image setup */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('your-background-image.jpg');
+            background-size: cover;
+            background-position: center;
+            transition: filter 0.3s ease;
+        }
+
+        /* Blur effect applied when image is opened */
+        .blurred {
+            filter: blur(8px);
+        }
+
+        /* Modal for the image */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Make sure it is above other content */
+        }
+
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+
+        /* Close button styling */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background image container -->
+    <div class="background"></div>
+
+    <!-- Content with a clickable thumbnail image -->
+    <img src="C:\Users\SBA\Desktop\sba_projects\images\BS.png" alt="Click to view larger image" id="thumbnail" style="width: 300px; cursor: pointer;">
+
+    <!-- Modal for the full-size image -->
+    <div class="modal" id="imageModal">
+        <span class="close-btn" id="closeBtn">&times;</span>
+        <img src="C:\Users\SBA\Desktop\sba_projects\images\BS.png" id="modalImage" alt="Full-size image">
+    </div>
+
+    <script>
+        // Get elements
+        const background = document.querySelector('.background');
+        const thumbnail = document.getElementById('thumbnail');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeBtn = document.getElementById('closeBtn');
+
+        // When the thumbnail image is clicked
+        thumbnail.addEventListener('click', () => {
+            // Show the modal with the larger image
+            modal.style.display = 'flex';
+
+            // Apply the blur effect to the background
+            background.classList.add('blurred');
+
+            // Change the modal image source to the larger version
+            modalImage.src = 'your-full-size-image.jpg'; // Replace with the actual full-size image URL
+        });
+
+        // Close the modal when the close button is clicked
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            background.classList.remove('blurred');
+        });
+
+        // Close the modal when clicking outside the image
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                background.classList.remove('blurred');
+            }
+        });
+    </script>
+
+</body>
+</html>
