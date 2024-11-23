@@ -3,115 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Blur Effect</title>
-    <style>
-        /* Container for the whole page */
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Background image setup */
-        .background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('your-background-image.jpg');
-            background-size: cover;
-            background-position: center;
-            transition: filter 0.3s ease;
-        }
-
-        /* Blur effect applied when image is opened */
-        .blurred {
-            filter: blur(8px);
-        }
-
-        /* Modal for the image */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; /* Make sure it is above other content */
-        }
-
-        .modal img {
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 10px;
-        }
-
-        /* Close button styling */
-        .close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            z-index: 10000;
-        }
-    </style>
+    <title>Dominant Color Extraction Using Canvas</title>
 </head>
 <body>
-
-    <!-- Background image container -->
-    <div class="background"></div>
-
-    <!-- Content with a clickable thumbnail image -->
-    <img src="C:\Users\SBA\Desktop\sba_projects\images\BS.png" alt="Click to view larger image" id="thumbnail" style="width: 300px; cursor: pointer;">
-
-    <!-- Modal for the full-size image -->
-    <div class="modal" id="imageModal">
-        <span class="close-btn" id="closeBtn">&times;</span>
-        <img src="C:\Users\SBA\Desktop\sba_projects\images\BS.png" id="modalImage" alt="Full-size image">
-    </div>
+    <h1>Extract Dominant Color</h1>
+    <canvas id="canvas" style="display:none;"></canvas>
+    <input type="file" id="imageUpload" />
+    <div id="dominantColor" style="margin-top: 20px;">Dominant Color: </div>
+    <div id="dd" style="height: 50px; width: 50px; background-color: rgb( 4,4,4);"></div>
 
     <script>
-        // Get elements
-        const background = document.querySelector('.background');
-        const thumbnail = document.getElementById('thumbnail');
-        const modal = document.getElementById('imageModal');
-        const modalImage = document.getElementById('modalImage');
-        const closeBtn = document.getElementById('closeBtn');
+        // Function to get dominant color from image using canvas
+        function getDominantColor(image) {
+            // Create a canvas and get the 2D context
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
 
-        // When the thumbnail image is clicked
-        thumbnail.addEventListener('click', () => {
-            // Show the modal with the larger image
-            modal.style.display = 'flex';
+            // Set canvas size to the image's dimensions
+            canvas.width = image.width;
+            canvas.height = image.height;
 
-            // Apply the blur effect to the background
-            background.classList.add('blurred');
+            // Draw the image onto the canvas
+            ctx.drawImage(image, 0, 0);
 
-            // Change the modal image source to the larger version
-            modalImage.src = 'your-full-size-image.jpg'; // Replace with the actual full-size image URL
-        });
+            // Get the image data from the canvas (pixel data)
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
 
-        // Close the modal when the close button is clicked
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            background.classList.remove('blurred');
-        });
+            // Object to store color frequency
+            const colorMap = {};
 
-        // Close the modal when clicking outside the image
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-                background.classList.remove('blurred');
+            // Loop through each pixel
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];     // Red value
+                const g = data[i + 1]; // Green value
+                const b = data[i + 2]; // Blue value
+                const rgb = `${r},${g},${b}`; // RGB string to represent the color
+
+                // Count occurrences of each color
+                if (colorMap[rgb]) {
+                    colorMap[rgb]++;
+                } else {
+                    colorMap[rgb] = 1;
+                }
+            }
+
+            // Find the most frequent color
+            let dominantColor = null;
+            let maxCount = 0;
+
+            for (const color in colorMap) {
+                if (colorMap[color] > maxCount) {
+                    maxCount = colorMap[color];
+                    dominantColor = color;
+                }
+            }
+
+            return dominantColor;
+        }
+
+        // Event listener for file input
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const img = new Image();
+                img.onload = function() {
+                    // Get the dominant color
+                    const dominantColor = getDominantColor(img);
+
+                    // Display the result
+                    document.getElementById('dominantColor').textContent = `Dominant Color: ${dominantColor}`;
+                    document.getElementById('dd').style.backgroundColor =`rgb(${dominantColor})`;
+                };
+                img.src = URL.createObjectURL(file);
             }
         });
     </script>
-
 </body>
 </html>

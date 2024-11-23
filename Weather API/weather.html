@@ -7,17 +7,19 @@
     <link rel="stylesheet" href="weather.css">
 </head>
 <body>
+
     <div><img src="BS.png" alt="Background" id="Background"></div>
     <main>
         <div id="imageDiv">
             <div id="header">
-                <div>
+                <div id="searchBarDiv">
                     <img src="searchIcon.png" alt="" id="searchIcon">
-                    <input type="text" value="Enter the City Name">
+                    <input id="searchInput" type="text" >
                 </div>
                 <div>
                     <img src="locationIcon.png" alt="">
-                    <span>City Name</span>
+                    <span id="cityName">City Name</span>
+                    <span id="time">Time</span>
                 </div>
                 
             </div>
@@ -25,12 +27,42 @@
         </div>
         
         <div id="detailsDiv">
+            <div >
+                <div>
+                    <span id="mainTemp">Temp</span>
+                    <span>00</span>
+                    <span id="date">Date</span>
+                </div>
+                <div>
+                    <span id="weatherMain">Cloud</span>               
+                    <img src="weatherImages/day_clear.png" alt="" id="weatherIcon">               
+                    <span id="weatherDescription">scatterd cloud</span>
+                </div>
+                
+            </div>
             <div>
                 <span>00</span>
+                <span>Min Temp</span>
+            </div>
+            <div>
+                <span>00</span>
+                <span>Max Temp</span>
+            </div>
+            <div>
+                <span>00</span>
+                <span>Wind Speed</span>
+            </div>
+            <div>
+                <span>00</span>
+                <span>Humidity</span>
+            </div>
+            <div>
+                <span>00</span>
+                <span>Pressure</span>
             </div>
         </div>
     </main>    
 </body>
 
-<script src="weather.js"></script>
+<script  src="weather.js"></script>
 </html>
