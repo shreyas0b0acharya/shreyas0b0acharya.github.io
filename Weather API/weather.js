@@ -1,9 +1,7 @@
 const searchIcon = document.getElementById("searchIcon");
-
-
-
 const Background = document.getElementById("Background");
 const mainImage = document.getElementById("mainImage");
+const mainTemp = document.getElementById("mainTemp");
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
 console.log(windowWidth, windowHeight);
@@ -28,6 +26,7 @@ function SearchingCity(){
         console.log("temp: " + data.main.temp);
         main = data.weather[0].description;
         console.log("main: " + main);
+        fetchMainTemp = data.main.temp;
 
         const unsplashURL = 'https://api.unsplash.com/search/photos?query=' + cityName + '&client_id=XBTkHjyzPIKk85ztWIOdyTainOWCC7sX09YLeKw6e5A';
 
@@ -49,6 +48,8 @@ function SearchingCity(){
               const image = data.results[choice].urls.raw + '?q=50&w=1080&h=1920';
               Background.src = image;
               mainImage.src = image;
+
+              mainTemp.textContent = fetchMainTemp + ' °C';
 
             } else {
               console.log('No results found or invalid response.');
