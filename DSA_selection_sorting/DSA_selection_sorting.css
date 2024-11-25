@@ -45,6 +45,16 @@ main{
     background-color: lightcoral;
     margin: 0.1ex;
     border: 1px solid black;
-    transition: height  2s ease;
+    transition: height 2s ease;
 }
 
+#speed_volume{
+    transform: rotate(180deg);
+}
+
+#buttonsDiv{
+    display: flex;
+    flex-direction:row;
+    gap: 5em ;
+    width: 30ex auto;
+}

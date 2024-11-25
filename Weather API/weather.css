@@ -86,7 +86,7 @@ main {
 #header div:nth-child(1) input {
     padding: 10px;
     width: 40%;
-    height: 10px;
+    height: calc(0.5vw + 1px);
     border: none;
     font-size: calc(1vw + 10px);
     color: rgba(255, 255, 255, 0.6);
