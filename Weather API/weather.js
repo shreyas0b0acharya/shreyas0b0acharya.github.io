@@ -2,6 +2,11 @@ const searchIcon = document.getElementById("searchIcon");
 const Background = document.getElementById("Background");
 const mainImage = document.getElementById("mainImage");
 const mainTemp = document.getElementById("mainTemp");
+const weatherDescription = document.getElementById("weatherDescription");
+const weatherMain = document.getElementById("weatherMain");
+const date = document.getElementById("date");
+const time = document.getElementById("time");
+const cityName = document.getElementById("cityName");
 const windowWidth = window.innerWidth;
 const windowHeight = window.innerHeight;
 console.log(windowWidth, windowHeight);
@@ -13,6 +18,27 @@ var main = '';
 function randomIntInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
+function getTodayDate() {
+  const today = new Date();
+  const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const dayName = dayNames[today.getDay()];
+  const date = today.getDate();
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  return `${dayName}, ${date} ${monthName}`;
+}
+
+function getCurrentTime() {
+  const now = new Date();
+  let hours = now.getHours();
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const period = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  return `${String(hours).padStart(2, '0')}:${minutes} ${period}`;
+}
+
+
 
 searchIcon.addEventListener('click',SearchingCity);
 
@@ -26,7 +52,10 @@ function SearchingCity(){
         console.log("temp: " + data.main.temp);
         main = data.weather[0].description;
         console.log("main: " + main);
-        fetchMainTemp = data.main.temp;
+        let fetchMainTemp = data.main.temp;
+        let fetchDescription =  data.weather[0].description;
+        let fetchMain =  data.weather[0].main;
+        let fetchId=  data.weather[0].i;
 
         const unsplashURL = 'https://api.unsplash.com/search/photos?query=' + cityName + '&client_id=XBTkHjyzPIKk85ztWIOdyTainOWCC7sX09YLeKw6e5A';
 
@@ -48,8 +77,17 @@ function SearchingCity(){
               const image = data.results[choice].urls.raw + '?q=50&w=1080&h=1920';
               Background.src = image;
               mainImage.src = image;
+              
+              
 
-              mainTemp.textContent = fetchMainTemp + ' °C';
+
+
+              mainTemp.textContent = (parseInt(fetchMainTemp-273.15)) + '°';
+              weatherDescription.textContent = fetchDescription;
+              weatherMain.textContent = fetchMain;
+              date.textContent = getTodayDate();
+              time.textContent = getCurrentTime();
+
 
             } else {
               console.log('No results found or invalid response.');

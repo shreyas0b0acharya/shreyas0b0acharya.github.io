@@ -37,7 +37,6 @@ function start_sorting(){
             boxes[min_index].style.backgroundColor = "green";
 
             for (let j = i+1; j < my_list.length; j++) {
-                
                     boxes[j].style.backgroundColor = "gray";
                 if (my_list[j]<my_list[min_index]){
                     await new Promise(resolve => setTimeout(resolve, speed_value));
@@ -56,11 +55,14 @@ function start_sorting(){
             }
             sorted_list.push([i,min_index]);
             [my_list[i],my_list[min_index]]=[my_list[min_index],my_list[i]];  
+
             var position_div_height = parseInt(boxes[i].style.height, 10) + "px";
             var min_div_height = parseInt(boxes[min_index].style.height, 10) + "px";
+
             await new Promise(resolve => setTimeout(resolve, speed_value));
             boxes[i].style.height = min_div_height;
             boxes[min_index].style.height = position_div_height;
+            
             await new Promise(resolve => setTimeout(resolve, speed_value));
             boxes[min_index].style.backgroundColor = "lightcoral";
             boxes[i].style.backgroundColor = "green";
