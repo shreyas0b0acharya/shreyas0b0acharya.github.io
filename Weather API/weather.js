@@ -1,35 +1,22 @@
-const searchIcon = document.getElementById("searchIcon");
-const Background = document.getElementById("Background");
-const mainImage = document.getElementById("mainImage");
-const mainTemp = document.getElementById("mainTemp");
-const weatherDescription = document.getElementById("weatherDescription");
-const weatherMain = document.getElementById("weatherMain");
-const date = document.getElementById("date");
-const time = document.getElementById("time");
-const cityName = document.getElementById("cityName");
-const lowTemp = document.getElementById("lowTemp");
-const highTemp = document.getElementById("highTemp");
-const windSpeed = document.getElementById("windSpeed");
-const humidity = document.getElementById("humidity");
-const pressure = document.getElementById("pressure");
-
-
-const weatherIcon = document.getElementById("weatherIcon");
-const invalidCityName = document.getElementById("invalidCityName");
-
-
-const windowWidth = window.innerWidth;
-const windowHeight = window.innerHeight;
-console.log(windowWidth, windowHeight);
-
-var main = '';
+// DOM elements for weather details
+const DOMElements = ["searchIcon",,"searchInput","time", "cityName", "lowTemp",
+                      "highTemp", "windSpeed","humidity", "pressure", "weatherIcon",
+                      "Background","mainImage","weatherMain","weatherDescription","mainTemp",
+                      "invalidCityName"];
+for (let element of DOMElements) {
+  window[element] = document.getElementById(element);
+}
 
 
 
+
+
+// Generate a random integer in a given range
 function randomIntInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// Get today's date in a specific format(e.g., "Friday, 29 Nov")
 function getTodayDate() { 
   const today = new Date();
   const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -40,31 +27,21 @@ function getTodayDate() {
   return `${dayName}, ${date} ${monthName}`;
 }
 
-// Example usage:
-console.log(getTodayDate()); // Output: e.g., "Monday, 27 Nov"
-
-
-function getCurrentTime() {
-  const now = new Date();
-  let hours = now.getHours();
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const period = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  return `${String(hours).padStart(2, '0')}:${minutes} ${period}`;
-}
-
 let timeIn24hr = 0;
+
+// Get city-specific time based on timezone offset
 function getCityTimeZoneTime(timeZoneTime) {
   const now = new Date();
   const utcTime = now.getTime() + now.getTimezoneOffset() * 60000; // Convert local time to UTC
   timeInZone = new Date(utcTime + timeZoneTime * 1000);  // Adjust for offset
 
+  //format(e.g., "16")
   timeIn24hr = timeInZone.toLocaleString('en-US', {
       hour: '2-digit',
       hour12: false,
   });
 
+  //format(e.g., "02:44 PM")
   return timeInZone.toLocaleString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
@@ -72,19 +49,14 @@ function getCityTimeZoneTime(timeZoneTime) {
   });
 }
 
+// Check if it's daytime based on hour value
 function isDaytime(hours) {
-  if (hours >= 6 && hours < 18) {
-      return true;
-  } else {
-      return false;
-  }
+  return hours >= 6 && hours < 18; // Return true if between 6 AM and 6 PM
 }
 
-
-
-
-
+// Function to get the weather icon based on weather code and time of day (daytime or nighttime)
 function getWeatherIcon(weatherCode, isDaytime) {
+  // Icons for daytime weather
   const dayIcons = {
       "200": "day_rain_thunder.png",
       "201": "day_rain_thunder.png",
@@ -143,6 +115,7 @@ function getWeatherIcon(weatherCode, isDaytime) {
       "804": "overcast.png"
   };
 
+  // Icons for nighttime weather
   const nightIcons = {
       "200": "night_half_moon_rain_thunder.png",
       "201": "night_half_moon_rain_thunder.png",
@@ -200,101 +173,96 @@ function getWeatherIcon(weatherCode, isDaytime) {
       "803": "overcast.png",
       "804": "overcast.png"
   };
-
+  // Return the appropriate icon 
   return isDaytime ? dayIcons[weatherCode] : nightIcons[weatherCode];
 }
 
 
-
-
-searchIcon.addEventListener('click',SearchingCity);
-
-function SearchingCity(){
+function SearchingCity() {
+  // Hide the invalid city message initially
   invalidCityName.style.visibility = 'hidden';
-  const searchInput = document.getElementById("searchInput");
+
+  // Get the input value (city name)
   let cityNameInput = searchInput.value;
-  fetch('https://api.openweathermap.org/data/2.5/weather?q='+cityNameInput+'&units=metric&appid=53bf591792cadb5afc28d94074a14dc4')
+
+  // Fetch weather data from OpenWeatherMap API
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityNameInput}&units=metric&appid=53bf591792cadb5afc28d94074a14dc4`)
     .then(response => response.json())
     .then(data => {
       if (data.main) {
-        console.log("temp: " + data.main.temp);
-        main = data.weather[0].description;
-        console.log("main: " + main);
+        // Extract necessary weather details
         let fetchMainTemp = data.main.temp;
-        let fetchDescription =  data.weather[0].description;
-        let fetchMain =  data.weather[0].main;
-        let fetchId=  data.weather[0].id;
+        let fetchDescription = data.weather[0].description;
+        let fetchMain = data.weather[0].main;
+        let fetchId = data.weather[0].id;
         let fetchTimeZone = data.timezone;
         let fetchCityName = data.name;
-
         let fetchLowTemp = data.main.temp_min;
         let fetchHighTemp = data.main.temp_max;
         let fetchWindSpeed = data.wind.speed;
-        let fetchHumidiy = data.main.humidity;
+        let fetchHumidity = data.main.humidity;
         let fetchPressure = data.main.pressure;
 
+        // Unsplash API URL to fetch background image
+        const unsplashURL = `https://api.unsplash.com/search/photos?query=${cityNameInput}&client_id=XBTkHjyzPIKk85ztWIOdyTainOWCC7sX09YLeKw6e5A`;
 
-        const unsplashURL = 'https://api.unsplash.com/search/photos?query=' + cityNameInput + '&client_id=XBTkHjyzPIKk85ztWIOdyTainOWCC7sX09YLeKw6e5A';
-
-        console.log(unsplashURL);
-        
+        // Fetch image data from Unsplash API
         fetch(unsplashURL)
           .then(response => {
-            console.log('Rate Limit:', response.headers.get('X-Ratelimit-Limit'));
-            console.log('Remaining Requests:', response.headers.get('X-Ratelimit-Remaining'));
             return response.json();
           })
-          .then(data => {
-            if (data && data.results.length > 0) {
-              let choice = parseInt(Math.random() * (data.results.length));
-              console.log("Random index:", choice);  
-              console.log("Data results length:", data.results.length);  
-              
-              console.log(data.results); 
-              const image = data.results[choice].urls.raw + '?q=50&w=1080&h=1920';
+          .then(imageData => {
+            if (imageData && imageData.results.length > 0) {
+              let choice = Math.floor(Math.random() * imageData.results.length); 
+
+              // Set the background and main image
+              const image = imageData.results[choice].urls.raw + '?q=50&w=1080&h=1920';
               Background.src = image;
               mainImage.src = image;
-
-              mainTemp.textContent = fetchMainTemp.toFixed(1) + '°c';
+              
+              // Update weather details in the UI
+              mainTemp.textContent = fetchMainTemp.toFixed(1) + '°C';
               weatherDescription.textContent = fetchDescription;
               weatherMain.textContent = fetchMain;
+
               date.textContent = getTodayDate();
               time.textContent = getCityTimeZoneTime(fetchTimeZone);
               cityName.textContent = fetchCityName;
 
-              lowTemp.textContent = fetchLowTemp+ '°c' ;
-              highTemp.textContent = fetchHighTemp+ '°c' ;
-              windSpeed.textContent = fetchWindSpeed+ ' km/h' ;
-              humidity.textContent = fetchHumidiy+ '%' ;
-              pressure.textContent = fetchPressure+ ' hPa' ;
+              lowTemp.textContent = fetchLowTemp + '°C';
+              highTemp.textContent = fetchHighTemp + '°C';
+              windSpeed.textContent = fetchWindSpeed + ' km/h';
+              humidity.textContent = fetchHumidity + '%';
+              pressure.textContent = fetchPressure + ' hPa';
 
-              console.log(fetchId);
-
-              console.log("weatherImages/"+getWeatherIcon(fetchId, isDaytime(timeIn24hr)));
-              weatherIcon.src ="weatherImages/"+getWeatherIcon(fetchId, isDaytime(timeIn24hr));
-
-
-               
-
-
+              // Set the weather icon based on the weather ID and time of day
+              weatherIcon.src = "weatherImages/" + getWeatherIcon(fetchId, isDaytime(timeIn24hr));
             } else {
-              console.log('No results found or invalid response.');
+              console.log('No results found or invalid response from Unsplash.');
               invalidCityName.style.visibility = 'visible';
             }
           })
           .catch(error => {
             console.error('There was a problem with the fetch operation (Unsplash):', error);
           });
-
       } else {
-        console.log('Main data not found or invalid response.');
+        console.log('Main data not found or invalid response from Weather API.');
         invalidCityName.style.visibility = 'visible';
       }
     })
     .catch(error => {
       console.error('There was a problem with the fetch operation (Weather API):', error);
     });
+}
+
+// Event listener for search icon click
+searchIcon.addEventListener('click', SearchingCity);
+
+// Event listener for pressing the Enter key
+searchInput.addEventListener('keydown', function(event) {
+  if (event.key === "Enter") {
+    SearchingCity();
   }
-  
+});
 
 
