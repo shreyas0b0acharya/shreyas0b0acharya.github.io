@@ -2,10 +2,12 @@
 const DOMElements = ["searchIcon",,"searchInput","time", "cityName", "lowTemp",
                       "highTemp", "windSpeed","humidity", "pressure", "weatherIcon",
                       "Background","mainImage","weatherMain","weatherDescription","mainTemp",
-                      "invalidCityName"];
+                      "invalidCityName","detailsDiv","imageDiv","cityNameTime"];
 for (let element of DOMElements) {
   window[element] = document.getElementById(element);
 }
+
+
 
 
 
@@ -190,6 +192,12 @@ function SearchingCity() {
     .then(response => response.json())
     .then(data => {
       if (data.main) {
+
+        detailsDiv.style.visibility = 'visible';
+        cityNameTime.style.visibility = 'visible';
+        cityNameTime.style.opacity = 1;
+        detailsDiv.style.opacity = 1;
+        imageDiv.style.height = '60vh';
         // Extract necessary weather details
         let fetchMainTemp = data.main.temp;
         let fetchDescription = data.weather[0].description;
@@ -240,6 +248,15 @@ function SearchingCity() {
             } else {
               console.log('No results found or invalid response from Unsplash.');
               invalidCityName.style.visibility = 'visible';
+              cityNameTime.style.opacity = 0;
+              detailsDiv.style.opacity = 0;
+              detailsDiv.style.visibility = 'hidden';
+              cityNameTime.style.visibility = 'hidden';
+              Background.src = "Default.jpg";
+              mainImage.src = "Default.jpg";
+              
+              imageDiv.style.height = '80vh';
+              
             }
           })
           .catch(error => {
@@ -248,6 +265,13 @@ function SearchingCity() {
       } else {
         console.log('Main data not found or invalid response from Weather API.');
         invalidCityName.style.visibility = 'visible';
+        cityNameTime.style.opacity = 0;
+        detailsDiv.style.opacity = 0;
+        detailsDiv.style.visibility = 'hidden';
+        cityNameTime.style.visibility = 'hidden';
+        imageDiv.style.height = '80vh';
+        Background.src = "Default.jpg";
+        mainImage.src = "Default.jpg";
       }
     })
     .catch(error => {

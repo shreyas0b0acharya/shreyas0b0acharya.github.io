@@ -9,27 +9,28 @@
 <body>
 
     <!-- Background image  -->
-    <div><img src="BS.jpg" alt="Background" id="Background"></div>
+    <div><img src="Default.jpg" alt="Background" id="Background"></div>
     <!-- Displayed when the user enters an invalid city name -->
-    <span id="invalidCityName">Invalid City Name</span>
+    <span id="invalidCityName">No City Found</span>
     <main>
         <div id="imageDiv">
+            <!-- Main weather-related image -->
+            <img src="Default.jpg" alt="mainImage" id="mainImage">
             <!-- Header containing search bar and city/time details -->
             <div id="header">
                 <!-- Search bar with icon -->
                 <div id="searchBarDiv">
                     <img src="searchIcon.png" alt="" id="searchIcon" tabindex="0">
-                    <input id="searchInput" type="text">
+                    <input id="searchInput" type="text" placeholder="Enter City Name...">
                 </div>
                 <!-- City name and time display -->
-                <div>
+                <div id="cityNameTime">
                     <img src="locationIcon.png" alt="">
                     <span id="cityName">City Name</span>
                     <span id="time">Time</span>
                 </div>
             </div>
-            <!-- Main weather-related image -->
-            <img src="BS.jpg" alt="mainImage" id="mainImage">
+            
         </div>
         
         <!-- Weather details container -->
@@ -43,9 +44,9 @@
                 </div> 
                 <!-- Weather icon and description -->
                 <div id="weatherIconDiv">
-                    <span id="weatherMain">Cloud</span>               
+                    <span id="weatherMain">Main</span>               
                     <img src="weatherImages/day_clear.png" alt="" id="weatherIcon">               
-                    <span id="weatherDescription">scatterd cloud</span>
+                    <span id="weatherDescription">Description</span>
                 </div>
             </div>
             
