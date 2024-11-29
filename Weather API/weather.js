@@ -50,7 +50,6 @@ function getCityTimeZoneTime(timeZoneTime) {
       hour12: true,
   });
 }
-
 // Check if it's daytime based on hour value
 function isDaytime(hours) {
   return hours >= 6 && hours < 18; // Return true if between 6 AM and 6 PM
@@ -179,6 +178,17 @@ function getWeatherIcon(weatherCode, isDaytime) {
   return isDaytime ? dayIcons[weatherCode] : nightIcons[weatherCode];
 }
 
+function detailsVisibility(){
+  invalidCityName.style.visibility = 'visible';
+        cityNameTime.style.opacity = 0;
+        detailsDiv.style.opacity = 0;
+        detailsDiv.style.visibility = 'hidden';
+        cityNameTime.style.visibility = 'hidden';
+        imageDiv.style.height = '80vh';
+        Background.src = "Default.jpg";
+        mainImage.src = "Default.jpg";
+}
+
 
 function SearchingCity() {
   // Hide the invalid city message initially
@@ -264,14 +274,7 @@ function SearchingCity() {
           });
       } else {
         console.log('Main data not found or invalid response from Weather API.');
-        invalidCityName.style.visibility = 'visible';
-        cityNameTime.style.opacity = 0;
-        detailsDiv.style.opacity = 0;
-        detailsDiv.style.visibility = 'hidden';
-        cityNameTime.style.visibility = 'hidden';
-        imageDiv.style.height = '80vh';
-        Background.src = "Default.jpg";
-        mainImage.src = "Default.jpg";
+        
       }
     })
     .catch(error => {
