@@ -7,12 +7,6 @@ for (let element of DOMElements) {
   window[element] = document.getElementById(element);
 }
 
-
-
-
-
-
-
 // Generate a random integer in a given range
 function randomIntInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -34,8 +28,8 @@ let timeIn24hr = 0;
 // Get city-specific time based on timezone offset
 function getCityTimeZoneTime(timeZoneTime) {
   const now = new Date();
-  const utcTime = now.getTime() + now.getTimezoneOffset() * 60000; // Convert local time to UTC
-  timeInZone = new Date(utcTime + timeZoneTime * 1000);  // Adjust for offset
+  const utcTime = now.getTime() + now.getTimezoneOffset() * 60000; 
+  timeInZone = new Date(utcTime + timeZoneTime * 1000);
 
   //format(e.g., "16")
   timeIn24hr = timeInZone.toLocaleString('en-US', {
@@ -178,8 +172,9 @@ function getWeatherIcon(weatherCode, isDaytime) {
   return isDaytime ? dayIcons[weatherCode] : nightIcons[weatherCode];
 }
 
+// Toggles the visibility of elements related to city details.
 function detailsVisibility(){
-  invalidCityName.style.visibility = 'visible';
+        invalidCityName.style.visibility = 'visible';
         cityNameTime.style.opacity = 0;
         detailsDiv.style.opacity = 0;
         detailsDiv.style.visibility = 'hidden';
@@ -203,11 +198,13 @@ function SearchingCity() {
     .then(data => {
       if (data.main) {
 
+        // Toggles the visibility of elements related to city details.
         detailsDiv.style.visibility = 'visible';
         cityNameTime.style.visibility = 'visible';
         cityNameTime.style.opacity = 1;
         detailsDiv.style.opacity = 1;
         imageDiv.style.height = '60vh';
+
         // Extract necessary weather details
         let fetchMainTemp = data.main.temp;
         let fetchDescription = data.weather[0].description;
@@ -230,11 +227,15 @@ function SearchingCity() {
             return response.json();
           })
           .then(imageData => {
+            // Check if imageData exists and contains results
             if (imageData && imageData.results.length > 0) {
+               // Randomly select an image from the results
               let choice = Math.floor(Math.random() * imageData.results.length); 
 
-              // Set the background and main image
+              // Construct image URL with quality and dimensions
               const image = imageData.results[choice].urls.raw + '?q=50&w=1080&h=1920';
+
+              // Set the background and main image
               Background.src = image;
               mainImage.src = image;
               
@@ -257,15 +258,7 @@ function SearchingCity() {
               weatherIcon.src = "weatherImages/" + getWeatherIcon(fetchId, isDaytime(timeIn24hr));
             } else {
               console.log('No results found or invalid response from Unsplash.');
-              invalidCityName.style.visibility = 'visible';
-              cityNameTime.style.opacity = 0;
-              detailsDiv.style.opacity = 0;
-              detailsDiv.style.visibility = 'hidden';
-              cityNameTime.style.visibility = 'hidden';
-              Background.src = "Default.jpg";
-              mainImage.src = "Default.jpg";
-              
-              imageDiv.style.height = '80vh';
+              detailsVisibility();
               
             }
           })
@@ -274,6 +267,7 @@ function SearchingCity() {
           });
       } else {
         console.log('Main data not found or invalid response from Weather API.');
+        detailsVisibility();
         
       }
     })

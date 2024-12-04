@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css">
+
+</head>
+<body>
+    <div><img src="images/Default.jpg" alt="Background" id="Background"></div>
+    <span id="invalidCityName">No City Found</span>
+
+    <main>
+        <div id="imageDiv">
+            <img id="mainImage" src="images/Default.jpg" alt="Default Image">
+            <div id="header">
+
+                <div id="searchBarDiv">
+                    <img id="searchIcon" src="images/searchIcon.png" alt="searchIcon" tabindex="0">
+                    <input id="searchInput" type="text" placeholder="Enter City Name...">
+                </div>
+                
+                <div id="cityNameTime">
+                    <img src="images/locationIcon.png" alt="locationIcon">
+                    <span id="cityName">City Name</span>
+                    <span id="time">Time</span>
+                </div>
+            </div>
+
+            <div id="detailsDiv">
+                <div>
+                    <div id="tempDiv">
+                        <span>Temp</span>
+                        <span id="mainTemp">00</span>
+                        <span id="data">Date</span>
+                    </div>
+
+                    <div id="weatherIconDiv">
+                        <span id="weatherMain">Main</span>
+                        <img src="weatherImages/day_clear.png" alt="weatherImages" id="weatherIcon">
+                        <span id="weatherDescription">Description</span>
+                    </div>
+                </div>
+
+                <div>
+                    <span>Min Temp</span>
+                    <img src="images/low-temperature.png" alt="low-temperature">
+                    <span id="lowTemp">00</span>
+                </div>
+
+                <div>
+                    <span>Max Temp</span>
+                    <img src="images/high-temperature.png" alt="high-temperature">
+                    <span id="highTemp">00</span>
+                </div>
+                <div>
+                    <span>Wind Speed</span>
+                    <img src="images/windSpeed.png" alt="windSpeed">
+                    <span id="windSpeed">00</span>
+                </div>
+                <div>
+                    <span>Humidity</span>
+                    <img src="images/humidity.png" alt="humidity">
+                    <span id="humidity">00</span>
+                </div>
+                <div>
+                    <span>pressure</span>
+                    <img src="images/pressure.png" alt="pressure">
+                    <span id="pressure">00</span>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
