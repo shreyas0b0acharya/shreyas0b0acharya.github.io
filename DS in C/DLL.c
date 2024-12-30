@@ -1,263 +1,112 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct node{
-    int data;
-    struct node *prew;
-    struct node *next;
+// Define the structure for a doubly linked list node
+struct node {
+    int SSN, SALARY;
+    char NAME[20], DEPT[20], DESIGN[20], MOBNO[20];
+    struct node *next, *prev;
 };
 
-void insertAtEnd(struct node **head,struct node **tail);
-void insertAtStart(struct node **head);
-void insertAtPosition(struct node **head);
-void insertAtEndWithTail(struct node **head,struct node**tail);
+// Define pointers and variables
+struct node *head = NULL, *temp = NULL, *newnode = NULL;
+int choice, nodeCount = 0, position;
 
-void deleteAtEnd(struct node **head,struct node **tail);
-void deleteAtStart(struct node **head);
-void deleteAtPosition(struct node **head);
+// Insert at the rear of the DLL
+void insertAtRear() {
+    newnode = (struct node *)malloc(sizeof(struct node));
+    printf("Enter Employee Details (SSN, NAME, DEPT, DESIGN, SALARY, MOBNO):\n");
+    scanf("%d %s %s %s %d %s", &newnode->SSN, newnode->NAME, newnode->DEPT, newnode->DESIGN, &newnode->SALARY, newnode->MOBNO);
+    newnode->next = newnode->prev = NULL;
 
-void reverseList(struct node **head,struct node **tail);
+    if (!head) {
+        head = newnode;
+    } else {
+        temp = head;
+        while (temp->next) temp = temp->next;
+        temp->next = newnode;
+        newnode->prev = temp;
+    }
+    nodeCount++;
+}
 
+// Insert at the front of the DLL
+void insertAtFront() {
+    newnode = (struct node *)malloc(sizeof(struct node));
+    printf("Enter Employee Details (SSN, NAME, DEPT, DESIGN, SALARY, MOBNO):\n");
+    scanf("%d %s %s %s %d %s", &newnode->SSN, newnode->NAME, newnode->DEPT, newnode->DESIGN, &newnode->SALARY, newnode->MOBNO);
+    newnode->next = head;
+    newnode->prev = NULL;
 
+    if (head) head->prev = newnode;
+    head = newnode;
+    nodeCount++;
+}
 
-void main() {
+// Delete at the front of the DLL
+void deleteAtFront() {
+    if (!head) {
+        printf("EMPTY DLL. Deletion not possible.\n");
+        return;
+    }
+    temp = head;
+    head = head->next;
+    if (head) head->prev = NULL;
+    free(temp);
+    nodeCount--;
+}
 
-    int choice, element,flag=1;
-    struct node *newNode, *head=NULL, *temp=NULL, *tail=NULL;
-    printf("\n\n...MENU...\n\n");
-    printf("1.Create the Doubbly Linked List\n");
-    printf("2.Display all Elements of List\n\n");
+// Delete at the rear of the DLL
+void deleteAtRear() {
+    if (!head) {
+        printf("EMPTY DLL. Deletion not possible.\n");
+        return;
+    }
+    temp = head;
+    while (temp->next) temp = temp->next;
+    if (temp->prev) temp->prev->next = NULL;
+    else head = NULL;
+    free(temp);
+    nodeCount--;
+}
 
-    printf("3.Insert at End\n");
-    printf("4.Insert at Front\n");
-    printf("5.Insert at Position\n");
-    printf("6.Insert at End with tail\n\n");
+// Display the contents of the DLL
+void display() {
+    if (!head) {
+        printf("EMPTY DLL. Nothing to display.\n");
+        return;
+    }
+    printf("\nSSN\tNAME\tDEPT\tDESIGN\tSALARY\tMOBILE\n");
+    printf("------------------------------------------\n");
+    temp = head;
+    while (temp) {
+        printf("%d\t%s\t%s\t%s\t%d\t%s\n", temp->SSN, temp->NAME, temp->DEPT, temp->DESIGN, temp->SALARY, temp->MOBNO);
+        temp = temp->next;
+    }
+    printf("\nTotal number of nodes: %d\n", nodeCount);
+}
 
-    printf("7.Delete at End\n");
-    printf("8.Delete at Front\n");
-    printf("9.Delete at Position\n\n");
-
-    printf("10.Reverse the list\n");
-
-    while(1){
-
-
-        printf("\nChoose the oeration from the menu:");
-        scanf("%d",&choice);
-
-        switch (choice){
+int main() {
+    int n, flag;
+    do {
+        printf("\n--- MENU ---\n");
+        printf("1. Create DLL\n2. Insert at Front\n3. Insert at Rear\n4. Delete at Front\n5. Delete at Rear\n6. Display DLL\n7. Exit\nEnter choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
             case 1:
-                //Create the Doubbly Linked List
-                flag=1;
-                while(flag){
-
-                    newNode = (struct node *)malloc(sizeof(struct node));
-                    if(newNode==NULL){
-                        printf("Memory allocation of New Node is failed.");
-                    }
-                    printf("Enter the data:");
-                    scanf("%d",&newNode->data);
-
-
-                    newNode->prew = 0;
-                    newNode->next=0;
-
-                    if(head == 0){
-                        head = temp =tail = newNode;
-                    }else{
-                        temp -> next = newNode;
-                        newNode->prew = temp;
-                        temp=newNode;
-                        tail = newNode;
-                    }
-
-                    printf("\nDo you want to add one more element?(0/1):");
-                    scanf("%d",&flag);
-
-                }
+                printf("Enter number of employees: ");
+                scanf("%d", &n);
+                while (n--) insertAtRear();
                 break;
-            case 2:
-                //Display the Elements in List
-                temp = head;
-                while(temp!=0){
-
-                    printf("%d->",temp->data);
-                    temp =temp->next;
-                }
-                break;
-
-            case 3:
-                 //Add the element at the End of the List
-                insertAtEnd(&head,&tail);
-                break;
-
-            case 4:
-                //Add element a the front of list
-                insertAtStart(&head);
-                break;
-
-            case 5:
-                insertAtPosition(&head);
-                break;
-            case 6:
-                insertAtEndWithTail(&head,&tail);
-                break;
-
-            case 7:
-                 //Add the element at the End of the List
-                deleteAtEnd(&head,&tail);
-                break;
-
-            case 8:
-                //Add element a the front of list
-                deleteAtStart(&head);
-                break;
-
-            case 9:
-                deleteAtPosition(&head);
-                break;
-
-            case 10:
-                reverseList(&head,&tail);
-                break;
+            case 2: insertAtFront(); break;
+            case 3: insertAtRear(); break;
+            case 4: deleteAtFront(); break;
+            case 5: deleteAtRear(); break;
+            case 6: display(); break;
+            case 7: exit(0); break;
+            default: printf("Invalid choice.\n");
         }
-    }
-
+    } while (1);
+    return 0;
 }
-
-void insertAtEnd(struct node **head,struct node **tail){
-    struct node *newNode,*temp;
-
-    newNode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the element to add at the end of the list");
-    scanf("%d",&newNode->data);
-    newNode->next= NULL;
-    newNode -> prew = NULL;
-
-    if(*head == NULL){
-        *head = newNode;
-        *tail = newNode;
-
-    }else{
-        temp = *head;
-        while(temp->next != NULL){
-            temp = temp ->next;
-        }
-        temp->next = newNode;
-        newNode->prew = temp;
-        *tail = newNode;
-    }
-}
-
-void insertAtStart(struct node **head){
-    struct node *newNode, *temp;
-
-    newNode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the element to add the front of the list");
-    scanf("%d",&newNode->data);
-
-    newNode->next = NULL;
-    newNode -> prew = NULL;
-
-    if(*head==NULL){
-        *head =newNode;
-    }else{
-        newNode->next=*head;
-        *head = newNode;
-    }
-}
-
-void insertAtPosition(struct node **head){
-    struct node *newNode, *temp;
-    int position, count=0;
-
-    newNode = (struct node *)malloc(sizeof(struct node));
-    newNode ->next = NULL;
-    newNode ->prew = NULL;
-
-    printf("Enter the position you want to enter the element at:");
-    scanf("%d",&position);
-
-    printf("Enter the element you want to enter at the position %d:",position);
-    scanf("%d",&newNode->data);
-
-    if(head == NULL){
-        *head = newNode;
-    }else{
-        temp=*head;
-        while(count<position-2){
-            temp=temp->next;
-            count++;
-        }
-        newNode->prew = temp;
-        newNode->next = temp->next;
-        temp->next->prew = newNode;
-        temp->next=newNode;
-    }
-}
-
-void insertAtEndWithTail(struct node **head,struct node**tail){
-    struct node *newNode;
-
-    newNode = (struct node *)malloc(sizeof(struct node));
-    printf("Enter the element to add at the end of the list");
-    scanf("%d",&newNode->data);
-    newNode->next= NULL;
-    newNode -> prew = NULL;
-
-    if(*head == NULL){
-        *head = newNode;
-        *tail = newNode;
-    }else{
-        (*tail)->next = newNode;
-        newNode->prew = *tail;
-        *tail = newNode;
-    }
-}
-
-void deleteAtEnd(struct node **head,struct node **tail){
-    if(*head == NULL){
-        printf("list is empty");
-    }else if((*head)->next == NULL){
-        free(*head );
-        *head == NULL;
-        *tail == NULL;
-    }else{
-        (*tail)->prew->next = NULL;
-        *tail= (*tail)->prew;
-        free((*tail)->next);
-    }
-
-}
-
-void deleteAtStart(struct node **head){\
-    struct node *temp;
-    if(*head == NULL){
-         printf("list is empty");
-    }else{
-        temp =*head;
-        *head = (*head)->next;
-        (*head)->prew = NULL;
-        free(temp);
-    }
-}
-
-void deleteAtPosition(struct node **head){
-    printf("Not yet coded");
-}
-
-void reverseList(struct node **head,struct node **tail){
-    struct node *temp,*holder;
-    temp = *head;
-    while(temp!=NULL){
-        holder = temp->next;
-        temp->next=temp->prew;
-        temp->prew=holder;
-        temp=holder;
-    }
-    temp=*head;
-    *head =*tail;
-    *tail = temp;
-    
-}
-

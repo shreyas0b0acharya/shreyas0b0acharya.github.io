@@ -1,129 +1,145 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
-#define MAX 5  // Define the maximum size of the stack
+// Define the structure for a doubly linked list node
+struct node {
+    char usn[20], name[20], dept[20], design[20], phno[20]; // Changed phno to char for large numbers
+    int salary;
+    struct node *next, *prev;
+};
 
-int stack[MAX];
-int top = -1;  // Initialize top of stack as -1 (indicating an empty stack)
+// Initialize global variables
+struct node *head = NULL, *newNode = NULL, *temp = NULL;
+int countNode = 0; // Initialize countNode to 0
 
-// Function to push an element into the stack
-void push(int element) {
-    if (top == MAX - 1) {
-        printf("Stack Overflow! Cannot push %d\n", element);
-    } else {
-        stack[++top] = element;
-        printf("%d pushed into the stack.\n", element);
+// Function to insert at the front of the list
+void iFront() {
+    newNode = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter Name, USN, DEPT, Designation, Salary, Phone: \n");
+    scanf("%s%s%s%s%d%s", newNode->name, newNode->usn, newNode->dept, newNode->design, &newNode->salary, newNode->phno);
+    newNode->next = head;
+    newNode->prev = NULL;
+    if (head != NULL) {
+        head->prev = newNode;
     }
+    head = newNode;
+    countNode++;
 }
 
-// Function to pop an element from the stack
-int pop() {
-    if (top == -1) {
-        printf("Stack Underflow! No element to pop.\n");
-        return -1;  // Return an invalid value for an empty stack
-    } else {
-        int poppedElement = stack[top--];
-        printf("%d popped from the stack.\n", poppedElement);
-        return poppedElement;
-    }
-}
-
-// Function to display the status of the stack
-void display() {
-    if (top == -1) {
-        printf("Stack is empty.\n");
-    } else {
-        printf("Stack elements: ");
-        for (int i = 0; i <= top; i++) {
-            printf("%d ", stack[i]);
-        }
-        printf("\n");
-    }
-}
-
-// Function to check if the stack represents a palindrome
-void checkPalindrome() {
-    if (top == -1) {
-        printf("Stack is empty, cannot check palindrome.\n");
+// Function to delete from the front of the list
+void DFront() {
+    if (head == NULL) {
+        printf("\nEmpty List\n");
         return;
-    }
-
-    bool isPalindrome = true;
-    for (int i = 0; i <= top / 2; i++) {
-        if (stack[i] != stack[top - i]) {
-            isPalindrome = false;
-            break;
-        }
-    }
-
-    if (isPalindrome) {
-        printf("The stack represents a palindrome.\n");
+    } else if (head->next == NULL) {
+        free(head);
+        head = NULL;
     } else {
-        printf("The stack does not represent a palindrome.\n");
+        temp = head->next;
+        temp->prev = NULL;
+        free(head);
+        head = temp;
+    }
+    printf("\nNode deleted at front\n");
+    countNode--;
+}
+
+// Function to insert at the end of the list
+void iEnd() {
+    newNode = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter Name, USN, DEPT, Designation, Salary, Phone: \n");
+    scanf("%s%s%s%s%d%s", newNode->name, newNode->usn, newNode->dept, newNode->design, &newNode->salary, newNode->phno);
+    newNode->next = newNode->prev = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+    } else {
+        temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        newNode->prev = temp;
+    }
+    countNode++;
+}
+
+// Function to delete from the end of the list
+void DEnd() {
+    if (head == NULL) {
+        printf("\nEmpty List\n");
+        return;
+    } else if (head->next == NULL) {
+        free(head);
+        head = NULL;
+    } else {
+        temp = head;
+        while (temp->next->next = NULL) { // Fixed condition: comparison instead of assignment
+            temp = temp->next;
+        }
+        free(temp->next);
+        temp->next = NULL;
+    }
+    printf("\nNode deleted at end\n");
+    countNode--;
+}
+
+// Function to display the contents of the list
+void display() {
+    if (head == NULL) {
+        printf("\nList is Empty\n");
+    } else {
+        printf("\nList Content:\n");
+        temp = head;
+        int i = 0;
+        while (temp != NULL) {
+            i++;
+            printf("\nNode %d:  %s  %s  %s  %s  %d  %s\n", i, temp->name, temp->usn, temp->dept, temp->design, temp->salary, temp->phno); // Use temp instead of newNode
+            temp = temp->next;
+        }
+        printf("Total Nodes: %d\n", countNode);
     }
 }
 
-// Function to demonstrate stack overflow
-void demoOverflow() {
-    for (int i = 0; i <= MAX; i++) {
-        push(i + 1);
-    }
-}
-
-// Function to demonstrate stack underflow
-void demoUnderflow() {
-    while (top != -1) {
-        pop();
-    }
-    pop();  // Try to pop again when stack is empty
-}
-
-// Main function with menu-driven program
 int main() {
-    int choice, element;
+    int choice, n, i;
 
     do {
-        printf("\n--- Stack Menu ---\n");
-        printf("1. Push an element\n");
-        printf("2. Pop an element\n");
-        printf("3. Check if stack is a palindrome\n");
-        printf("4. Demonstrate stack overflow\n");
-        printf("5. Demonstrate stack underflow\n");
-        printf("6. Display the status of the stack\n");
-        printf("7. Exit\n");
-        printf("Enter your choice: ");
+        printf("\n---MENU---\n1. Create\n2. Insert Front\n3. Insert End\n4. Delete Front\n5. Delete End\n6. Display\n7. Exit\nEnter Your Choice: ");
         scanf("%d", &choice);
 
         switch (choice) {
             case 1:
-                printf("Enter the element to push: ");
-                scanf("%d", &element);
-                push(element);
+                printf("Enter the number of Employees: ");
+                scanf("%d", &n);
+                for (i = 0; i < n; i++) {
+                    iFront();
+                }
                 break;
             case 2:
-                pop();
+                iFront();
                 break;
             case 3:
-                checkPalindrome();
+                iEnd();
                 break;
             case 4:
-                demoOverflow();
+                DFront();
                 break;
             case 5:
-                demoUnderflow();
+                DEnd();
                 break;
             case 6:
                 display();
                 break;
             case 7:
-                printf("Exiting program...\n");
+                printf("Exiting Program.\n");
+                exit(0);
                 break;
             default:
-                printf("Invalid choice! Please enter a valid option.\n");
+                printf("Invalid Choice. Try Again.\n");
         }
-    } while (choice != 7);
+    } while (1);
 
     return 0;
 }

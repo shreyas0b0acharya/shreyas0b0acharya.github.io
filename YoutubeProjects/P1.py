@@ -5,47 +5,29 @@ import time
 typing_speed = 0.04  # Adjust this for faster or slower typing
 
 # HTML code to be typed
-html_code = """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bubble Sort</title>
-    <link rel="stylesheet" href="bubbleSort.css">
+html_code = """Full URL to fetch from Unsplash:
+https://api.unsplash.com/search/photos?query=${cityNameInput}&client_id=53bf591792cadb5afc28d94074a14dc4
 
-</head>
-<body>
-    <header>Bubble Sort</header>
+Base URL:https://api.unsplash.com/search/photos.
 
-    <main>
-        <div id="graph_id"></div>
-        <div id="op_id">
-            <button class="btn" onclick="start_sorting()">Start</button>
-            <button class="btn" onclick="blocks()">Create</button>
+Query Parameters:
 
-            <div>
-                <label for="list_size_volume">List Size</label>
-                <input type="range" id="list_size_volume" min="0" max="100" value="20">  
-                <div id="size_display"></div>
-            </div>
+	query=${cityNameInput}:
+		Input search term (e.g., "New York").
 
-            <div>
-                <label for="speed_volume">Speed</label>
-                <input type="range" id="speed_volume" min="0" max="500" value="500">  
-                <div id="speed_display"></div>
-            </div>
+	client_id=XBTkHjyzPIKk85ztWIOdyTainOWCC7sX09YLeKw6e5A:
+		API key for authentication (obtain it by creating an Unsplash developer account).
 
-        </div>
+link to the full JSON documentation for the Unsplash API:	https://unsplash.com/documentation
+	
+NOTE: The appid shown here is not a real one. Please use your own valid API key.
 
-    </main>
-    <script src="bubbleSort.js"></script>
-</body>
-</html>
+Links also in description.
 """
 
 # Wait for 3 seconds to give you time to focus the cursor where you want to type
 print("Position your cursor in the text field. Typing will start in 3 seconds...")
-time.sleep(5)  # Corrected to 3 seconds
+time.sleep(30)  # Corrected to 3 seconds
 
 # Simulate typing the HTML code
 for char in html_code:
