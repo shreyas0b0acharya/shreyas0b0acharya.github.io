@@ -5,6 +5,30 @@ body{
     transition: padding 0.5s ease;
 }
 
+/*all inputs border remove */
+#form_div input {
+    border:none;
+}
+
+/*all inputs border remove when focus*/
+#form_div input:focus {
+    outline:none;
+}
+
+/*all legends divs*/
+#form_div > * {
+    border-radius: 5px;
+    border-color: #94C2FF;
+    margin-bottom: 25px;
+}
+
+@media (max-width: 750px) {
+    #form_div > :nth-child(9) {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr 4fr);
+    }
+}
+
 /*for computers */
 @media (min-width: 750px) {
     body{
@@ -16,7 +40,7 @@ body{
         display: grid;
         grid-template-columns: repeat(2, 1fr); /* 2 columns for the first 8 elements */
         column-gap: 8%;
-        row-gap: 25px;
+        
         padding-bottom: 25px;
     }
     
@@ -33,20 +57,3 @@ body{
         padding: 10px 10%
     }
 }
-
-/*all inputs border remove */
-#form_div input {
-    border:none;
-}
-
-/*all inputs border remove when focus*/
-#form_div input:focus {
-    outline:none;;
-}
-
-/*all legends divs*/
-#form_div > * {
-    border-radius: 5px;
-    border-color: #94C2FF;
-}
-
