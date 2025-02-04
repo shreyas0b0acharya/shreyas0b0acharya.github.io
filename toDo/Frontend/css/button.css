@@ -1,0 +1,17 @@
+button{
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-weight: 700;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    
+}
+
+button:hover{
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-decoration: underline;
+}
+
+button:active{
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5);
+}

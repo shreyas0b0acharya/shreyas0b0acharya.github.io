@@ -1,0 +1,42 @@
+/* For larger scrren*/
+@media(min-width: 550px){
+    body{
+        padding:10% 25% 0 25%;
+    }
+}
+
+/* For smaller scrren*/
+@media(max-width: 550px){
+    body{
+        padding:5% 5% 0 5%;
+    }
+}
+
+body{
+    margin: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+#headerDiv, #mainTasksDiv{
+    background-color: hsla(0, 0%, 0%, 0.1);
+    border-radius: 8px;
+}
+
+#headerDiv{
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 2px;
+    font-weight: 900;
+}
+
+#mainTasksDiv{
+    min-height: 300px;
+}
+
+#appName{
+    font-size: 30px;
+}
+
