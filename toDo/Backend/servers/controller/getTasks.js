@@ -1,0 +1,25 @@
+import fs from 'fs';
+import express, { json } from 'express';
+const app = express();
+function getTasks(req,res){
+
+        //here access the database
+    fs.readFile("../models/tasks.json",'utf8',(err,data) => {
+        if(data){
+            const dataContent=JSON.parse(data,null,2);
+            //when not empty json file
+            if(dataContent.length > 0){
+                res.json(dataContent);
+            // when json file is empty
+            }else{
+                console.log("hi");
+                res.json({"id": null});
+            }
+        }else{
+            console.log("Read Error: " +  err); 
+        }
+    });
+}
+
+export default getTasks;
+

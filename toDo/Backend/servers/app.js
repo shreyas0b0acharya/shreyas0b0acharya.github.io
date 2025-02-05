@@ -1,19 +1,18 @@
+//cd Backend/servers
+
 import express, { json } from 'express';
 import cors from "cors";
+import addTask from './controller/addTask.js';
+import getTasks from './controller/getTasks.js';
 
 const app = express();
 const PORT = 3000;
-
+  
 app.use(cors());
-app.use(json());  // Middleware to parse text/plain body
+app.use(json());  // Middleware to parse json in  body
 
 // Handle POST request
-app.post('/addTask', (req, res) => {
-    console.log('Request Headers:', req.headers);  // Log the request headers
-    console.log('Request Body:', req.body);          // Log the request body
-    const wish = req.body;
-    console.log('Received data:', wish);
-    res.send('Task received successfully');  // Send a response to the client
-});
+app.post('/addTask', (req, res) => addTask(req,res));
+app.get('/getTasks',(req,res) => getTasks(req,res));
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

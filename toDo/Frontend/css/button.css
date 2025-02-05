@@ -10,6 +10,7 @@ button{
 button:hover{
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     text-decoration: underline;
+    cursor: pointer;
 }
 
 button:active{
