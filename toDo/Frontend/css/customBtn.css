@@ -1,8 +1,13 @@
+:root{
+    --background-color: hsl(315, 100%, 75%);
+}
+
 #addBtn, #okBtn{
-    background-color: hsl(315, 100%, 75%);
+    background-color: var(--background-color);
     padding: 8px 20px;
 }
 
-.editIconClass{
-    background-color: hsl(315, 100%, 75%);
+.editBtnClass, .deleteBtnClass{
+    background-color: var(--background-color)
 }
+

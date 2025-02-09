@@ -2,6 +2,7 @@
 @media(min-width: 550px){
     body{
         padding:10% 25% 0 25%;
+
     }
 }
 
@@ -14,6 +15,7 @@
 
 body{
     margin: 0;
+    transition: padding 1s ease;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
 }
@@ -35,6 +37,7 @@ body{
 #mainTasksDiv{
     min-height: 300px;
     padding: 2px;
+    margin-bottom: 50px;
 }
 
 #appName{
