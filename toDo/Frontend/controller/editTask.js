@@ -1,4 +1,5 @@
 import { TaskEditFloatingWindow } from "../scripts/floatingWindow.js";
+import { refreshPage } from "./refresh.js";
 const floatingWindow = new TaskEditFloatingWindow;
 
 export function editTask(optionIconId){
