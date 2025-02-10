@@ -1,4 +1,6 @@
+import { removeTaskDiv } from "../scripts/dynamicAddTask.js";
 import { TaskEditFloatingWindow } from "../scripts/floatingWindow.js";
+import { refreshPage } from "./refresh.js";
 const floatingWindow = new TaskEditFloatingWindow;
 
 export function editTask(optionIconId){
@@ -14,7 +16,7 @@ export function editTask(optionIconId){
             task: taskInputData,
             completed: false
         };
-        fetch('http://localhost:3000/editTask',{
+        fetch('https://todoapp-sba.onrender.com/editTask',{
                 method:'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -22,7 +24,9 @@ export function editTask(optionIconId){
                 body: JSON.stringify(taskJson)
             })
             .then((response) => response.text())
-            .then((data)=> console.log(data))
+            .then((data)=> {
+                refreshPage();
+            })
             .catch((e)=> console.log(e)
         );
 

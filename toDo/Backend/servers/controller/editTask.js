@@ -28,7 +28,7 @@ export function editTask(req,res){
             }
 
             // to write the task into database
-            fs.writeFile("../models/tasks.json",JSON.stringify(fileContent,null,2),(err) => {
+            fs.writeFile("../models/tasks.json",JSON.stringify(sortedFileContent,null,2),(err) => {
                 if(err){
                     console.log("Write Error: " +err);
                 }else{

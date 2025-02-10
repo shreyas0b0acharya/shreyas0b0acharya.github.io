@@ -1,4 +1,5 @@
 import { DisplayTaskOptionWindow } from "../scripts/taskOptions.js";
+import { refreshPage } from "./refresh.js";
 
 const displayTaskOptionWindow = new DisplayTaskOptionWindow;
 
@@ -9,7 +10,7 @@ export function deleteTask(taskDiv,id) {
     taskDiv.remove();
     const taskJson = { id: id };
 
-    fetch('http://localhost:3000/deleteTask', {
+    fetch('https://todoapp-sba.onrender.com/deleteTask', {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
@@ -17,6 +18,6 @@ export function deleteTask(taskDiv,id) {
         body: JSON.stringify(taskJson)
     })
     .then(response => response.text())
-    .then(data => console.log(data))
+    .then(data => refreshPage)
     .catch(error => console.log(error));
 }

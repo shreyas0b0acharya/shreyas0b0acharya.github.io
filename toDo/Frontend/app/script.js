@@ -18,7 +18,7 @@ addBtn.addEventListener('click', floatingWindow.appear);
 
 
 window.onload = () => {
-    fetch('http://localhost:3000/getTasks')
+    fetch('https://todoapp-sba.onrender.com/getTasks')
     .then((response) => response.json())
     .then((data)=> addTaskDiv(data))
     .catch((e)=> console.log(e));

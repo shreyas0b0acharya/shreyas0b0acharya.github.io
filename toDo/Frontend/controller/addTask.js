@@ -1,4 +1,5 @@
 import { TaskAddFloatingWindow } from "../scripts/floatingWindow.js";
+import { refreshPage } from "./refresh.js";
 const floatingWindow = new TaskAddFloatingWindow();
 // this is used to add task into the lis(Enter the  task in input then click ok to work)
 export function addTask() {
@@ -14,7 +15,7 @@ export function addTask() {
             task: taskInputData,
             completed: false 
         };
-        fetch('http://localhost:3000/addTask',{
+        fetch('https://todoapp-sba.onrender.com/addTask',{
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -22,7 +23,10 @@ export function addTask() {
                 body: JSON.stringify(taskJson)
             })
             .then((response) => response.text())
-            .then((data)=> console.log(data))
+            .then((data)=> {
+                refreshPage();
+                console.log(data);
+            })
             .catch((e)=> console.log(e)
         );
 

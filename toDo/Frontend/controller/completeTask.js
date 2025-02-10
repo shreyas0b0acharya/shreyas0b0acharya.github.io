@@ -1,4 +1,5 @@
 import { addTaskDiv, removeTaskDiv } from "../scripts/dynamicAddTask.js";
+import { refreshPage } from "./refresh.js";
 
 
 export function completeTask(checkBox,id){
@@ -20,7 +21,7 @@ export function completeTask(checkBox,id){
 
     console.log("completed");
         
-        fetch('http://localhost:3000/taskCompleted',{
+        fetch('https://todoapp-sba.onrender.com/taskCompleted',{
                 method:'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -28,7 +29,9 @@ export function completeTask(checkBox,id){
                 body: JSON.stringify(taskJson)
             })
             .then((response) => response.text())
-            .then((data)=> console.log(data))
+            .then((data)=> {
+                refreshPage();
+            })
             .catch((e)=> console.log(e)
         );
         
