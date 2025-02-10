@@ -1,6 +1,4 @@
-import { removeTaskDiv } from "../scripts/dynamicAddTask.js";
 import { TaskEditFloatingWindow } from "../scripts/floatingWindow.js";
-import { refreshPage } from "./refresh.js";
 const floatingWindow = new TaskEditFloatingWindow;
 
 export function editTask(optionIconId){
@@ -24,9 +22,7 @@ export function editTask(optionIconId){
                 body: JSON.stringify(taskJson)
             })
             .then((response) => response.text())
-            .then((data)=> {
-                refreshPage();
-            })
+            .then((data)=> console.log(data))
             .catch((e)=> console.log(e)
         );
 

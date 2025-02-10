@@ -17,6 +17,7 @@ export function editTask(req,res){
 
                 //to find the non assigned id in the json file/ array
                 let sortedFileContent = [...fileContent];//this can make the new obj
+                fileContent = sortedFileContent;
                 // sortedFileContent.sort((a,b) => a.id - b.id);
                 for (let i = 0 ; i < sortedFileContent.length; i++) {
                     console.log(sortedFileContent[i].id , req.body.id)
@@ -28,7 +29,7 @@ export function editTask(req,res){
             }
 
             // to write the task into database
-            fs.writeFile("../models/tasks.json",JSON.stringify(sortedFileContent,null,2),(err) => {
+            fs.writeFile("../models/tasks.json",JSON.stringify(fileContent,null,2),(err) => {
                 if(err){
                     console.log("Write Error: " +err);
                 }else{
