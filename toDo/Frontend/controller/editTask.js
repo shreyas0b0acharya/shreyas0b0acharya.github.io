@@ -15,16 +15,18 @@ export function editTask(optionIconId){
             completed: false
         };
         fetch('https://todoapp-sba.onrender.com/editTask',{
-                method:'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(taskJson)
-            })
-            .then((response) => response.text())
-            .then((data)=> console.log(data))
-            .catch((e)=> console.log(e)
-        );
+            method:'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(taskJson)
+        })
+        .then((response) => response.text())
+        .then((data)=> {
+            refreshPage();
+        })
+        .catch((e)=> console.log(e)
+    );
 
         
     }
