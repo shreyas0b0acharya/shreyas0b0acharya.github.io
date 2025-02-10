@@ -1,11 +1,24 @@
 import { DisplayTaskOptionWindow } from "./taskOptions.js";
 const displayTaskOptionWindow = new DisplayTaskOptionWindow();
 
-import { deleteTask } from "../controller/deleteTask.js";
+import { TaskEditFloatingWindow } from "./floatingWindow.js";
+const taskEditFloatingWindow = new TaskEditFloatingWindow() ;
 
-export function addTaskDiv(data){
+import { deleteTask } from "../controller/deleteTask.js";
+import { editTask } from "../controller/editTask.js";
+import { addTask } from "../controller/addTask.js";
+import { completeTask } from "../controller/completeTask.js";
+
+
+
+function create(data,completedTruth,decoration="none"){
   
     for (let t = 0; t < data.length; t++) {
+      if(data[t].completed === completedTruth){
+
+        
+
+      
         // task div 
         let taskDiv = document.createElement('div');
         taskDiv.classList = "taskDivClass";
@@ -13,10 +26,12 @@ export function addTaskDiv(data){
         // checkbox in task div
         let checkBox = document.createElement('input');
         checkBox.type = "checkbox";
+        checkBox.checked = data[t].completed;
 
         // label for the checkbox in task Div
-        let label = document.createElement('label');
-        label.innerText = data[t].task;
+        let taskLabel = document.createElement('label');
+        taskLabel.innerText = data[t].task;
+        taskLabel.style.textDecoration = decoration;
 
         //Option icon to open the delete edit option div
         let optionIcon = document.createElement('span');
@@ -25,10 +40,6 @@ export function addTaskDiv(data){
 
         
         // When clicking the optionIcon, show the taskOptionsWindow.
-        
-
-
-
 
         let taskOptionsWindow = document.createElement('div');
         taskOptionsWindow.classList = 'taskOptionsWindow';
@@ -57,34 +68,38 @@ export function addTaskDiv(data){
         let optionIconId = data[t].id;
 
         deleteBtn.addEventListener('click', () => {
-            deleteTask(taskDiv,optionIconId);
+            deleteTask(taskDiv,data[t].id);
             
         });
 
+        
+        
+        editBtn.addEventListener('click', () => {
+            taskEditFloatingWindow.appear(taskLabel);
+
+            const okBtn = document.getElementById("okBtn");
+            okBtn.addEventListener('click', () => {
+                if(okBtn.dataset.action === "edit"){
+                      editTask(data[t].id);
+                  }
+            });
+
+          //   document.getElementById('taskInput').addEventListener("keydown", function(event) {
+          //     if (event.key === "Enter" && okBtn.dataset.action === "edit") {
+          //         editTask(data[t].id); // Triggers the button click
+          //         event.preventDefault(); 
+          //         okBtn.click();
+          //     }
+          // });
+
+            
+          
+        });
 
 
-
-//   <div id="mainTasksDiv">
-        // <div id="taskOptionsWindow">
-        //     <button id="editBtn">Edit</button>
-        //     <button id="deleteBtn">Delete</button>
-        // </div>
-
-        // let deleteIcon = document.createElement('button');
-        // deleteIcon.classList = 'deleteIconClass';
-        // deleteIcon.innerText = "x";
-
-        // let editIcon = document.createElement('button');
-        // editIcon.classList = 'editIconClass';
-        // editIcon.innerText = "edit";
-
-
-
-
-
-
-
-        // const taskOptionsWindow = document.getElementById("taskOptionsWindow");
+        checkBox.addEventListener('click',() => {
+            completeTask(checkBox,data[t].id);
+        });
 
         document.addEventListener('click', (event) => {
             // Use computed style to check the actual display property
@@ -98,18 +113,44 @@ export function addTaskDiv(data){
             }
           });
 
-        
-
-        
-
-
         taskDiv.appendChild(checkBox);
-        taskDiv.appendChild(label);
+        taskDiv.appendChild(taskLabel);
         taskDiv.appendChild(optionIcon);
         
 
         let mainTasksDiv = document.getElementById("mainTasksDiv");
         mainTasksDiv.appendChild(taskDiv);
-
+      }
     }
+}
+
+export function addTaskDiv(data,minimize="none"){
+    const mainTasksDiv = document.getElementById('mainTasksDiv');
+
+    // const completedDiv = document.createElement('div');
+    // completedDiv.classList = "completedDivClass";
+    // completedDiv.innerText = "Not Completed";
+    // mainTasksDiv.appendChild(completedDiv);
+    create(data,false);
+    const notCompletedDiv = document.createElement('div');
+    notCompletedDiv.id = "completedDivClass";
+    notCompletedDiv.innerText = "Completed";
+    mainTasksDiv.appendChild(notCompletedDiv);
+
+  if(minimize === "none"){
+      
+      create(data,true,"line-through");
+  }
+   
+}
+
+// #mainTasksDiv{
+//   min-height: 300px;
+//   padding: 2px;
+//   margin-bottom: 50px;
+// }
+
+export function removeTaskDiv(){
+  let mainTasksDiv = document.getElementById("mainTasksDiv");
+  mainTasksDiv.innerHTML = "";
 }

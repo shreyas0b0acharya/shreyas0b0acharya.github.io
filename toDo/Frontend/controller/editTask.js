@@ -1,21 +1,21 @@
-import { TaskAddFloatingWindow } from "../scripts/floatingWindow.js";
-const floatingWindow = new TaskAddFloatingWindow();
-// this is used to add task into the lis(Enter the  task in input then click ok to work)
-export function addTask() {
-    console.log("husfysgdf");
-    // to get the task input text
+import { TaskEditFloatingWindow } from "../scripts/floatingWindow.js";
+const floatingWindow = new TaskEditFloatingWindow;
+
+export function editTask(optionIconId){
+    console.log(optionIconId);
     const taskInput = document.getElementById("taskInput");
     const taskInputData = taskInput.value;
+    
 
     if(taskInputData != ""){
             // to Dynamically add the Tasks
         const taskJson ={ 
-            id: null,
+            id: optionIconId,
             task: taskInputData,
-            completed: false 
+            completed: false
         };
-        fetch('http://localhost:3000/addTask',{
-                method:'POST',
+        fetch('http://localhost:3000/editTask',{
+                method:'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -28,6 +28,12 @@ export function addTask() {
 
         
     }
-    taskInput.value = "";
+
+
     floatingWindow.disappear();
+    // floatingWindow.appear(label);
+    // const taskInput = document.getElementById("taskInput");
+    // taskInput.value= label.textContent;
+    // floatingWindow.disappear();
+
 }
