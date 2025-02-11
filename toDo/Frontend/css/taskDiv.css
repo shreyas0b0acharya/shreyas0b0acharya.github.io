@@ -1,65 +1,51 @@
-.taskDivClass{
-    position: relative;
-    min-height: 10px;
+/* Task Container */
+.taskDivClass {
+    position: relative; /* Allows positioning of child elements */
+    min-height: 10px; /* Ensures minimum height */
     padding: 10px;
-    padding-right: 25px;
+    padding-right: 25px; /* Space for icons */
     margin-bottom: 5px;
     margin: 1px;
-    background-color: #ffffffb3;
-    /* border-radius: 5px; */
-    box-shadow: 0px 0px 3px hsla(0, 0%, 0%, 0.2);
-    display: flex;
-    
-    display: flex;
-    align-items: flex-start;
-    gap: 5px;
+    background-color: #ffffffb3; /* Semi-transparent white */
+    box-shadow: 0px 0px 3px hsla(0, 0%, 0%, 0.2); /* Soft shadow */
+    display: flex; /* Aligns items in a row */
+    align-items: flex-start; /* Aligns items at the top */
+    gap: 5px; /* Space between elements */
 }
 
-.taskDivClass label{
-    font-size: small;
-    word-break: break-word;
+/* Task Label */
+.taskDivClass label {
+    font-size: small; /* Small text */
+    word-break: break-word; /* Prevents overflow */
 }
 
-.taskDivClass input{
-    appearance: none;
+/* Task Checkbox */
+.taskDivClass input {
+    appearance: none; /* Removes default checkbox styling */
     height: 10px;
     width: 10px;
-    border-radius: 10px;
-    border: 1px solid black;
+    border-radius: 10px; /* Circular checkbox */
+    border: 1px solid black; /* Black border */
     padding: 5px;
     margin-right: 5px;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    cursor: pointer; /* Indicates interactivity */
 }
 
-.taskDivClass input:checked{
-    background-color:hsl(315, 100%, 75%);
+/* Checked Checkbox */
+.taskDivClass input:checked {
+    background-color: hsl(315, 100%, 75%); /* Light pink */
 }
 
-.optionIconClass{
+/* Task Option Icon */
+.optionIconClass {
     position: absolute;
     margin-left: 30px;
     top: 4px;
-    right: 5px;
+    right: 5px; /* Aligns to the right */
 }
 
-.optionIconClass:hover{
+/* Hover Effect for Option Icon */
+.optionIconClass:hover {
     cursor: pointer;
 }
-
-
-
-
-
-
-/* .deleteIconClass{
-    position: absolute;
-    top: -3px;
-    right: -4px;
-}
-
-.editIconClass{
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-} */

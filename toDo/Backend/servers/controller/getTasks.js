@@ -1,31 +1,31 @@
 import fs from 'fs';
-import express, { json } from 'express';
-const app = express();
-function getTasks(req,res){
 
+// Function to get tasks from the database
+export function getTasks(req, res) {
+    const filePath = "../models/tasks.json";
 
-    try {
-            //here access the database
-        fs.readFile("../models/tasks.json",'utf8',(err,data) => {
-            if(data){
-                const dataContent=JSON.parse(data,null,2);
-                //when not empty json file
-                if(dataContent.length > 0){
-                    res.json(dataContent);
-                // when json file is empty
-                }else{
-                    console.log("hi");
-                    res.json({"id": null});
-                }
-            }else{
-                console.log("Read Error: " +  err); 
+    fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Read Error:", err);
+            return res.status(500).json({ error: "Error reading database." });
+        }
+
+        try {
+            const dataContent = data ? JSON.parse(data) : [];
+
+            // If the JSON file is empty or contains no tasks
+            if (dataContent.length === 0) {
+                return res.json({ id: null });
             }
-        });
-    } catch (error) {
-        res.send(JSON.parse(error,null,2));
-    }
-      
+
+            // Return tasks as JSON response
+            res.json(dataContent);
+
+        } catch (parseError) {
+            console.error("Parse Error:", parseError);
+            res.status(500).json({ error: "Error processing data." });
+        }
+    });
 }
 
 export default getTasks;
-

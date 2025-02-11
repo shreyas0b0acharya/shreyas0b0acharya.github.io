@@ -1,87 +1,46 @@
-
-
 const floatingInput = document.getElementById("floatingInput");
 const blurWindow = document.getElementById("blurWindow");
-const OkBtn = document.getElementById("okBtn");
-// const AddOkBtn = document.getElementById("AddOkBtn");
-// const EditOkBtn = document.getElementById("EditOkBtn");
-
+const okBtn = document.getElementById("okBtn");
 const taskInputLegend = document.getElementById("taskInputLegend");
 const taskInput = document.getElementById("taskInput");
 
+function showFloatingWindow(action, legendText = "Add Task", taskText = "") {
+    floatingInput.style.display = 'block';
+    blurWindow.style.display = 'block';
+    blurWindow.style.backdropFilter = 'blur(5px)';
+    
+    taskInputLegend.innerText = legendText;
+    taskInput.value = taskText;
+    
+    okBtn.dataset.action = action;
+}
 
+function hideFloatingWindow() {
+    floatingInput.style.display = 'none';
+    blurWindow.style.display = 'none';
+    blurWindow.style.backdropFilter = 'none';
 
+    taskInput.value = "";
+    taskInputLegend.innerText = "Add Task";  // Reset legend text
+    okBtn.dataset.action = "";
+}
 
-export class TaskAddFloatingWindow{
+export class TaskAddFloatingWindow {
     appear() {
-        if (getComputedStyle(floatingInput).display !== 'block') {
-            floatingInput.style.display = 'block';
-            blurWindow.style.display = 'block';  
-            blurWindow.style.backdropFilter = 'blur(5px)'; 
-
-            OkBtn.dataset.action ="add";
-            console.log("appear");
-            
-        }
-        
+        showFloatingWindow("add");
     }
 
     disappear() {
-        if (getComputedStyle(floatingInput).display !== 'none') {
-            floatingInput.style.display = 'none';
-            blurWindow.style.display = 'none';
-            blurWindow.style.backdropFilter = 'none'; 
-
-            OkBtn.dataset.action ="";
-            taskInput.value = "";
-        }
+        hideFloatingWindow();
     }
-
 }
-
-
 
 export class TaskEditFloatingWindow {
-
     appear(label) {
-        console.log("agjhsf");
-        
-        if (getComputedStyle(floatingInput).display !== 'block') {
-            floatingInput.style.display = 'block';
-            blurWindow.style.display = 'block';  
-            blurWindow.style.backdropFilter = 'blur(5px)'; 
-
-            taskInput.value = label.textContent;
-            taskInputLegend.innerText = "Edit Task ";
-            
-            OkBtn.dataset.action ="edit";
-            
-        }
-        
+        showFloatingWindow("edit", "Edit Task", label.textContent);
     }
 
     disappear() {
-        if (getComputedStyle(floatingInput).display !== 'none') {
-            floatingInput.style.display = 'none';
-            blurWindow.style.display = 'none';
-            blurWindow.style.backdropFilter = 'none'; 
-            OkBtn.dataset.action ="";
-            taskInput.value = "";
-        }
+        hideFloatingWindow();
     }
-
 }
-    // appear(){
-    //     console.log("hi");
-    //     super.appear();
-        
-    // }
-
-    // okBtn(){
-    //     const okBtn = document.getElementById("okBtn");
-    //     okBtn.addEventListener('click', console.log("ji")
-    // );
-    // }
-
-
-

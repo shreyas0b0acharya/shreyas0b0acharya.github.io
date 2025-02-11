@@ -1,49 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do App</title>
+    
+    <!-- External CSS files -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../css/button.css">
-    <link rel="stylesheet" href="../css/customBtn.css">    
+    <link rel="stylesheet" href="../css/customBtn.css">
     <link rel="stylesheet" href="../css/taskDiv.css">
     <link rel="stylesheet" href="../css/floatingWindow.css">
     <link rel="stylesheet" href="../css/taskOptionsWindow.css">
 </head>
-<body>
-    <div id="blurWindow"></div> 
 
+<body>
+    <div id="blurWindow"></div>
+
+    <!-- Floating input field for entering tasks -->
     <div id="floatingInput">
-        <fieldset >
+        <fieldset>
             <legend for="taskInput" id="taskInputLegend">Enter Task</legend>
             <input type="text" name="taskInput" id="taskInput" placeholder="Click here to Enter...">
             <button id="okBtn">Ok</button>
-        </fieldset> 
+        </fieldset>
     </div>
 
+    <!-- Header with app name and add button -->
     <div id="headerDiv">
         <span id="appName">To Do</span>
         <button id="addBtn">Add</button>
     </div>
 
-    <div id="mainTasksDiv">
-        <!-- <div id="taskOptionsWindow">
-            <button id="editBtn">Edit</button>
-            <button id="deleteBtn">Delete</button>
-        </div> -->
-    </div>
-   
+    <!-- Main section to display tasks -->
+    <div id="mainTasksDiv"></div>
 
-    
-   
-    
-
+    <!-- External JS file -->
     <script type="module" src="script.js"></script>
-    
-
-
 </body>
+
 </html>

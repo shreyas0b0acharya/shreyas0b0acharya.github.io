@@ -1,62 +1,67 @@
-/* For larger screen*/
-@media(min-width: 550px){
-    #floatingInput{
+/* Responsive Design */
+/* For larger screens */
+@media (min-width: 550px) {
+    #floatingInput {
         width: 45%; 
     }
 }
-/* For smaller screen*/
-@media(max-width: 550px){
-    #floatingInput{
+
+/* For smaller screens */
+@media (max-width: 550px) {
+    #floatingInput {
         width: 85%; 
     }
 }
 
-#floatingInput{
-    box-sizing: border-box;
-    position: fixed;
-    padding:15px;
-    background-color: hsla(0, 0%, 100%, 0.6);
+/* Floating Input Box */
+#floatingInput {
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    position: fixed; /* Keeps it in place */
+    padding: 15px; /* Inner spacing */
+    background-color: hsla(0, 0%, 100%, 0.6); /* Semi-transparent white */
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 8px;
-    display: none;
-    border: 1px solid hsl(0, 0%, 70%);
-    z-index: 10;
-
+    transform: translate(-50%, -50%); /* Centers it */
+    border-radius: 8px; /* Rounded corners */
+    display: none; /* Initially hidden */
+    border: 1px solid hsl(0, 0%, 70%); /* Light gray border */
+    z-index: 10; /* Ensures it stays above other elements */
 }
 
-fieldset{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-weight: 900;
-    border-radius: 8px;   
-    font-size: small;
-    border: 1px solid hsl(0, 0%, 70%);
+/* Fieldset Styling */
+fieldset {
+    display: flex; /* Aligns items in a row */
+    align-items: center; /* Centers vertically */
+    justify-content: space-around; /* Evenly spaces elements */
+    font-weight: 900; /* Bold text */
+    border-radius: 8px; /* Rounded edges */
+    font-size: small; /* Small font size */
+    border: 1px solid hsl(0, 0%, 70%); /* Light gray border */
 }
 
-#taskInput{
-    height: 25px;
-    width: 70%;
-    border:none;
-    font-size: small;
-    background-color: hsla(0, 0%, 0%, 0);
+/* Task Input */
+#taskInput {
+    height: 25px; /* Input height */
+    width: 70%; /* Takes most of the fieldset width */
+    border: none; /* Removes default border */
+    font-size: small; /* Small font size */
+    background-color: transparent; /* No background */
 }
 
+/* Remove Outline When Focused */
 #taskInput:focus {
-    outline:none;
+    outline: none;
 }
 
-#blurWindow{
-    position: fixed;
+/* Background Blur Overlay */
+#blurWindow {
+    position: fixed; /* Covers the entire screen */
     margin: 0;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    display: none;
-    backdrop-filter: none;
-    z-index: 5;
-    
+    display: none; /* Initially hidden */
+    backdrop-filter: none; /* No blur by default */
+    z-index: 5; /* Below floating input but above content */
 }

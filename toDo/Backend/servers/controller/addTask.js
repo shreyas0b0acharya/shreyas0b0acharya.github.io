@@ -1,53 +1,45 @@
-
-
-
 import fs from 'fs';
 
-//this function is used to add task into the database
-function addTask(req,res){
+// Function to add a task to the database
+function addTask(req, res) {
+    const filePath = "../models/tasks.json";
     const task = req.body;
-    // Send a response to the client
-    res.send('Task received successfully');  
-    
-    //here access the database
-    fs.readFile("../models/tasks.json",(err,data) => {
-        if(data){
-            let fileContent ;
-            //when not empty json file
-            if(data != []){
-                let id=0;
-                fileContent = JSON.parse(data);
 
-                //to find the non assigned id in the json file/ array
-                let sortedFileContent = [...fileContent];//this can make the new obj
-                sortedFileContent.sort((a,b) => a.id - b.id);
-                for (let i = 0 ; i < sortedFileContent.length; i++) {
-                    if(sortedFileContent[i].id != i){
-                        id = i;
-                        break;
-                    }else{
-                        id = sortedFileContent.length;
-                    }
-                }
-                
-                //update current task id and push into array
-                task.id = id;
-                fileContent.unshift(task);
+    // Read the database file
+    fs.readFile(filePath, "utf8", (err, data) => {
+        if (err) {
+            console.error("Read Error:", err);
+            return res.status(500).send("Error reading database.");
+        }
+
+        try {
+            let fileContent = data ? JSON.parse(data) : [];
+
+            // Assign a unique ID to the task
+            const existingIds = new Set(fileContent.map(task => task.id));
+            let newId = 0;
+            while (existingIds.has(newId)) {
+                newId++;
             }
 
-            // to write the task into database
-            fs.writeFile("../models/tasks.json",JSON.stringify(fileContent,null,2),(err) => {
-                if(err){
-                    console.log("Write Error: " +err);
+            // Add the task with the new ID
+            task.id = newId;
+            fileContent.unshift(task);
+
+            // Write the updated content back to the file
+            fs.writeFile(filePath, JSON.stringify(fileContent, null, 2), (writeErr) => {
+                if (writeErr) {
+                    console.error("Write Error:", writeErr);
+                    return res.status(500).send("Error saving task.");
                 }
+                res.send("Task added successfully.");
             });
 
-        }else{
-            console.log("Read Error: " +  err); 
+        } catch (parseError) {
+            console.error("Parse Error:", parseError);
+            res.status(500).send("Error processing data.");
         }
     });
 }
 
 export default addTask;
-
-

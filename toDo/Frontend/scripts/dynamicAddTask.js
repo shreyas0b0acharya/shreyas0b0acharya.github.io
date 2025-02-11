@@ -1,156 +1,140 @@
 import { DisplayTaskOptionWindow } from "./taskOptions.js";
-const displayTaskOptionWindow = new DisplayTaskOptionWindow();
-
 import { TaskEditFloatingWindow } from "./floatingWindow.js";
-const taskEditFloatingWindow = new TaskEditFloatingWindow() ;
-
 import { deleteTask } from "../controller/deleteTask.js";
 import { editTask } from "../controller/editTask.js";
-import { addTask } from "../controller/addTask.js";
 import { completeTask } from "../controller/completeTask.js";
 
+const displayTaskOptionWindow = new DisplayTaskOptionWindow();
+const taskEditFloatingWindow = new TaskEditFloatingWindow();
 
+/**
+ * Creates and appends task elements to the DOM.
+ * @param {Array} data - The task data array.
+ * @param {boolean} completedTruth - Whether to filter for completed tasks.
+ * @param {string} decoration - Text decoration style for completed tasks.
+ */
 
-function create(data,completedTruth,decoration="none"){
-  
-    for (let t = 0; t < data.length; t++) {
-      if(data[t].completed === completedTruth){
+function create(data, completedTruth, decoration = "none") {
+    if (!data || !Array.isArray(data)) {
+        console.error("Invalid task data provided.");
+        return;
+    }
 
-        
+    const mainTasksDiv = document.getElementById("mainTasksDiv");
+    if (!mainTasksDiv) {
+        console.error("Error: mainTasksDiv not found.");
+        return;
+    }
 
-      
-        // task div 
-        let taskDiv = document.createElement('div');
-        taskDiv.classList = "taskDivClass";
+    const fragment = document.createDocumentFragment();
 
-        // checkbox in task div
-        let checkBox = document.createElement('input');
+    data.forEach((task) => {
+        if (task.completed !== completedTruth) return;
+
+        // Task container
+        let taskDiv = document.createElement("div");
+        taskDiv.classList.add("taskDivClass");
+
+        // Checkbox
+        let checkBox = document.createElement("input");
         checkBox.type = "checkbox";
-        checkBox.checked = data[t].completed;
+        checkBox.checked = task.completed;
 
-        // label for the checkbox in task Div
-        let taskLabel = document.createElement('label');
-        taskLabel.innerText = data[t].task;
+        // Task label
+        let taskLabel = document.createElement("label");
+        taskLabel.innerText = task.task;
         taskLabel.style.textDecoration = decoration;
 
-        //Option icon to open the delete edit option div
-        let optionIcon = document.createElement('span');
-        optionIcon.classList = 'optionIconClass';
+        // Option icon
+        let optionIcon = document.createElement("span");
+        optionIcon.classList.add("optionIconClass");
         optionIcon.innerText = "⋮";
 
-        
-        // When clicking the optionIcon, show the taskOptionsWindow.
+        // Task options window
+        let taskOptionsWindow = document.createElement("div");
+        taskOptionsWindow.classList.add("taskOptionsWindow");
 
-        let taskOptionsWindow = document.createElement('div');
-        taskOptionsWindow.classList = 'taskOptionsWindow';
-        taskDiv.appendChild(taskOptionsWindow);
-
-
-        let deleteBtn = document.createElement('button');
-        deleteBtn.classList = 'deleteBtnClass';
+        // Delete Button in Option window
+        let deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("deleteBtnClass");
         deleteBtn.innerText = "Delete";
-        taskOptionsWindow.appendChild(deleteBtn);
 
-        let editBtn = document.createElement('button');
-        editBtn.classList = 'editBtnClass';
+        // Edit Button in Option window
+        let editBtn = document.createElement("button");
+        editBtn.classList.add("editBtnClass");
         editBtn.innerText = "Edit";
-        taskOptionsWindow.appendChild(editBtn);
 
-        optionIcon.addEventListener('click', () => {
-          // Prevent the click from propagating to the document
-          // Show the popup by setting display to flex (or you can use block)
-            displayTaskOptionWindow.appear(taskOptionsWindow,taskDiv);
-          // taskOptionsWindow.style.display ='flex'
+        //appending children to parents
+        taskOptionsWindow.append(deleteBtn, editBtn);
+        taskDiv.append(checkBox, taskLabel, optionIcon, taskOptionsWindow);
 
-        
+        // option window appears when click on Option Icon
+        optionIcon.addEventListener("click", () => {
+            displayTaskOptionWindow.appear(taskOptionsWindow, taskDiv);
         });
 
-        let optionIconId = data[t].id;
-
-        deleteBtn.addEventListener('click', () => {
-            deleteTask(taskDiv,data[t].id);
-            
+        // used to delete the task div
+        deleteBtn.addEventListener("click", () => {
+            deleteTask(taskDiv, task.id);
         });
 
-        
-        
-        editBtn.addEventListener('click', () => {
+        // used to edit the task. when it is clicked edit window is appears
+        editBtn.addEventListener("click", () => {
             taskEditFloatingWindow.appear(taskLabel);
 
+            // Ensure only one event listener is attached
             const okBtn = document.getElementById("okBtn");
-            okBtn.addEventListener('click', () => {
-                if(okBtn.dataset.action === "edit"){
-                      editTask(data[t].id);
-                  }
-            });
-
-          //   document.getElementById('taskInput').addEventListener("keydown", function(event) {
-          //     if (event.key === "Enter" && okBtn.dataset.action === "edit") {
-          //         editTask(data[t].id); // Triggers the button click
-          //         event.preventDefault(); 
-          //         okBtn.click();
-          //     }
-          // });
-
-            
-          
+            okBtn.onclick = () => {
+                if (okBtn.dataset.action === "edit") {
+                    editTask(task.id);
+                }
+            };
         });
 
-
-        checkBox.addEventListener('click',() => {
-            completeTask(checkBox,data[t].id);
+        // used to checked the checkbox and rearrange tasks
+        checkBox.addEventListener("click", () => {
+            completeTask(checkBox, task.id);
         });
 
-        document.addEventListener('click', (event) => {
-            // Use computed style to check the actual display property
-            const computedDisplay = window.getComputedStyle(taskOptionsWindow).display;
-            if (computedDisplay === "flex") {
-              // If the click is outside the popup and outside the optionIcon, hide the popup
-              if (!taskOptionsWindow.contains(event.target) && !optionIcon.contains(event.target)) {
+        //disappear option window when clicked outside it
+        document.addEventListener("click", (event) => {
+            if (!taskOptionsWindow.contains(event.target) && !optionIcon.contains(event.target)) {
                 taskOptionsWindow.style.display = "none";
-                console.log("Popup hidden.");
-              }
             }
-          });
+        });
 
-        taskDiv.appendChild(checkBox);
-        taskDiv.appendChild(taskLabel);
-        taskDiv.appendChild(optionIcon);
-        
+        //appending task into fragment
+        fragment.appendChild(taskDiv);
+    });
 
-        let mainTasksDiv = document.getElementById("mainTasksDiv");
-        mainTasksDiv.appendChild(taskDiv);
-      }
+    // append fragment to mainTaskDiv that temporarily holds elements before appending them to the DOM.
+    mainTasksDiv.appendChild(fragment);
+}
+//function to add task into the taskDiv. It sorts completed and uncompleted tasks
+export function addTaskDiv(data) {
+    const mainTasksDiv = document.getElementById("mainTasksDiv");
+    if (!mainTasksDiv) {
+        console.error("Error: mainTasksDiv not found.");
+        return;
     }
+
+    //1st calling for uncompleted tasks
+    create(data, false);
+
+    const completedDiv = document.createElement("div");
+    completedDiv.id = "completedDivClass";
+    completedDiv.innerText = "Completed";
+    mainTasksDiv.appendChild(completedDiv);
+
+    //now calling for completed task
+    create(data, true, "line-through");
+    
 }
 
-export function addTaskDiv(data,minimize="none"){
-    const mainTasksDiv = document.getElementById('mainTasksDiv');
-
-    // const completedDiv = document.createElement('div');
-    // completedDiv.classList = "completedDivClass";
-    // completedDiv.innerText = "Not Completed";
-    // mainTasksDiv.appendChild(completedDiv);
-    create(data,false);
-    const notCompletedDiv = document.createElement('div');
-    notCompletedDiv.id = "completedDivClass";
-    notCompletedDiv.innerText = "Completed";
-    mainTasksDiv.appendChild(notCompletedDiv);
-
-  if(minimize === "none"){
-      
-      create(data,true,"line-through");
-  }
-   
-}
-
-// #mainTasksDiv{
-//   min-height: 300px;
-//   padding: 2px;
-//   margin-bottom: 50px;
-// }
-
-export function removeTaskDiv(){
-  let mainTasksDiv = document.getElementById("mainTasksDiv");
-  mainTasksDiv.innerHTML = "";
+//  Clears all tasks from the main tasks div.
+export function removeTaskDiv() {
+    const mainTasksDiv = document.getElementById("mainTasksDiv");
+    if (mainTasksDiv) {
+        mainTasksDiv.innerHTML = "";
+    }
 }

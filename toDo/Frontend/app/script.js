@@ -1,57 +1,36 @@
-import { TaskAddFloatingWindow } from '../scripts/floatingWindow.js';
-import { DisplayTaskOptionWindow } from '../scripts/taskOptions.js';
-import { addTaskDiv } from '../scripts/dynamicAddTask.js';
-
-import { addTask } from '../controller/addTask.js';
-// import { deleteTask } from '../controller/deleteTask.js';
-// import { editTask } from '../controller/editTask.js';
-
-
+import { TaskAddFloatingWindow } from "../scripts/floatingWindow.js";
+import { DisplayTaskOptionWindow } from "../scripts/taskOptions.js";
+import { addTaskDiv } from "../scripts/dynamicAddTask.js";
+import { addTask } from "../controller/addTask.js";
 
 const floatingWindow = new TaskAddFloatingWindow();
 const displayTaskOptionWindow = new DisplayTaskOptionWindow();
 
-//Add button too open Input floating window
-const addBtn = document.getElementById("addBtn");
-addBtn.addEventListener('click', floatingWindow.appear);
+//Load DOM before javascript
+document.addEventListener("DOMContentLoaded", () => {
+    const addBtn = document.getElementById("addBtn");
+    const okBtn = document.getElementById("okBtn");
+    const blurWindow = document.getElementById("blurWindow");
 
+    if (addBtn) addBtn.addEventListener("click", floatingWindow.appear);
 
-
-window.onload = () => {
-    fetch('https://todoapp-sba.onrender.com/getTasks')
-    .then((response) => response.json())
-    .then((data)=> addTaskDiv(data))
-    .catch((e)=> console.log(e));
-}
-
-
-
-// const AddOkBtn = document.getElementById("AddOkBtn");
-// AddOkBtn.addEventListener('click', addTask);
-
-
-const okBtn = document.getElementById("okBtn");
-okBtn.addEventListener('click', () => {
-    if(okBtn.dataset.action === "add"){
-        addTask();
+    if (okBtn) {
+        okBtn.addEventListener("click", () => {
+            if (okBtn.dataset.action === "add") addTask();
+        });
     }
+
+    if (blurWindow) blurWindow.addEventListener("click", floatingWindow.disappear);
+
+    // Fetch tasks from the server
+    fetch("https://todoapp-sba.onrender.com/addTask/getTasks")
+        .then(response => {
+            if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+            return response.json();
+        })
+        .then(data => addTaskDiv(data))
+        .catch(error => console.error("Error fetching tasks:", error));
+
+    // Update task options popup position on window resize
+    window.addEventListener("resize", displayTaskOptionWindow.position);
 });
-
-//to make the floating window disappear when click on outside input window
-const blurWindow = document.getElementById("blurWindow");
-blurWindow.addEventListener('click', floatingWindow.disappear);
-
-// const deleteBtn = document.getElementById("deleteBtn");
-// deleteBtn.addEventListener('click', deleteTask);
-
-//change the TaskOptions Pop up window position when the window screen width changes
-window.addEventListener('resize',displayTaskOptionWindow.position);
-
-
-
-
-
-
-
-
-

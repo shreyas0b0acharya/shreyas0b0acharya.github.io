@@ -1,23 +1,29 @@
 import { DisplayTaskOptionWindow } from "../scripts/taskOptions.js";
 import { refreshPage } from "./refresh.js";
 
-const displayTaskOptionWindow = new DisplayTaskOptionWindow;
+const displayTaskOptionWindow = new DisplayTaskOptionWindow();
 
-// this is used to delete task from the to-do list
-export function deleteTask(taskDiv,id) {
-    console.log(id);
-    
-    taskDiv.remove();
-    const taskJson = { id: id };
-
-    fetch('https://todoapp-sba.onrender.com/deleteTask', {
-        method: 'DELETE',
+// This function deletes a task from the to-do list
+export function deleteTask(taskDiv, id) {
+    console.log("Deleting task with ID:", id);
+    // Send DELETE request to the server
+    fetch("https://todoapp-sba.onrender.com/addTask/deleteTask", {
+        method: "DELETE",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(taskJson)
+        body: JSON.stringify({ id }),
     })
-    .then(response => response.text())
-    .then(data => refreshPage)
-    .catch(error => console.log(error));
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Failed to delete task: ${response.statusText}`);
+        }
+        return response.text();
+    })
+    .then(() => {
+        console.log("Task deleted successfully.");
+        refreshPage(); 
+        taskDiv.remove();// Remove the task from the UI
+    })
+    .catch(error => console.error("Error deleting task:", error));
 }

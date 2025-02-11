@@ -1,59 +1,55 @@
-/* For larger scrren*/
-@media(min-width: 550px){
-    body{
-        padding:5% 25% 0 25%;
-
+/* Responsive body padding for larger screens */
+@media (min-width: 550px) {
+    body {
+        padding: 5% 25% 0 25%;
     }
 }
 
-/* For smaller scrren*/
-@media(max-width: 550px){
-    body{
-        padding:5% 5% 0 5%;
+/* Responsive body padding for smaller screens */
+@media (max-width: 550px) {
+    body {
+        padding: 5% 5% 0 5%;
     }
 }
 
-body{
+/* General body styling */
+body {
     margin: 0;
-    transition: padding 1s ease;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-
+    transition: padding 1s ease; /* Smooth padding transition */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+                 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#headerDiv{
-    background-color: hsla(0, 0%, 0%, 0.1);
-    border-radius: 8px;
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 5px;
-    font-weight: 900;
+/* Header styling */
+#headerDiv {
+    background-color: hsla(0, 0%, 0%, 0.1); /* Light gray background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px 0; /* Top and bottom padding */
+    display: flex; /* Aligns items horizontally */
+    align-items: center; /* Centers items vertically */
+    justify-content: space-around; /* Spaces items evenly */
+    margin-bottom: 5px; /* Adds spacing below */
+    font-weight: 900; /* Bold text */
 }
 
-#mainTasksDiv{
-    min-height: 300px;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    /* background-color: hsla(0, 0%, 0%, 0.1); */
-
+/* Main tasks container */
+#mainTasksDiv {
+    min-height: 300px; /* Ensures minimum height */
+    margin-bottom: 10px; /* Bottom spacing */
+    padding-bottom: 10px; /* Padding at the bottom */
 }
-#completedDivClass{
-    font-size: medium;
+
+/* Completed tasks section */
+#completedDivClass {
+    font-size: medium; /* Medium-sized text */
     padding: 2px;
-    padding-left: 10px;
-    height: 15px;
-    background-color: hsla(0, 0%, 0%, 0.1);
-    margin: 15px 0 5px 0;
-    /* box-shadow: 1px 1px 2px hsla(0, 0%, 0%, 0.4); */
-    
-    
-    
-}
-#appName{
-    font-size: 30px;
+    padding-left: 10px; /* Left padding */
+    height: 15px; /* Fixed height */
+    background-color: hsla(0, 0%, 0%, 0.1); /* Light gray background */
+    margin: 15px 0 5px 0; /* Vertical margin */
 }
 
-
-
-
+/* App name styling */
+#appName {
+    font-size: 30px; /* Large text for app name */
+}
