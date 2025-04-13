@@ -28,7 +28,7 @@ export function addTask() {
     };
 
     // Send task to server
-    fetch("https://todoapp-sba.onrender.com/addTask/addTask", {
+    fetch("http://localhost:3000/addTask", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

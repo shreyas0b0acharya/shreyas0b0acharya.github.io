@@ -1,67 +1,22 @@
 [
   {
-    "id": 11,
-    "task": "dfgfdg",
-    "completed": false
-  },
-  {
-    "id": 13,
-    "task": "sdfdsfdsfdsf",
-    "completed": false
-  },
-  {
-    "id": 10,
-    "task": "sdfvsdfdsf",
-    "completed": false
-  },
-  {
-    "id": 9,
-    "task": "addsvsdvds",
-    "completed": false
-  },
-  {
-    "id": 8,
-    "task": "addvsdvsdvsdvdsvsdvsdvsdvsdv",
-    "completed": false
-  },
-  {
-    "id": 7,
-    "task": "xv",
-    "completed": true
-  },
-  {
-    "id": 6,
-    "task": "sssssssssssss            sd",
-    "completed": true
-  },
-  {
     "id": 5,
-    "task": "scsc",
+    "task": "Share the Video",
     "completed": true
   },
   {
     "id": 4,
-    "task": "sdfsdfsdfsf",
-    "completed": true
-  },
-  {
-    "id": 0,
-    "task": "sdfsdf",
+    "task": "Leave a comment",
     "completed": true
   },
   {
     "id": 3,
-    "task": "dsvsdv",
-    "completed": true
+    "task": "Drop a like",
+    "completed": false
   },
   {
-    "id": 2,
-    "task": "ascsac        dcdscds     cssdvsdvsf",
-    "completed": true
-  },
-  {
-    "id": 1,
-    "task": "ascassssssssssss scaaaa",
+    "id": 0,
+    "task": "Hit the Subscribe Button",
     "completed": false
   }
 ]

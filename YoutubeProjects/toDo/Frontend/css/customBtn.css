@@ -1,0 +1,12 @@
+:root {
+    --background-color: hsl(315, 100%, 75%); /* Global pink background color */
+}
+
+#addBtn, #okBtn {
+    background-color: var(--background-color); /* Applies global color */
+    padding: 8px 20px; /* Adds space inside buttons */
+}
+
+.editBtnClass, .deleteBtnClass {
+    background-color: var(--background-color); /* Same color for edit & delete buttons */
+}

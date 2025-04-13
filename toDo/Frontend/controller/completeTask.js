@@ -6,7 +6,7 @@ export function completeTask(checkBox, id) {
         completed: checkBox.checked
     };
 
-    fetch('https://todoapp-sba.onrender.com/addTask/taskCompleted', {
+    fetch('http://localhost:3000/taskCompleted', {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

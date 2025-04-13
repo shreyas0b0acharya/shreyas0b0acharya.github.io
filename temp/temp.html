@@ -1,83 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dominant Color Extraction Using Canvas</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free AI Chat App</title>
+  <style>
+    /* Reset & basic styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body {
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chat-header {
+      background-color: #4a76a8;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    .chat-body {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+    .message {
+      margin-bottom: 15px;
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 20px;
+    }
+    .message.user {
+      background-color: #4a76a8;
+      color: #fff;
+      margin-left: auto;
+      text-align: right;
+    }
+    .message.ai {
+      background-color: #e2e2e2;
+      color: #333;
+      margin-right: auto;
+      text-align: left;
+    }
+    .chat-footer {
+      padding: 10px 20px;
+      border-top: 1px solid #ddd;
+      display: flex;
+    }
+    .chat-footer input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .chat-footer button {
+      background-color: #4a76a8;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      margin-left: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .chat-footer button:hover {
+      background-color: #3a5f8c;
+    }
+  </style>
 </head>
 <body>
-    <h1>Extract Dominant Color</h1>
-    <canvas id="canvas" style="display:none;"></canvas>
-    <input type="file" id="imageUpload" />
-    <div id="dominantColor" style="margin-top: 20px;">Dominant Color: </div>
-    <div id="dd" style="height: 50px; width: 50px; background-color: rgb( 4,4,4);"></div>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2>Free AI Chat App</h2>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <!-- Chat messages will appear here -->
+    </div>
+    <div class="chat-footer">
+      <input type="text" id="userInput" placeholder="Type your message here..." />
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
 
-    <script>
-        // Function to get dominant color from image using canvas
-        function getDominantColor(image) {
-            // Create a canvas and get the 2D context
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
+  <script>
+    // Get DOM elements
+    const chatBody = document.getElementById('chatBody');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
 
-            // Set canvas size to the image's dimensions
-            canvas.width = image.width;
-            canvas.height = image.height;
+    // Dummy function to simulate an AI response
+    function getAIResponse(userMessage) {
+      const responses = [
+        "I'm not sure I understand, could you please clarify?",
+        "That's interesting!",
+        "Can you tell me more about that?",
+        "Why do you think that is?",
+        "Let's talk about something else. How's your day going?"
+      ];
+      return responses[Math.floor(Math.random() * responses.length)];
+    }
 
-            // Draw the image onto the canvas
-            ctx.drawImage(image, 0, 0);
+    // Append a message to the chat body
+    function appendMessage(text, sender) {
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message', sender);
+      messageElement.textContent = text;
+      chatBody.appendChild(messageElement);
+      // Auto-scroll to the latest message
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
 
-            // Get the image data from the canvas (pixel data)
-            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-            const data = imageData.data;
+    // Handle sending a message
+    function sendMessage() {
+      const text = userInput.value.trim();
+      if (text === "") return;
+      appendMessage(text, 'user');
+      userInput.value = "";
 
-            // Object to store color frequency
-            const colorMap = {};
+      // Simulate a delay before displaying the AI's response
+      setTimeout(() => {
+        const aiResponse = getAIResponse(text);
+        appendMessage(aiResponse, 'ai');
+      }, 1000); // 1-second delay
+    }
 
-            // Loop through each pixel
-            for (let i = 0; i < data.length; i += 4) {
-                const r = data[i];     // Red value
-                const g = data[i + 1]; // Green value
-                const b = data[i + 2]; // Blue value
-                const rgb = `${r},${g},${b}`; // RGB string to represent the color
-
-                // Count occurrences of each color
-                if (colorMap[rgb]) {
-                    colorMap[rgb]++;
-                } else {
-                    colorMap[rgb] = 1;
-                }
-            }
-
-            // Find the most frequent color
-            let dominantColor = null;
-            let maxCount = 0;
-
-            for (const color in colorMap) {
-                if (colorMap[color] > maxCount) {
-                    maxCount = colorMap[color];
-                    dominantColor = color;
-                }
-            }
-
-            return dominantColor;
-        }
-
-        // Event listener for file input
-        document.getElementById('imageUpload').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const img = new Image();
-                img.onload = function() {
-                    // Get the dominant color
-                    const dominantColor = getDominantColor(img);
-
-                    // Display the result
-                    document.getElementById('dominantColor').textContent = `Dominant Color: ${dominantColor}`;
-                    document.getElementById('dd').style.backgroundColor =`rgb(${dominantColor})`;
-                };
-                img.src = URL.createObjectURL(file);
-            }
-        });
-    </script>
+    // Event listeners for button click and Enter key press
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,51 @@
+npm init -y
+npm install express
+npm install --save-dev nodemon
+npm install cors
+
+add in package.json: 
+
+ "scripts": {
+     "start": "nodemon app.js",
+     "dev": "nodemon app.js"
+  }
+
+update as:  "main": "app.js",
+
+
+
+to start every time: npm start
+
+
+app.use(cors())	
+Accept requests from other origins/domains (if frontend and backend servers in in different domains)
+
+app.use(express.json())
+Parse JSON request bodies into req.body
+
+app.listen(port, callback)
+This line tells your Express app to start a server and listen for incoming HTTP requests on a specific port.
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});
+
+fetch("http://localhost:3000/your-endpoint", {
+  method: "POST", // 👈 Important: tells it to use POST
+  headers: {
+    "Content-Type": "application/json" // 👈 Tells the server you're sending JSON
+  },
+  body: JSON.stringify({
+    // 👇 Your data goes here
+    name: "Shreyu",
+    age: 19
+  })
+})
+.then(response => response.json())
+.then(data => {
+  console.log("Success:", data);
+})
+.catch(error => {
+  console.error("Error:", error);
+});
+
+

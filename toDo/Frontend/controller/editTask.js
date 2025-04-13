@@ -22,7 +22,7 @@ export function editTask(id) {
     };
 
     // Send PUT request to update the task
-    fetch("https://todoapp-sba.onrender.com/addTask/editTask", {
+    fetch("http://localhost:3000/editTask", {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",

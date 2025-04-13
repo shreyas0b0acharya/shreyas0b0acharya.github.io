@@ -2,7 +2,7 @@ import { addTaskDiv, removeTaskDiv } from "../scripts/dynamicAddTask.js";
 
 //used to refresh the page.
 export function refreshPage() {
-    fetch("https://todoapp-sba.onrender.com/addTask/getTasks")
+    fetch("http://localhost:3000/getTasks")
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Failed to fetch tasks: ${response.statusText}`);

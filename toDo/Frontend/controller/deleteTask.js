@@ -7,7 +7,7 @@ const displayTaskOptionWindow = new DisplayTaskOptionWindow();
 export function deleteTask(taskDiv, id) {
     console.log("Deleting task with ID:", id);
     // Send DELETE request to the server
-    fetch("https://todoapp-sba.onrender.com/addTask/deleteTask", {
+    fetch("http://localhost:3000/deleteTask", {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",

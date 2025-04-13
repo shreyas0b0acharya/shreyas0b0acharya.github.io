@@ -1,0 +1,16 @@
+/* Task Options Window */
+.taskOptionsWindow {
+    position: absolute; /* Positioned relative to parent */
+   /* Hidden by default */
+    /* display: none;  */
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center; /* Centers items */
+    gap: 10px; /* Space between elements */
+    border: 1px solid hsl(0, 0%, 70%); /* Light gray border */
+    z-index: 2; /* Ensures it appears above other elements */
+    padding: 10px; /* Padding for spacing */
+    border-radius: 25px; /* Rounded corners */
+    border-top-right-radius: 0px; /* Sharp top-right corner */
+    background-color: hsla(0, 0%, 75%, 0.95); /* Semi-transparent gray */
+}

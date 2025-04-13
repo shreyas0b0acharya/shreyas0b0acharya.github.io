@@ -1,0 +1,3 @@
+for ful details: https://v3.tailwindcss.com/docs/guides/create-react-app
+
+PS C:\AMyFiles\sba_projects\MyCollege\Frontend> npx create-react-app my-college 

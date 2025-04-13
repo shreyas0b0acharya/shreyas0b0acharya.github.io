@@ -1,10 +1,8 @@
 import { TaskAddFloatingWindow } from "../scripts/floatingWindow.js";
-import { DisplayTaskOptionWindow } from "../scripts/taskOptions.js";
 import { addTaskDiv } from "../scripts/dynamicAddTask.js";
 import { addTask } from "../controller/addTask.js";
 
-const floatingWindow = new TaskAddFloatingWindow();
-const displayTaskOptionWindow = new DisplayTaskOptionWindow();
+const taskAddFloatingWindow = new TaskAddFloatingWindow();
 
 //Load DOM before javascript
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const okBtn = document.getElementById("okBtn");
     const blurWindow = document.getElementById("blurWindow");
 
-    if (addBtn) addBtn.addEventListener("click", floatingWindow.appear);
+    if (addBtn) addBtn.addEventListener("click", taskAddFloatingWindow.appear);
 
     if (okBtn) {
         okBtn.addEventListener("click", () => {
@@ -20,17 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (blurWindow) blurWindow.addEventListener("click", floatingWindow.disappear);
+    if (blurWindow) blurWindow.addEventListener("click", taskAddFloatingWindow.disappear);
 
-    // Fetch tasks from the server
-    fetch("https://todoapp-sba.onrender.com/addTask/getTasks")
+    // Fetch tasks from the server when page load
+    fetch("http://localhost:3000/getTasks")
         .then(response => {
             if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
             return response.json();
         })
         .then(data => addTaskDiv(data))
         .catch(error => console.error("Error fetching tasks:", error));
-
-    // Update task options popup position on window resize
-    window.addEventListener("resize", displayTaskOptionWindow.position);
 });

@@ -1,10 +1,12 @@
-import { DisplayTaskOptionWindow } from "./taskOptions.js";
-import { TaskEditFloatingWindow } from "./floatingWindow.js";
+
+
 import { deleteTask } from "../controller/deleteTask.js";
 import { editTask } from "../controller/editTask.js";
 import { completeTask } from "../controller/completeTask.js";
 
+import { DisplayTaskOptionWindow } from "./taskOptions.js";
 const displayTaskOptionWindow = new DisplayTaskOptionWindow();
+import { TaskEditFloatingWindow } from "./floatingWindow.js";
 const taskEditFloatingWindow = new TaskEditFloatingWindow();
 
 /**
@@ -70,7 +72,15 @@ function create(data, completedTruth, decoration = "none") {
 
         // option window appears when click on Option Icon
         optionIcon.addEventListener("click", () => {
-            displayTaskOptionWindow.appear(taskOptionsWindow, taskDiv);
+            displayTaskOptionWindow.appear(taskOptionsWindow);
+        });
+
+        
+        //disappear option window when clicked outside it
+        document.addEventListener("click", (event) => {
+            if (!taskOptionsWindow.contains(event.target) && !optionIcon.contains(event.target)) {
+                displayTaskOptionWindow.disappear(taskOptionsWindow);
+            }
         });
 
         // used to delete the task div
@@ -96,12 +106,6 @@ function create(data, completedTruth, decoration = "none") {
             completeTask(checkBox, task.id);
         });
 
-        //disappear option window when clicked outside it
-        document.addEventListener("click", (event) => {
-            if (!taskOptionsWindow.contains(event.target) && !optionIcon.contains(event.target)) {
-                taskOptionsWindow.style.display = "none";
-            }
-        });
 
         //appending task into fragment
         fragment.appendChild(taskDiv);

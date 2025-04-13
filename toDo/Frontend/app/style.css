@@ -23,7 +23,6 @@ body {
 /* Header styling */
 #headerDiv {
     background-color: hsla(0, 0%, 0%, 0.1); /* Light gray background */
-    border-radius: 8px; /* Rounded corners */
     padding: 10px 0; /* Top and bottom padding */
     display: flex; /* Aligns items horizontally */
     align-items: center; /* Centers items vertically */
