@@ -49,3 +49,10 @@ fetch("http://localhost:3000/your-endpoint", {
 });
 
 
+db.query('SQL_QUERY_STRING', [values_if_any], (err, results) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(results);
+});
