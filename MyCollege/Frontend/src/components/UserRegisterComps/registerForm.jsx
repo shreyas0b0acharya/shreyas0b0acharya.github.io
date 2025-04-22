@@ -4,27 +4,27 @@ import { Button } from "../ui/ButtonComp";
 import { Card } from "../ui/card";
 import { DropDownMenu } from "../ui/DropDownMenu";
 import { branches, sections, semesters } from "./SemSecBranch.js";
-// import { logIn, signUp } from "./sendUserDetails.js";
 import { useNavigate } from "react-router-dom";
 import { setCookie } from "./cookies.js";
 import { backendAddress } from "../../backendAddres.js";
 
+// RegisterForm Component
 export const RegisterForm = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [usn, setUsn] = useState("");
+  const [isLogin, setIsLogin] = useState(true); 
+  const [firstName, setFirstName] = useState(""); 
+  const [lastName, setLastName] = useState(""); 
+  const [usn, setUsn] = useState(""); 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(""); 
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [branch, setBranch] = useState("");
-  const [semester, setSemester] = useState("");
-  const [section, setSection] = useState("");
-  const [labBatch, setLabBatch] = useState("");
- 
+  const [branch, setBranch] = useState(""); 
+  const [semester, setSemester] = useState(""); 
+  const [section, setSection] = useState(""); 
+  const [labBatch, setLabBatch] = useState(""); 
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
+  // Reset form fields
   const resetForm = () => {
     setFirstName("");
     setLastName("");
@@ -38,6 +38,7 @@ export const RegisterForm = () => {
     setLabBatch("");
   };
 
+  // lab batches based on section
   const labBatches =
     section === "A"
       ? [
@@ -51,13 +52,17 @@ export const RegisterForm = () => {
           ["B3", "B3 Batch"],
         ];
 
+  // Form submission
   const handleForm = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
+
+    // Check if passwords match for signup
     if (!isLogin && password !== confirmPassword) {
       alert("Passwords do not match!");
       return;
     }
 
+    // form data based on login/signup state
     const formData = isLogin
       ? {
           usn,
@@ -73,53 +78,51 @@ export const RegisterForm = () => {
           semester,
           section,
           lab_batch: labBatch,
-          branch:branch
+          branch: branch,
         };
 
-    console.log(formData);
-
+    // Handle login request
     if (isLogin) {
       fetch(`${backendAddress}/logIn`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json", 
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData), 
       })
-        .then(response => response.text())
-        .then(data => {
-          alert(data);
+        .then((response) => response.text()) 
+        .then((data) => {
+          alert(data); 
           if (data.trim().toLowerCase() === "you are logged in") {
-            setCookie(email);
+            setCookie(email); 
             console.log("✅ Setting localStorage...");
-            localStorage.setItem("loggedIn","true");
-            
-            navigate("/MyProfile");
+            localStorage.setItem("loggedIn", "true"); // Store login state in localStorage
+            navigate("/MyProfile"); // Navigate to MyProfile page
           }
         })
-        .catch(error => {
-          console.error("Error:", error);
+        .catch((error) => {
+          console.error("Error:", error); 
         });
     } else {
+      // Handle signup request
       fetch(`${backendAddress}/signUp`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json", 
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData), 
       })
-        .then(response => response.text())
-        .then(data => {
-          alert(data,"Log In Now");
-          setIsLogin(!isLogin)
+        .then((response) => response.text()) 
+        .then((data) => {
+          alert(data, "Log In Now"); 
+          setIsLogin(!isLogin); // Toggle between login and signup
         })
-        .catch(error => {
+        .catch((error) => {
           console.error("Error:", error);
         });
     }
-    
 
-    resetForm();
+    resetForm(); // Reset form after submission
   };
 
   return (
@@ -181,7 +184,7 @@ export const RegisterForm = () => {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-               <DropDownMenu
+              <DropDownMenu
                 legend="Branch"
                 options={branches}
                 value={branch}
@@ -198,7 +201,7 @@ export const RegisterForm = () => {
                 options={sections}
                 value={section}
                 onChange={(val) => {
-                  setSection(val);
+                  setSection(val); // Update section and reset lab batch
                   setLabBatch("");
                 }}
               />

@@ -1,7 +1,8 @@
-import mysql from 'mysql2';
+import mysql from 'mysql2'; 
 
-// we using the database userdb in the mySQl
+// using the database "userdb" in the mySQl software
 // Create connection
+
 export const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -12,7 +13,8 @@ export const db = mysql.createConnection({
 // Connect to MySQL
 db.connect((err) => {
   if (err) throw err;
-  console.log('✅ MySQL Connected...');
+  console.log('MySQL Connected...');
+
 });
 
 

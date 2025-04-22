@@ -1,10 +1,11 @@
+// Import required modules and components
 import { facultyPhotos } from "./timeTableDict";
 import { useEffect, useState } from "react"; 
 import { Card } from "../ui/card";
 import { H1 } from "../ui/h2Comp";
 import { getTodayClasses } from "./getTodayClasses";
 
-// Convert 24-hour time to 12-hour format
+// Convert 24-hour format time to 12-hour format
 function convertTo12HourFormat(time24) { 
   const [start, end] = time24.split('to').map(str => str.trim());
   const [startHour, startMin] = start.split(':').map(Number);
@@ -23,53 +24,45 @@ function convertTo12HourFormat(time24) {
 export const TodayClasses = () => {
   const [todayClassList, setTodayClassList] = useState(getTodayClasses());
 
+  // Auto-update class list frequently
   useEffect(() => {
     const interval = setInterval(() => {
       setTodayClassList(getTodayClasses());
-    }, 10);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const lab= localStorage.getItem("labBatch");
+  const lab = localStorage.getItem("labBatch");
 
-  const checkLab = (clsSubject,lab) => {
+  // Filter function to shown for the current lab batch
+  const checkLab = (clsSubject, lab) => {
+    if (!lab) return true; //if No lab batch set,then show all classes
 
-      if (lab===null || lab===""){
-        return true;
-      }
+    const subject = clsSubject.toLowerCase(); 
+    const isLab = subject.includes("lab");    // Check if it is lab subject
 
-      const subject = clsSubject.toLowerCase(); // Normalize for case-insensitive check
-      const isLab = subject.includes("lab");
+    if (!isLab) return true; // If not a lab, show it
 
-      if (!isLab) {
-        return true;
-      }
-
-
-
-      // const isMyLab = false;
-
-      if ( isLab === clsSubject.includes(lab) ){
-        return true
-      }
-      
-  }
+    // If it is a lab, check if subject includes the lab batch name
+    return clsSubject.includes(lab);
+  };
 
   return (
-
     <div className="m-2 w-[100%] sm:w-[75vw]">
-      <div className="">
-        <Card className="flex-col flex   space-y-4 border ">
+      <div>
+        <Card className="flex-col flex space-y-4 border">
           <H1>Today's Schedule 📅</H1>
+
           {todayClassList && todayClassList.length > 0 ? (
             <div className="flex flex-col sm:flex-row overflow-x-auto">
               {todayClassList.map((cls, index) => (
                 checkLab(cls.subject, lab) && (
                   <Card
                     key={`${cls.subject}-${cls.time}-${index}`}
-                    className="flex flex-shrink-0 justify-center mx-auto w-fit sm:flex-col flex-row items-center justify-center bg-themeColor"
+                    className="flex flex-shrink-0 justify-center mx-auto w-fit sm:flex-col flex-row items-center bg-themeColor"
                   >
+                    {/* Faculty Photo */}
                     <div>
                       <img
                         src={facultyPhotos[cls.faculty]}
@@ -78,6 +71,8 @@ export const TodayClasses = () => {
                         className="rounded-2xl object-cover shadow-lg mr-10 sm:mr-0"
                       />
                     </div>
+
+                    {/* Class Details */}
                     <div className="flex flex-col ml-2 text-left sm:text-center">
                       <h3 className="text-lg font-bold dark:text-black">{cls.subject}</h3>
                       <h6 className="text-xs font-semibold dark:text-black">{cls.faculty}</h6>

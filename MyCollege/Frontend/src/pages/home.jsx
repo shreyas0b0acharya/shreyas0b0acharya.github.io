@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { MainComp } from "../layouts/mainComp";
 import { RegisterForm } from "../components/UserRegisterComps/registerForm";
 import { CollegeNews } from "./collegeNews";
-// import { News } from "./news";
 
 export const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);

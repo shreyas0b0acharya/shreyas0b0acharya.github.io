@@ -3,7 +3,6 @@ import { WeeklyTimeTable } from "../components/timeTableComps/weeklyTimeTable"
 import { TodayClasses } from "../components/timeTableComps/todayTimetable";
 import { MainComp } from "../layouts/mainComp";
 
-// import { Aside } from "../layouts/asideComp"
 
 export const TimeTable = () => {
     return (

@@ -1,10 +1,9 @@
 npm init -y
 npm install express
-npm install --save-dev nodemon
+npm install --save-dev nodemon //
 npm install cors
 
 add in package.json: 
-
  "scripts": {
      "start": "nodemon app.js",
      "dev": "nodemon app.js"
@@ -12,10 +11,7 @@ add in package.json:
 
 update as:  "main": "app.js",
 
-
-
-to start every time: npm start
-
+to execute every time use: npm start
 
 app.use(cors())	
 Accept requests from other origins/domains (if frontend and backend servers in in different domains)

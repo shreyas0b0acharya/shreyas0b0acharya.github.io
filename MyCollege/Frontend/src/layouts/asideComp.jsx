@@ -1,9 +1,9 @@
-import Photo from "../photos/Photo.jpg";
+// import Photo from "../photos/Photo.jpg";
 
 export const Aside = () => {
     return (
         <aside className="bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-gray-900 border-l-2 border-gray-300 dark:border-gray-700 w-[25vw] max-w-sm min-h-screen hidden sm:block ml-auto">
-            <div className="p-6">
+            {/* <div className="p-6">
                 <div className="flex flex-col items-center text-center">
                     <img
                         src={Photo}
@@ -29,7 +29,7 @@ export const Aside = () => {
                         </h2>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </aside>
     );
 };
