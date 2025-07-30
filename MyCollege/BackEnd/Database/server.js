@@ -5,8 +5,8 @@ import mysql from 'mysql2';
 
 export const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password: 'ShreyasB5#6914',
+  user: 'your_name',
+  password: 'your_password',
   database: 'userdb'
 });
 
