@@ -1,0 +1,25 @@
+button {
+    border: none; /* Removes default border */
+    border-radius: 8px; /* Rounded corners */
+    color: black; /* Text color */
+    font-weight: 700; /* Bold text */
+    font-size: small; /* Small font size */
+    
+    background-color: #f8f9fa; /* Light gray background */
+    transition: all 0.2s ease-in-out; /* Smooth animation */
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5), /* Outer shadow */
+                inset 1px 1px 2px rgba(255, 255, 255, 0.5); /* Inner shadow */
+}
+
+button:hover {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    text-decoration: underline; /* Underline on hover */
+    cursor: pointer; /* Changes cursor to pointer */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+button:active {
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.5), /* Pressed effect */
+                1px 1px 2px rgba(255, 255, 255, 0.5);
+    transform: scale(0.98); /* Shrinks slightly when clicked */
+}

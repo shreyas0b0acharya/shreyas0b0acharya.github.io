@@ -1,0 +1,46 @@
+/* Responsive body padding for larger screens */
+@media (min-width: 550px) {
+    body {
+        padding: 5% 25% 0 25%;
+    }
+}
+
+/* Responsive body padding for smaller screens */
+@media (max-width: 550px) {
+    body {
+        padding: 5% 5% 0 5%;
+    }
+}
+
+/* General body styling */
+body {
+    margin: 0;
+    transition: padding 1s ease; /* Smooth padding transition */
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 
+                 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* Header styling */
+#headerDiv {
+    background-color: hsla(0, 0%, 0%, 0.1); /* Light gray background */
+    padding: 10px 0; /* Top and bottom padding */
+    display: flex; /* Aligns items horizontally */
+    align-items: center; /* Centers items vertically */
+    justify-content: space-around; /* Spaces items evenly */
+    margin-bottom: 5px; /* Adds spacing below */
+    font-weight: 900; /* Bold text */
+}
+
+/* App name styling */
+#appName {
+    font-size: 30px; /* Large text for app name */
+}
+/* Completed tasks section */
+#completedDivClass {
+    font-size: medium; /* Medium-sized text */
+    padding: 2px;
+    padding-left: 10px; /* Left padding */
+    height: 15px; /* Fixed height */
+    background-color: hsla(0, 0%, 0%, 0.1); /* Light gray background */
+    margin: 15px 0 5px 0; /* Vertical margin */
+}

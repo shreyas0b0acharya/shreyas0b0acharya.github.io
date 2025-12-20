@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="to_do.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+</head>
+<body>
+    <div id="blur_window">
+    </div>
+
+    <div id="head_block">
+        <h1 id="icon">To-Do list</h1>
+    </div>
+
+    <div id="task_adder_block" style="gap: 5ex;">
+
+        <label class="input_labels" for="task_input" style="font-size: 2em;">Add Task</label>
+        <input class="inputs" id="task_input" type="input" placeholder="Write Task Here">
+
+        <div style="display: flex; flex-direction: row; gap: 3ex; justify-content: center; align-items: center;">
+
+            <div style="display: flex; flex-direction: column; gap: 2ex; text-align: center;" >
+                <label class="input_labels" for="date_input">Remainder Date</label>
+                <input class="inputs" id="date_input" type="date">
+            </div>
+
+            <div style="display: flex; flex-direction: column ;gap: 2ex;  text-align: center;">
+                <label class="input_labels" for="task_color">Color</label>
+                <input type="color" name="task_color" id="task_color">
+            </div>
+
+        </div>
+
+        <div style="display: flex; flex-direction: row ;gap:2ex;margin-left: 40%; margin-bottom: 1%;">
+            <button class="inputs" id="Cancel_btn">Cancel</button>
+            <button class="inputs" type="submit" id="task_add_submit" onclick="add_task_to_list()">Add</button> 
+        </div>
+        
+
+    </div>
+    
+    <div id="list_div">
+        <h1>hi</h1>
+        <button id="add_btn" onclick="open_add_task_window()">+</button>
+    </div>
+
+
+    <script src="to_do.js"></script>
+</body>
+</html>

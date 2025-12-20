@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do App</title>
+
+     <!-- External CSS files -->
+     <link rel="stylesheet" href="style.css">
+     <link rel="stylesheet" href="../css/floatingWindow.css">
+     <link rel="stylesheet" href="../css/button.css">
+     <link rel="stylesheet" href="../css/customBtn.css">
+     <link rel="stylesheet" href="../css/taskDiv.css">
+     <link rel="stylesheet" href="../css/taskoptionWindow.css">
+
+</head>
+<body>
+    <div id="blurWindow"></div>
+
+    <!-- Floating input field for entering tasks -->
+    <div id="floatingInput">
+        <fieldset>
+            <legend for="taskInput" id="taskInputLegend">Enter Task</legend>
+            <input type="text" name="taskInput" id="taskInput" placeholder="Click here to Enter...">
+            <button id="okBtn">Ok</button>
+        </fieldset>
+    </div>
+
+    <!-- Header with app name and add button -->
+    <div id="headerDiv">
+        <span id="appName">To Do</span>
+        <button id="addBtn">Add</button>
+    </div>
+
+    <!-- Main section to display tasks -->
+    <div id="mainTasksDiv"></div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

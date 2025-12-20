@@ -1,0 +1,73 @@
+/* Responsive Design */
+/* For larger screens */
+@media (min-width: 550px) {
+    #floatingInput {
+        width: 45%; 
+    }
+}
+
+/* For smaller screens */
+@media (max-width: 550px) {
+    #floatingInput {
+        width: 85%; 
+    }
+}
+
+/* Floating Input Box */
+#floatingInput {
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    position: fixed; /* Keeps it in place */
+    padding: 15px; /* Inner spacing */
+    background-color: hsla(0, 0%, 100%, 0.6); /* Semi-transparent white */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers it */
+    border-radius: 8px; /* Rounded corners */
+    /* Initially hidden */
+    display: none; 
+    /* display: block;  */
+    border: 1px solid hsl(0, 0%, 70%); /* Light gray border */
+    z-index: 10; /* Ensures it stays above other elements */
+}
+
+/* Fieldset Styling */
+fieldset {
+    display: flex; /* Aligns items in a row */
+    align-items: center; /* Centers vertically */
+    justify-content: space-around; /* Evenly spaces elements */
+    font-weight: 900; /* Bold text */
+    border-radius: 8px; /* Rounded edges */
+    font-size: small; /* Small font size */
+    border: 1px solid hsl(0, 0%, 70%); /* Light gray border */
+}
+
+/* Task Input */
+#taskInput {
+    height: 25px; /* Input height */
+    width: 70%; /* Takes most of the fieldset width */
+    border: none; /* Removes default border */
+    font-size: small; /* Small font size */
+    background-color: transparent; /* No background */
+}
+
+/* Remove Outline When Focused */
+#taskInput:focus {
+    outline: none;
+}
+
+/* Background Blur Overlay */
+#blurWindow {
+    position: fixed; /* Covers the entire screen */
+    margin: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /* Initially hidden, block on appear */
+    display: none; 
+    /* display:block; */
+     /* No blur by default,  blur(5px) when appear */
+    backdrop-filter: none;
+    /* backdrop-filter: blur(5px); */
+    z-index: 5; /* Below floating input but above content */
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triadic Color Wheel</title>
+    <link rel="stylesheet" href="Tridoic.css">
+</head>
+<body>
+    <span style="position: fixed; left: 2%;">hush mode TECHIE</span>
+
+    <div class="triadic">
+
+        <div id="color-wheel">
+                <div class="slider">
+                <div>
+                    <label for="sValue">Saturation</label>
+                    <input type="text" id="sdisplay" style="width: 30px;">
+                </div>
+                <input type="range" name="sValue" id="sValue" min="0" max="100" value="100">
+            </div>
+
+            <div id="out-circle">
+                <div class="in-circle">
+                    <img src="arrow.png" alt="arrow icon" id="arrow">
+                </div>
+                <div id="in-triangle"></div>
+            </div>
+
+            <div class="slider">
+                <div>
+                    <label for="lValue">Lightness</label>
+                    <input type="text" id="ldisplay" style="width: 30px;">
+                </div>
+                <input type="range" name="lValue" id="lValue" min="0" max="100" value="50">
+            </div>
+        </div>
+
+        <div id="hue_div">
+            <label for="hueValue">Hue</label>
+            <input name="hueValue" type="text" id="hueValue" style="width: 30px;">
+        </div>
+
+        <div class="boxes">
+            <div class="c-box" id="box-1"></div>
+            <div class="c-box" id="box-2"></div>
+            <div class="c-box" id="box-3"></div>
+
+            <h4 class="color-values" id="color-values-1" >hsl(0, 100%, 50%)</h4>
+            <h4 class="color-values" id="color-values-2" >hsl(0, 100%, 50%)</h4>
+            <h4 class="color-values" id="color-values-3" >hsl(0, 100%, 50%)</h4>
+        </div>
+       
+
+    </div>
+
+    <script src="Triadic.js"></script>
+
+</body>
+</html>

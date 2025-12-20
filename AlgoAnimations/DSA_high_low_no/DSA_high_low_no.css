@@ -1,0 +1,63 @@
+body{
+    margin: 0%;
+}
+header{
+    position: relative;
+    text-align: center;
+    height: auto;
+    background: linear-gradient(to bottom,black,dodgerblue);
+    font-size: 5vh;
+    color: yellow;
+}
+#graph_div{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 80%;
+    margin: 10%;
+
+
+}
+
+#main_box_div{
+    position: relative;
+    height: 220px;
+    margin: 1%;
+    background-color: white;
+    display: flex;
+    margin-bottom: 0%;
+    gap: 1%;
+    align-items: flex-end;
+    justify-content: center;
+
+}
+
+#main_nums_div{
+    position: relative;
+    height: 20px;
+    background-color: white;
+    display: flex;
+    margin: 1%;
+    margin-top: 0%;
+    gap: 1%;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.each_box{
+    position:relative;
+    width: 4%;
+    background: linear-gradient(to bottom,black,dodgerblue);
+    margin-bottom: 1%;
+    border: 1px solid black;
+}
+
+.each_nums{
+    color: black;
+    position:relative;
+    width: 4%;
+    background-color: white; 
+    text-align: center;
+    font-size: 1.5vw;
+}

@@ -1,0 +1,52 @@
+body{
+    margin: 0%;
+}
+
+header{
+    font-size: 3rem;
+    height: auto;
+    width: 100%;
+    text-align: center;
+    color: yellow;
+    background-color: gray;
+}
+
+main{
+    position: relative;
+    display: flex;
+    flex-direction:column;
+    margin: 10%;
+    margin-bottom: 0%;
+    border: 1px solid black;
+    width: 80%;
+    height: auto;
+}
+
+input{
+    position: relative;
+    font-size: 2.5rex;
+    background-color: gray;
+    color: yellow;
+    margin: 1%;
+}
+
+input::placeholder{
+    color: yellow;
+}
+
+.box{
+    position: relative;
+    max-width: 5%;
+    margin: 1%;
+    width: 5%;
+    background-color:black ;
+
+}
+#graph_div{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    min-height: 200px;
+    width: 100%;
+}
