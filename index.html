@@ -3,131 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="My_Works_Home.css">
+    <title>My Works</title>
     <link rel="icon" href="icon.png">
-
+    <link rel="stylesheet" href="My_Works_Home.css">
     <script src="my-works-home.js" defer></script>
 </head>
 <body>
     <header>
-        <img id="icon" src="icon.png" alt="" >
-        <span id="h1">My Works</span>
+        <img src="icon.png" alt="Site Icon" width="80" height="80">
+        <h1>My Works</h1>
     </header>
-    
-    
-    <div id="list_div">
-        <h1>Data Structures and Algorithms (DSA) Visualization</h1>
-        
-        <div class="img">
-            <a href="DSA_selection_sorting/DSA_selection_sorting.html">
-                <img id="images" src="images/SS.png" alt="">    
-            </a>
-            <span class="name">Selection Sort</span>
-        </div>
 
-        <div class="img">
-            <a href="DSA_fibonacci/DSA_fibonacci.html">
-                <img id="images" src="images/FS.png" alt="">
-            </a>
-            <span class="name">Fibonacci Series</span>
-        </div>
-
-        <div class="img">
-            <a href="DSA_Bubble_sort/DSA_Bubble_sort.html">
-                <img id="images" src="images/BS.png" alt="">
-            </a>
-            <span class="name">Bubble Sort</span>
-        </div>
-
-        <div class="img">
-            <a href="DSA_high_low_no/DSA_high_low_no.html">
-                <img id="images" src="images/HL.png" alt="">    
-            </a>
-            <span class="name">Highest and Lowest Number</span>
-        </div>
-        
-        <div class="img">
-            <a href="DSA_fibonacci/DSA_fibonacci.html">
-                <img id="images" src="images/FS.png" alt="">
-            </a>
-            <span class="name">jj</span>
-        </div>
-        
-        <div class="img">
-            <a href="DSA_Bubble_sort/DSA_Bubble_sort.html">
-                <img id="images" src="images/BS.png" alt="">
-            </a>
-            <span class="name">Bu</span>
-        </div>
-    </div>
-
-    <div id="list_div">
-        <h1>Other Works</h1>
-
-        <div class="img">
-            <a href="kho_kho/kho_kho.html">
-                <img id="images" src="images/KK.png" alt="">
-            </a>
-            <span class="name">Kho-Kho</span>
-        </div>
-
-        <div class="img">
-            <a href="to_do/to_do.html">
-                <img id="images" src="images/TD.png" alt="">
-            </a>
-            <span class="name">To-Do</span>
-        </div>
-
-        <div class="img">
-            <a href="workout_plan/workout-plan.html">
-                <img id="images" src="images/T.png" alt="">
-            </a>
-            <span class="name">My Workout</span>
-        </div>
-        
-        <div class="img">
-            <a href="temp/temp.html">
-                <img id="images" src="images/T.png" alt="">
-            </a>
-            <span class="name">Temp</span>
-        </div>
-
-        <div class="img">
-            <a href="Triadic_Color/triadic.html">
-                <img id="images" src="images/T.png" alt="">
-            </a>
-            <span class="name">Triadic wheel</span>
-        </div>
-
-                <div class="img">
-            <a href="Python pyautogui/Calculator/Calculator.html">
-                <img id="images" src="images/T.png" alt="">
-            </a>
-            <span class="name">Calculator</span>
-                </div>
-
-                <div class="img">
-                    <a href="Weather API/weather.html">
-                        <img id="images" src="images/T.png" alt="">
+    <main>
+        <section id="dsa-section" class="project-section">
+            <h2>Data Structures and Algorithms (DSA) Visualization</h2>
+            <div class="project-grid">
+                <article class="project-card">
+                    <a href="AlgoAnimations/SelectionSort/SelectionSort.html">
+                        <img src="images/SS.png" alt="Selection Sort Visualization">
                     </a>
-                    <span class="name">Weather</span>
-                </div>
+                    <h3>Selection Sort</h3>
+                </article>
+                <article class="project-card">
+                    <a href="AlgoAnimations/DSA_fibonacci/DSA_fibonacci.html">
+                        <img src="images/FS.png" alt="Fibonacci Series Visualization">
+                    </a>
+                    <h3>Fibonacci Series</h3>
+                </article>
+                <article class="project-card">
+                    <a href="AlgoAnimations/bubbleSort/bubbleSort.html">
+                        <img src="images/BS.png" alt="Bubble Sort Visualization">
+                    </a>
+                    <h3>Bubble Sort</h3>
+                </article>
+                <article class="project-card">
+                    <a href="AlgoAnimations/DSA_high_low_no/DSA_high_low_no.html">
+                        <img src="images/HL.png" alt="Highest and Lowest Number Finder">
+                    </a>
+                    <h3>Highest and Lowest Number</h3>
+                </article>
+            </div>
+        </section>
 
-        <div class="img">
-            <a href="blood_management_system\frontend\index.html">
-                <img id="images" src="blood_management_system\frontend\src\login_page_image.jpg" alt="">
-            </a>
-            <span class="name">Weather</span>
-        </div>
+        <section id="other-section" class="project-section">
+            <h2>Other Works</h2>
+            <div class="project-grid">
+                <article class="project-card">
+                    <a href="htmlProjects/kho_kho/kho_kho.html">
+                        <img src="images/KK.png" alt="Kho-Kho Game">
+                    </a>
+                    <h3>Kho-Kho Board UI</h3>
+                </article>
+                <article class="project-card">
+                    <a href="htmlProjects/to_do/to_do.html">
+                        <img src="images/TD.png" alt="To-Do List App">
+                    </a>
+                    <h3>To-Do V1.0</h3>
+                </article>
+                <article class="project-card">
+                    <a href="fullStackProjects/toDo/Frontend/app/index.html">
+                        <img src="images/TodoFS.png" alt="To-Do List App">
+                    </a>
+                    <h3>To-Do V1.2</h3>
+                </article>
+                <article class="project-card">
+                    <a href="htmlProjects/workout_plan/workout-plan.html">
+                        <img src="images/workout.png" alt="Workout Plan Tracker">
+                    </a>
+                    <h3>My Workout</h3>
+                </article>
+                <article class="project-card">
+                    <a href="htmlProjects/Triodic/Triadic.html">
+                        <img src="images/tridicwheel.png" alt="Triadic Color Wheel">
+                    </a>
+                    <h3>Triadic Color Wheel</h3>
+                </article>
+                <article class="project-card">
+                    <a href="htmlProjects/Calculator/Calculator.html">
+                        <img src="images/Calculator.png" alt="Calculator App">
+                    </a>
+                    <h3>Calculator</h3>
+                </article>
+                <article class="project-card">
+                    <a href="htmlProjects/Weather/weather.html">
+                        <img src="images/Weather.png" alt="Weather App">
+                    </a>
+                    <h3>Weather</h3>
+                </article>
+                <article class="project-card">
+                    <a href="htmlProjects/blood_management_system/index.html">
+                        <img src="images/bloodForm.png" alt="Blood Management System Login">
+                    </a>
+                    <h3>Blood Management System Form Page</h3>
+                </article>
 
-
-        <div class="img">
-            <a href="toDo\Frontend\app\index.html">
-                <img id="images" src="blood_management_system\frontend\src\login_page_image.jpg" alt="">
-            </a>
-            <span class="name">TODO Fullstack</span>
-        </div>
-    </div>
+                <article class="project-card">
+                    <a href="htmlProjects/review_carousel/review_carousel.html">
+                        <img src="images/corousel.png" alt="Review Carousel">
+                    </a>
+                    <h3>Review Carousel</h3>
+                </article>
+            </div>
+        </section>
+    </main>
 </body>
 </html>
